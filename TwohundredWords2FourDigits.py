@@ -316,7 +316,7 @@ else:
 
 
 "MAIN"
-is_toy_version = True          # This line is user-modifiable; the RHS should be either True or False.
+is_toy_version = False          # This line is user-modifiable; the RHS should be either True or False.
 errorFlag = False
 if not is_loaded:
     data = [0]
