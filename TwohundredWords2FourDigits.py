@@ -1,7 +1,7 @@
 "I'm called TwohundredWords2FourDigits.py ."
 import random
 
-"A filename (of a file processed by the program) should have extension .16A ."
+"A filename (of a file processed by the program) should have extension .2H4D ."
 "The output password has entropy 16*lg(62) = 95.3 ."
 
 def neo_code(ch):
