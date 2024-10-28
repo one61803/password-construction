@@ -1,8 +1,8 @@
-"I'm called TwohundredWords2FourDigits_2.py ."
+"This file is called TwohundredWords2FourDigits_2.py."
 import random
 
-"A filename (of a file processed by the program) should have extension .2H4D ."
-"The output password has entropy 16*lg(62) = 95.3 ."
+"A filename (of a file processed by the program) should have extension .2H4D."
+"The output password has entropy 16*lg(62) = 95.3."
 
 def neo_code(ch):
     "0=0, 1=1, ..., 9=9, A=10, B=11, ..., Y=34, Z=35, a=36, b=37, ..., y=60, z=61"
@@ -181,7 +181,7 @@ def string_to_int(st):
     return sigma
 
 def string_to_fract(st):
-    "Converts, e.g., '123' to 0.123 ."
+    "Converts, e.g., '123' to 0.123."
     I = string_to_int(st)
     L = len(st)
     return I / 10 ** L
@@ -271,7 +271,7 @@ while not (ans in ['y', 'n']):
 if ans == "y":
     f_ST = input("Enter filename: ")
     if not (f_ST[-5:] == ".2H4D"):
-        print("274. ERROR: Filename's extension should be .2H4D .")
+        print("274. ERROR: Filename's extension should be .2H4D.")
         f_ST = ""
     with open(f_ST) as f:
         for line in f:
