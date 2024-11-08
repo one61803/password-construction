@@ -264,7 +264,7 @@ def stringify_tuple(a_tuple):
 
 def swallow_number(a_string):
     digits_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    while (len(a_string) > 0) and (a_string[0] in digits_LS):
+    while a_string[0] in digits_LS:
         a_string = a_string[1:]
     return a_string
 
@@ -397,16 +397,16 @@ for i in range(1, upper_bound + 1):
                     OK = True
             if (respuesta == "Y"):
                 enter_loop_BL = False
-                if (word_ST == previous_word_ST) or (word_ST == previous_previous_word_ST):
-                    print("Please use a word that is different from the previous two words.")
+            if (word_ST == previous_word_ST) or (word_ST == previous_previous_word_ST):
+                print("Please use a word that is different from the previous two words.")
+                enter_loop_BL = True
+            if (letter_count(loc) < 6):
+                if (letter_count(loc) == -9):
+                    print("No word in the index should have exactly eight letters. Please try again.")
                     enter_loop_BL = True
-                if (letter_count(loc) < 6):
-                    if (letter_count(loc) == -9):
-                        print("No word in the index should have exactly eight letters. Please try again.")
-                        enter_loop_BL = True
-                    else:
-                        print("Index word(s) should have at least six letters among them. Please try again.")
-                        enter_loop_BL = True
+                else:
+                    print("Index word(s) should have at least six letters among them. Please try again.")
+                    enter_loop_BL = True
         previous_previous_word_ST = previous_word_ST
         previous_word_ST = word_ST
     elif is_loaded:
@@ -552,6 +552,7 @@ if not is_loaded:
         print("When assigning the password, it has to be entered twice. The first time from")
         print("one camouflage trellis; the second time from another camouflage trellis.\n")
         print("METADATA")
+        print("Filename: " + f_ST)
         print("Book's name: " + a_book)
         print("Book's author: " + an_author)
         print("Books' publisher: " + a_publisher)
@@ -559,7 +560,7 @@ if not is_loaded:
 else:
     print("Close this window down when ending the session.")
     print("If the password has just been assigned then record its metadata in")
-    print("the log for the post to which the password has been assigned to guard.\n")    
+    print("the log for the post which the password has been assigned to guard.\n")    
     print("Also play some mind-clearing game or puzzle.")
 
 
