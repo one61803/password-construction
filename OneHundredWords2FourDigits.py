@@ -549,7 +549,7 @@ if not is_loaded:
         filename_OK = False
         while not filename_OK:
             f_ST = input("Enter filename: ")
-            if (len(f_ST) < 6) or not (fs_ST[-5:] == ".1H4D"):
+            if (len(f_ST) < 6) or not (f_ST[-5:] == ".1H4D"):
                 print("Error: The filename should have extension .1H4D.")
             else:
                 filename_OK = True
