@@ -318,10 +318,13 @@ ans = ""
 while not (ans in ['y', 'n']):
     ans = input("Load (y/n)? ")
 if ans == "y":
-    f_ST = input("Enter filename: ")
-    if not (f_ST[-5:] == ".2H4D"):
-        print("274. ERROR: Filename's extension should be .2H4D .")
-        f_ST = ""
+    filename_OK = False
+    while not filename_OK:
+        f_ST = input("Enter filename: ")
+        if (len(f_ST) < 6) or not (f_ST[-5:] == ".2H4D"):
+            print("Error: The filename's extension should be .2H4D.")
+        else:
+            filename_OK = True    
     with open(f_ST) as f:
         for line in f:
             line = line.rstrip('\n')
@@ -542,7 +545,13 @@ if not is_loaded:
         data.append(("Author:", an_author))
         data.append(("Publisher:", a_publisher))
         data.append(("Location:", a_location))
-        f_ST = input("Enter filename: ")
+        filename_OK = False
+        while not filename_OK:
+            f_ST = input("Enter filename: ")
+            if (len(f_ST) < 6) or not (fs_ST[-5:] == ".2H4D"):
+                print("Error: The filename should have extension .2H4D.")
+            else:
+                filename_OK = True        
         "save data in filename"
         with open(f_ST, 'w') as f:
             for item in data:
