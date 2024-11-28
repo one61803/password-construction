@@ -7,6 +7,8 @@ import time
 "The output password has entropy 16*lg(36) = 82.7."
 "The input consists of 100 eight-letter words, uppercase."
 "The output consists of sixteen alphanumeric characters (with the letters being restricted to uppercase)."
+"(UALPHA is a data-type reserved word in TI Extended BASIC associated with the ACCEPT verb and VALIDATE preposition."
+"Reference: https://cdn.preterhuman.net/texts/computing/msx/XB_Man_linked.pdf, pp. 47-48.)"
 
 def neo_code(ch):
     "0=0, 1=1, ..., 9=9, A=10, B=11, ..., Y=34, Z=35, a=36, b=37, ..., y=60, z=61"
