@@ -225,40 +225,6 @@ def vector_hash_16(vector_LS):
             accumulator = ((x * accumulator) + vector_LS[i]) % Z
     return accumulator
 
-def buffer_digit():
-    OK = False
-    while not OK:
-        digit_string = ""
-        digit_sum = 0
-        for i in range(16):
-            new_digit = random.randrange(0, 10)
-            digit_string += str(new_digit)
-            digit_sum += new_digit
-            digit_sum %= 10
-            digit_string += "  "
-        digit_string += "? "
-        input_digit = input(digit_string)
-        input_digit = int(input_digit)
-        if (input_digit == digit_sum):
-            OK = True
-
-def digit_mask(digit):
-    digit_string = ""
-    digit_sum = 0
-    for i in range(15):
-        new_digit = random.randrange(0, 10)
-        digit_string += str(new_digit)
-        digit_sum += new_digit
-        digit_sum %= 10
-        digit_string += "  "
-    gap = digit - digit_sum
-    while gap < 0:
-        gap = gap + 10
-    while gap >= 10:
-        gap = gap - 10
-    digit_string += str(gap)
-    print(digit_string)
-
 def stringify_tuple(a_tuple):
     a_string = "("
     for item in a_tuple:
