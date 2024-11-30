@@ -5,6 +5,7 @@ import time
 
 "A filename (of a file processed by the program) should have extension .1H16U."
 "The output password has entropy 16*lg(36) = 82.7."
+"The password has information entropy 16*((26/31)*lg(31)+(5/31)*lg(62)) = 81.8."
 "The input consists of 100 eight-letter words, uppercase."
 "The output consists of sixteen alphanumeric characters (with the letters being restricted to uppercase)."
 "(UALPHA is a data-type reserved word in TI Extended BASIC associated with the ACCEPT verb and VALIDATE preposition."
