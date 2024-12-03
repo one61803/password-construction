@@ -562,6 +562,7 @@ if not is_loaded:
         print("one camouflage trellis; the second time from another camouflage trellis.\n")
         print("METADATA")
         print("Filename: " + f_ST)
+        print("Executor: TwoHundredWords2FourDigits_3.py")
         print("Book's name: " + a_book)
         print("Book's author: " + an_author)
         print("Books' publisher: " + a_publisher)
