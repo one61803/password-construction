@@ -177,6 +177,13 @@ if (answer == "n") and (not errorFlag):
             newfile.write("Program: FourLines2FourDigits_5.py")
         print("New file has been written. Reconstruct the password in order to confirm it.")
         print("Do not assign the password until it has been confirmed.")
+        print("\nMETADATA")
+        print("Filename: " + newfilename)
+        print("Executor: FourLines2FourDigits_5.py")
+        print("Book's name: " + bookname)
+        print("Book's author: " + author)
+        print("Books' publisher: " + publisher)
+        print("Book's location: " + library)
 else:
     print("Close this window down when ending the session.\n")
     print("Also play some mind-clearing game.")
