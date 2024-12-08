@@ -571,7 +571,14 @@ else:
     print("Close this window down when ending the session.")
     print("If the password has just been assigned then record its metadata in")
     print("the log for the post which the password has been assigned to guard.\n")    
-    print("Also play some mind-clearing game or puzzle.")
+    print("Also play some mind-clearing game or puzzle.\n")
+    print("METADATA")
+    print("Filename: " + f_ST)
+    print("Executor: TwoHundredWords2FourDigits_3.py")
+    print("Book's name: " + the_book)
+    print("Book's author: " + the_author)
+    print("Books' publisher: " + the_publisher)
+    print("Book's location: " + the_location)
 
 
 
