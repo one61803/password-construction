@@ -526,6 +526,7 @@ if not is_loaded:
         print("Books' publisher: " + a_publisher)
         print("Book's location: " + a_location)
         print("Filename: " + f_ST)
+        print("Executor: OneHundredWords2SixteenAlphanumbers_2.py")
 else:
     print("Close this window down when ending the session (and delete the two")
     print("copies of the password).")
