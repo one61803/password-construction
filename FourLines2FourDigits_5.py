@@ -184,6 +184,7 @@ if (answer == "n") and (not errorFlag):
         print("Book's author: " + author)
         print("Books' publisher: " + publisher)
         print("Book's location: " + library)
+        print("Password's page number: " + pagenumber + "\n")
 else:
     print("Close this window down when ending the session.\n")
     print("Also play some mind-clearing game.")
