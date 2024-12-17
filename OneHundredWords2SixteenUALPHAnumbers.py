@@ -271,6 +271,18 @@ def letter_count(a_string):
     else:
         return -9
 
+def is_UALPHAnumeric(a_string):
+    allowed_chars_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    allowed_chars_LS += ["A", "B", "C", "D", "E", "F", "G", "H", "Y"]
+    allowed_chars_LS += ["I", "J", "K", "L", "M", "N", "O", "P", "Z"]
+    allowed_chars_LS += ["Q", "R", "S", "T", "U", "V", "W", "X", " "]
+    OK = True
+    for i in range(len(a_string)):
+        a_char = a_string[i]
+        if not (a_char in allowed_chars_LS):
+            OK = False
+    return OK
+
 def is_eight_free(a_string):
     a_list = a_string.split(" ")
     OK = True
@@ -375,6 +387,12 @@ for i in range(1, upper_bound + 1):
                 if (word_ST == previous_word_ST) or (word_ST == previous_previous_word_ST):
                     print("Please use a word that is different from the previous two words.")
                     enter_loop_BL = True
+                if not is_UALPHAnumeric(if_paragraph_swallow(if_page_swallow(loc))):
+                    print("Error: After (optionally) specifying the page number (through \"P. #\")")
+                    print("and (optionally, and immediately afterwards) specifying the paragraph number")
+                    print("(through \"PAR. #\"), the remainder of the location (i.e., index) string should")
+                    print("consist only of spaces, digits, and uppercase letters. Please try again.")
+                    enter_loop_BL = True                    
                 if (letter_count(loc) < 6):
                     if (letter_count(loc) == -9):
                         print("No word in the index should have exactly eight letters. Please try again.")
