@@ -1,4 +1,4 @@
-"This file is called TwoHundredWords2FourDigits_3.py ."
+"This file is called TwoHundredWords2FourDigits_3.py."
 import random
 import time
 
@@ -14,7 +14,7 @@ def neo_code(ch):
     elif ((ord(ch) >= 97) and (ord(ch) <= 122)):
         return ord(ch) - 61
     else:
-        print("15. ERROR")
+        print("17. ERROR")
 
 def transnumeration(word_st):
     "Convert an 8-string of capital letters to an 8-list numbers (each one from 1 to 26)." 
@@ -25,7 +25,7 @@ def transnumeration(word_st):
     if len(lst) == 8:
         return lst
     else:
-        print("26. ERROR in transnumeration.")
+        print("28. ERROR in transnumeration.")
 
 def left_rotate(num_ls):
     new_ls = []
@@ -70,7 +70,7 @@ def to_char(num):
     elif ((num >= 36) and (num <= 61)):
         return chr(61 + num)
     else:
-        print("106. ERROR")
+        print("73. ERROR")
 
 def transcharacterization(vector_LS):
     "Convert an 8-list of natural numbers into an 8-string of alphanumerics. This is the inverse of transnumeration."
@@ -155,7 +155,7 @@ def phi_ordnum(word_ST):
         num = x1 + x2*2 + x3*4 + x4*8 + x5*16 + x6*32 + x7*64 + x8*128 + x9*256 * x10*512 + x11*1024
         return num
     else:
-        print("205. ERROR in phi_ordnum: argument word_ST is not a proper wordoid.")
+        print("158. ERROR in phi_ordnum: argument word_ST is not a proper wordoid.")
 
 "functions that are subsidiary to VAL"
 def is_string_a_float(st):
@@ -182,7 +182,7 @@ def string_to_int(st):
     return sigma
 
 def string_to_fract(st):
-    "Converts, e.g., '123' to 0.123 ."
+    "Converts, e.g., '123' to 0.123."
     I = string_to_int(st)
     L = len(st)
     return I / 10 ** L
@@ -276,7 +276,7 @@ def if_page_swallow(a_string):
         if (a_string[0] == " "):
             a_string = a_string[1:]
         else:
-            print("278. ERROR: No space after the page number.")
+            print("279. ERROR: No space after the page number.")
     return a_string
 
 def if_paragraph_swallow(a_string):
@@ -287,7 +287,7 @@ def if_paragraph_swallow(a_string):
         if (a_string[0] == " "):
             a_string = a_string[1:]
         else:
-            print("289. ERROR: No space after the paragraph number.")
+            print("290. ERROR: No space after the paragraph number.")
     return a_string
 
 def letter_count(a_string):
@@ -349,9 +349,9 @@ if ans == "y":
                     data.append((line_LS[0], line_LS[1], line_LS[2], line_LS[3]))
                 elif len(line_LS) == 2:
                     if not line_LS[0] in ["Executor:", "Book:", "Author:", "Publisher:", "Location:", "Codeword hash:"]:
-                        print("289. ERROR: Not an approved first element for an ordered pair.")
+                        print("352. ERROR: Not an approved first element for an ordered pair.")
                     if (line_LS[0] == "Executor:") and (not line_LS[1] == "TwoHundredWords2FourDigits_3.py"): 
-                        print("291. ERROR: I am not the executor of this file.")    
+                        print("354. ERROR: I am not the executor of this file.")    
                     if line_LS[0] == "Book:":
                         the_book = line_LS[1]
                         print("Book: " + the_book + "\n")
@@ -369,10 +369,10 @@ if ans == "y":
                         print("Codeword hash: " + str(the_codeword_hash) + "\n")
                     data.append((line_LS[0], line_LS[1]))                        
                 else:
-                    print("304. len(line_LS) = " + str(len(line_LS)))
-                    print("305. ERROR")
+                    print("372. len(line_LS) = " + str(len(line_LS)))
+                    print("373. ERROR")
             else:
-                print("307. ERROR: Line is not wrapped in parentheses.")
+                print("375. ERROR: Line is not wrapped in parentheses.")
     is_loaded = True
     print("File has been loaded.")
 else:
@@ -448,7 +448,7 @@ for i in range(1, upper_bound + 1):
             else:
                 print("Fingerprint not ok; try again.")
     else:
-        print("\n373. ERROR: is_loaded should be Boolean.")
+        print("\n451. ERROR: is_loaded should be Boolean.")
                 
     "Add to previous word."
     vector_LS = transnumeration(word_ST)
@@ -545,7 +545,7 @@ else:
     if codeword_hash == the_codeword_hash:
         print("Output's fingerprint is OK.")
     else:
-        print("465. ERROR: Output's hash is NOT OK.")
+        print("548. ERROR: Output's hash is NOT OK.")
         print("codeword_hash = " + str(codeword_hash))
         print("the_codeword_hash = " + str(the_codeword_hash))
 
@@ -597,6 +597,3 @@ else:
     print("Book's author: " + the_author)
     print("Books' publisher: " + the_publisher)
     print("Book's location: " + the_location)
-
-
-
