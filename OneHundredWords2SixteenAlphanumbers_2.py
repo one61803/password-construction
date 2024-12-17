@@ -26,7 +26,7 @@ def transnumeration(word_st):
     if len(lst) == 8:
         return lst
     else:
-        print("26. ERROR in transnumeration.")
+        print("29. ERROR in transnumeration.")
 
 def left_rotate(num_ls):
     new_ls = []
@@ -71,7 +71,7 @@ def to_char(num):
     elif ((num >= 36) and (num <= 61)):
         return chr(61 + num)
     else:
-        print("106. ERROR")
+        print("74. ERROR")
 
 def transcharacterization(vector_LS):
     "Convert an 8-list of natural numbers into an 8-string of alphanumerics. This is the inverse of transnumeration."
@@ -156,7 +156,7 @@ def phi_ordnum(word_ST):
         num = x1 + x2*2 + x3*4 + x4*8 + x5*16 + x6*32 + x7*64 + x8*128 + x9*256 * x10*512 + x11*1024
         return num
     else:
-        print("205. ERROR in phi_ordnum: argument word_ST is not a proper wordoid.")
+        print("159. ERROR in phi_ordnum: argument word_ST is not a proper wordoid.")
 
 "functions that are subsidiary to VAL"
 def is_string_a_float(st):
@@ -200,26 +200,6 @@ def VAL(st):
         return string_to_float(st)
     else:
         return string_to_int(st)
-
-"""def string_hash_6(st):
-    x = 31
-    Z = 999983
-    for i in range(len(st)):
-        if (i == 0):
-            accumulator = ord(st[0])
-        else:
-            accumulator = ((x * accumulator) + ord(st[i])) % Z
-    return accumulator
-
-def vector_hash_6(vector_LS):
-    x = 31
-    Z = 999983
-    for i in range(16):
-        if (i == 0):
-            accumulator = vector_LS[0]
-        else:
-            accumulator = ((x * accumulator) + vector_LS[i]) % Z
-    return accumulator"""
 
 def string_hash_16(st):
     x = 101
@@ -370,9 +350,9 @@ if ans == "y":
                     data.append((line_LS[0], line_LS[1], line_LS[2], line_LS[3]))
                 elif len(line_LS) == 2:
                     if not line_LS[0] in ["Executor:", "Book:", "Author:", "Publisher:", "Location:", "Codeword hash:"]:
-                        print("341. ERROR: Not an approved first element for an ordered pair.")
+                        print("353. ERROR: Not an approved first element for an ordered pair.")
                     if (line_LS[0] == "Executor:") and (not line_LS[1] == "OneHundredWords2SixteenAlphanumbers_2.py"): 
-                        print("343. ERROR: I am not the executor of this file.")
+                        print("355. ERROR: I am not the executor of this file.")
                         exit()
                     if line_LS[0] == "Book:":
                         the_book = line_LS[1]
@@ -391,10 +371,10 @@ if ans == "y":
                         print("Codeword hash: " + str(the_codeword_hash) + "\n")
                     data.append((line_LS[0], line_LS[1]))                        
                 else:
-                    print("304. len(line_LS) = " + str(len(line_LS)))
-                    print("305. ERROR")
+                    print("374. len(line_LS) = " + str(len(line_LS)))
+                    print("375. ERROR")
             else:
-                print("307. ERROR: Line is not wrapped in parentheses.")
+                print("377. ERROR: Line is not wrapped in parentheses.")
     is_loaded = True
     print("File has been loaded.")
 else:
@@ -470,7 +450,7 @@ for i in range(1, upper_bound + 1):
             else:
                 print("Fingerprint not ok; try again.")
     else:
-        print("\n373. ERROR: is_loaded should be Boolean.")
+        print("\n453. ERROR: is_loaded should be Boolean.")
                 
     "Add to previous word."
     vector_LS = transnumeration(word_ST)
@@ -504,7 +484,7 @@ else:
     if codeword_hash == the_codeword_hash:
         print("Output's fingerprint is OK.")
     else:
-        print("468. ERROR: Output's hash is NOT OK.")
+        print("487. ERROR: Output's hash is NOT OK.")
         print("codeword_hash = " + str(codeword_hash))
         print("the_codeword_hash = " + str(the_codeword_hash))
 
