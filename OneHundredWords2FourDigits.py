@@ -1,10 +1,10 @@
-"This file is called OneHundredWords2FourDigits.py ."
-"It was forked from TwoHundredWords2FourDigits_3.py ."
+"This file is called OneHundredWords2FourDigits.py."
+"It was forked from TwoHundredWords2FourDigits_3.py."
 import random
 import time
 
 "A filename (of a file processed by the program) should have extension .1H4D."
-"The output password has entropy 16*lg(62) = 95.3 ."
+"The output password has entropy 4*lg(10) = 13.2."
 
 def neo_code(ch):
     "0=0, 1=1, ..., 9=9, A=10, B=11, ..., Y=34, Z=35, a=36, b=37, ..., y=60, z=61"
