@@ -1,4 +1,4 @@
-Note: Access this Raw in order to see the table correctly.
+Note: Click on Code tab in order to see the table correctly.
 
 | LINEAGE | LATEST                                    |
 |---------+-------------------------------------------|
