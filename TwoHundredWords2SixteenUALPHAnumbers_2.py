@@ -299,10 +299,8 @@ def is_eight_free(a_string):
 
 data = []
 "LOAD?"
-#ans = ""
 mode = ""
 while not (mode in ['c', 'r', 'a']):
-    #ans = input("Load (y/n)? ")
     mode = input("Create new (c), reconstruct (r), or alter (a)? ")
 if (mode == "r") or (mode == "a"):
     filename_OK = False
@@ -349,17 +347,14 @@ if (mode == "r") or (mode == "a"):
                     print("L349. ERROR")
             else:
                 print("L351. ERROR: Line is not wrapped in parentheses.")
-    #is_loaded = True
     print("File has been loaded.")
-#else:
-    #is_loaded = False
+
     if (mode == "a"):
         old_f_ST = f_ST
 
 
 "MAIN"
 is_toy_version = False          # This line is user-modifiable; the RHS should be either True or False.
-#if not is_loaded:
 if (mode == "c"):
     data = [0]
     previous_word_ST = ""
@@ -371,7 +366,6 @@ if is_toy_version:
 else:
     upper_bound = 200
 for i in range(1, upper_bound + 1):
-    #if not is_loaded:
     if (mode == "c"):
         "mode: create new"
         enter_loop_BL = True
@@ -409,7 +403,6 @@ for i in range(1, upper_bound + 1):
                         enter_loop_BL = True
         previous_previous_word_ST = previous_word_ST
         previous_word_ST = word_ST
-    #elif is_loaded:
     elif (mode == "r"):
         "mode: reconstruct"
         print("\nLocation #" + str(i) + ": " + data[i][0])
@@ -449,14 +442,10 @@ for i in range(1, upper_bound + 1):
             word_ST = ""
             while not isproperword(word_ST):
                 word_ST = input("\nEnter some all-caps eight-letter word for location " + str(i) + ": ")
-            #data[i][0] = word_ST
             vec_LS = transnumeration(word_ST)
             lett0 = phi_lett(vec_LS)
             variance0 = phi_variance(vec_LS)
             ordnum0 = phi_ordnum(word_ST)
-            #data[i][1] = lett0
-            #data[i][2] = variance0
-            #data[i][3] = ordnum0
             data[i] = (word_ST + " =", lett0, variance0, ordnum0)
             print("Alteration at location " + str(i) + " done.")
     else:
@@ -477,7 +466,6 @@ for i in range(1, upper_bound + 1):
     variance = phi_variance(vector_LS)
     ordnum = phi_ordnum(word_ST)
     print("phi_lett = " + lett + "\nphi_variance = " + str(variance) + "\nphi_ordnum = " + str(ordnum))
-    #if not is_loaded:
     if (mode == "c"):
         data.append((loc, lett, variance, ordnum))
 
@@ -486,15 +474,12 @@ output = transcharacterization(vecsum_total_200)
 output = output.upper()
 codeword_hash = string_hash_16(output)
 
-#if is_loaded:
 if (mode == "r"):
     print("\nThe password is " + output)
 
-#if not is_loaded:
 if (mode == "c") or (mode == "a"):
     data[0] = ("Codeword hash:", codeword_hash)
 
-#else:
 if (mode == "r"):
     #print("461. DEBUG: the_codeword_hash = " + str(the_codeword_hash))
     if codeword_hash == the_codeword_hash:
@@ -504,7 +489,6 @@ if (mode == "r"):
         print("codeword_hash = " + str(codeword_hash))
         print("the_codeword_hash = " + str(the_codeword_hash))
 
-#if not is_loaded:
 if (mode == "c"):
     ans_CH = ""
     while not ((ans_CH == "y") or (ans_CH == "n")):
@@ -548,15 +532,10 @@ if (mode == "a"):
     while not ((ans_CH == "y") or (ans_CH == "n")):
         ans_CH = input("\nSave (y/n)? ")
     if (ans_CH == "y"):
-        #data.append(("Executor:", "TwoHundredWords2SixteenUALPHAnumbers_2.py"))
         a_book = the_book
         an_author = the_author
         a_publisher = the_publisher
         a_location = the_location
-        #data.append(("Book:", a_book))
-        #data.append(("Author:", an_author))
-        #data.append(("Publisher:", a_publisher))
-        #data.append(("Location:", a_location))
         filename_OK = False
         while not filename_OK:
             f_ST = input("Enter filename: ")
@@ -582,7 +561,7 @@ if (mode == "a"):
         print("Book's location: " + a_location)
         print("Filename: " + f_ST)
         print("Executor: TwoHundredWords2SixteenUALPHAnumbers_2.py")
-#else:
+
 if (mode == "r"):
     print("Close this window down when ending the session (and delete the two")
     print("copies of the password).")
