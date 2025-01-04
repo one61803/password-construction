@@ -438,7 +438,7 @@ for i in range(1, upper_bound + 1):
                     OK = True
                 else:
                     print("Fingerprint not ok; try again.")
-        elif (i in [50, 100, 150]) or (is_toy_version and (i in [8, 15, 22])):
+        elif (i in [75, 150, 225]) or (is_toy_version and (i in [8, 15, 22])):
             word_ST = ""
             while not isproperword(word_ST):
                 word_ST = input("\nEnter some all-caps eight-letter word for location " + str(i) + ": ")
