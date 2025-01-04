@@ -457,7 +457,7 @@ for i in range(1, upper_bound + 1):
     old_vector_left_LS = left_rotate(vecsum_left_LS)
     vecsum_right_LS = vector_sum(old_vector_right_LS, vector_LS)
     old_vector_right_LS = right_rotate(vecsum_right_LS)
-    if i==200 or (is_toy_version and i==12):
+    if i==200 or (is_toy_version and i==20):
         vecsum_left_200 = old_vector_left_LS
         vecsum_right_200 = old_vector_right_LS
         vecsum_total_200 = vecsum_left_200 + vecsum_right_200
