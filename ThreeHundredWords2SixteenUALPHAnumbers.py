@@ -1,5 +1,5 @@
 "This file is called ThreeHundredWords2SixteenUALPHAnumbers.py."
-"It was forked from ThreeHundredWords2SixteenUALPHAnumbers.py."
+"It was forked from TwoHundredWords2SixteenUALPHAnumbers_2.py."
 import random
 import time
 
