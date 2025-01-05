@@ -334,7 +334,7 @@ if ans == "y":
     filename_OK = False
     while not filename_OK:
         f_ST = input("Enter filename: ")
-        if (len(f_ST) < 6) or not (f_ST[-6:] == ".1H16A"):
+        if (len(f_ST) < 7) or not (f_ST[-6:] == ".1H16A"):
             print("Error: The filename's extension should be .1H16A.")
         else:
             filename_OK = True
@@ -505,7 +505,7 @@ if not is_loaded:
         filename_OK = False
         while not filename_OK:
             f_ST = input("Enter filename: ")
-            if (len(f_ST) < 6) or not (f_ST[-6:] == ".1H16A"):
+            if (len(f_ST) < 7) or not (f_ST[-6:] == ".1H16A"):
                 print("Error: The filename should have extension .1H16A.")
             else:
                 filename_OK = True
