@@ -306,7 +306,7 @@ if (mode == "r") or (mode == "a"):
     filename_OK = False
     while not filename_OK:
         f_ST = input("Enter filename: ")
-        if (len(f_ST) < 6) or not (f_ST[-6:] == ".3H16U"):
+        if (len(f_ST) < 7) or not (f_ST[-6:] == ".3H16U"):
             print("Error: The filename's extension should be .3H16U.")
         else:
             filename_OK = True
@@ -539,7 +539,7 @@ if (mode == "a"):
         filename_OK = False
         while not filename_OK:
             f_ST = input("Enter filename: ")
-            if (len(f_ST) < 6) or (not (f_ST[-6:] == ".3H16U")):
+            if (len(f_ST) < 7) or (not (f_ST[-6:] == ".3H16U")):
                 print ("Error: The filename should have extension .3H16U.")
             elif (f_ST == old_f_ST):
                 print("Error: The altered file should be different than the loaded file.")
