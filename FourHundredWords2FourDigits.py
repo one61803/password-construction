@@ -416,7 +416,11 @@ for i in range(1, upper_bound + 1):
                         print("Error: Please enter an eight-letter word in all caps.")
                 OK = True
             time.sleep(1)
-            OK = False
+            if (word_ST == "XXXXXXXX"):
+                OK = True
+                respuesta = "N"
+            else:
+                OK = False
             while not OK:
                 respuesta = input("Is the index and word pair correct (Y/N)? ")
                 if (respuesta in ["Y", "N"]):
@@ -579,7 +583,6 @@ if (not errorFlag) and (mode == "r"):
             cont = False
         else:
             print("\n\n\n\n")
-
 
 if (mode == "c") or (mode == "a"):
     data[0] = ("Codeword hash:", codeword_hash)
