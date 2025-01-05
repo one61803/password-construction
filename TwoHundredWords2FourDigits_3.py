@@ -405,7 +405,11 @@ for i in range(1, upper_bound + 1):
                     word_ST = input("Word #" + str(i) + ": ")
                 OK = True
             time.sleep(1)
-            OK = False
+            if (word_ST == "XXXXXXXX"):
+                OK = True
+                respuesta = "N"
+            else:
+                OK = False    
             while not OK:
                 respuesta = input("Is the index and word pair correct (Y/N)? ")
                 if (respuesta in ["Y", "N"]):
