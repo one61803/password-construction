@@ -376,6 +376,8 @@ for i in range(1, upper_bound + 1):
                 word_ST = ""
                 while not isproperword(word_ST):
                     word_ST = input("Word #" + str(i) + ": ")
+                    if not isproperword(word_ST):
+                        print("Error: Please enter an eight-letter word in all caps.")                    
                 OK = True
             time.sleep(1)
             if (word_ST == "XXXXXXXX"):
@@ -415,6 +417,8 @@ for i in range(1, upper_bound + 1):
             word_ST = ""
             while not isproperword(word_ST):
                 word_ST = input("Word #" + str(i) + ": ")
+                if not isproperword(word_ST):
+                    print("Error: Please enter an eight-letter word in all caps.")                
             vec_LS = transnumeration(word_ST)
             lett0 = phi_lett(vec_LS)
             variance0 = phi_variance(vec_LS)
@@ -433,6 +437,8 @@ for i in range(1, upper_bound + 1):
                 word_ST = ""
                 while not isproperword(word_ST):
                     word_ST = input("Word #" + str(i) + ": ")
+                    if not isproperword(word_ST):
+                        print("Error: Please enter an eight-letter word in all caps.")                    
                 vec_LS = transnumeration(word_ST)
                 lett0 = phi_lett(vec_LS)
                 variance0 = phi_variance(vec_LS)
@@ -446,6 +452,8 @@ for i in range(1, upper_bound + 1):
             word_ST = ""
             while not isproperword(word_ST):
                 word_ST = input("\nEnter some all-caps eight-letter word for location " + str(i) + ": ")
+                if not isproperword(word_ST):
+                    print("Error: Please enter an eight-letter word in all caps.")                
             vec_LS = transnumeration(word_ST)
             lett0 = phi_lett(vec_LS)
             variance0 = phi_variance(vec_LS)
