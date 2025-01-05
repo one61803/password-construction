@@ -16,7 +16,7 @@ Links to files:
 
 | SERIES  | LATEST                                    | LINK 
 |---------+-------------------------------------------|-------
-| (.4L4D) | FourLines2FourDigits_5.py                 | https://github.com/one61803/password-construction/blob/main/FourLines2FourDigits_5.py
+| (.4L4D) | FourLines2FourDigits_5.py                 | <a href="https://github.com/one61803/password-construction/blob/main/FourLines2FourDigits_5.py">GO!</a>
 | .1H4D   | OneHundredWords2FourDigits.py             | 
 | .1H16A  | OneHundredWords2SixteenAlphanumbers_2.py  |
 | .1H16U  | OneHundredWords2SixteenUALPHAnumbers.py   |
