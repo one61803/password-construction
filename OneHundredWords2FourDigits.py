@@ -546,7 +546,6 @@ if (not errorFlag) and (is_loaded):
         else:
             print("\n\n\n\n")
 
-
 if not is_loaded:
     data[0] = ("Codeword hash:", codeword_hash)
 else:
@@ -588,11 +587,13 @@ if not is_loaded:
         print("When assigning the password, it has to be entered twice. The first time from")
         print("one camouflage trellis; the second time from another camouflage trellis.\n")
         print("METADATA")
+        print("Filename: " + f_ST)
+        print("Executor: OneHundredWords2FourDigits.py")
         print("Book's name: " + a_book)
         print("Book's author: " + an_author)
         print("Books' publisher: " + a_publisher)
         print("Book's location: " + a_location)
-        print("Filename: " + f_ST)
+
 else:
     print("Close this window down when ending the session.")
     print("If the password has just been assigned then record its metadata in")
