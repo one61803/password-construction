@@ -532,12 +532,12 @@ if (mode == "c"):
         print("e.g., a handwritten copy; the second time from, e.g., a photographic copy")
         print("(taken by smartphone) or else a second handwritten copy (independent of the first).\n")
         print("METADATA")
+        print("Filename: " + f_ST)
+        print("Executor: ThreeHundredWords2SixteenUALPHAnumbers.py")        
         print("Book's name: " + a_book)
         print("Book's author: " + an_author)
         print("Books' publisher: " + a_publisher)
         print("Book's location: " + a_location)
-        print("Filename: " + f_ST)
-        print("Executor: ThreeHundredWords2SixteenUALPHAnumbers.py")
 
 if (mode == "a"):
     ans_CH = ""
@@ -567,12 +567,12 @@ if (mode == "a"):
         print("e.g., a handwritten copy; the second time from, e.g., a photographic copy")
         print("(taken by smartphone) or else a second handwritten copy (independent of the first).\n")
         print("METADATA")
+        print("Filename: " + f_ST)
+        print("Executor: ThreeHundredWords2SixteenUALPHAnumbers.py")        
         print("Book's name: " + a_book)
         print("Book's author: " + an_author)
         print("Books' publisher: " + a_publisher)
         print("Book's location: " + a_location)
-        print("Filename: " + f_ST)
-        print("Executor: ThreeHundredWords2SixteenUALPHAnumbers.py")
 
 if (mode == "r"):
     print("Close this window down when ending the session (and delete the two")
@@ -580,9 +580,9 @@ if (mode == "r"):
     print("If the password has just been assigned then record its metadata in")
     print("the log for the post to which the password has been assigned to guard.")    
     print("\nMETADATA")
+    print("Filename: " + f_ST)
+    print("Executor: ThreeHundredWords2SixteenUALPHAnumbers.py")    
     print("Book's name: " + the_book)
     print("Book's author: " + the_author)
     print("Books' publisher: " + the_publisher)
     print("Book's location: " + the_location)
-    print("Filename: " + f_ST)
-    print("Executor: ThreeHundredWords2SixteenUALPHAnumbers.py")
