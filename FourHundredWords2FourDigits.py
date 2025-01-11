@@ -1,6 +1,5 @@
-"This file is called FourHundredWords2FourDigits.py."
-"It was forked from TwoHundredWords2FourDigits_3.py and"
-"modified with the help of FourHundredWords2SixteenUALPHAnumbers.py."
+"This file is called FourHundredWords2FourDigits_2.py."
+"It was forked from FourHundredWords2FourDigits.py."
 import random
 import time
 
@@ -9,7 +8,7 @@ import time
 "The output password has information entropy lg(10*9*8*7) = 12.3 shannons."
 
 """SUMMARY OF PROGRAM'S ATTRIBUTES
-Name: FourHundredWords2FourDigits.py
+Name: FourHundredWords2FourDigits_2.py
 Extension of password constructing file: .4H4D
 Input work level: 400 words
 Output password entropy: 13.2 bits
@@ -24,7 +23,7 @@ def neo_code(ch):
     elif ((ord(ch) >= 97) and (ord(ch) <= 122)):
         return ord(ch) - 61
     else:
-        print("17. ERROR")
+        print("L26. ERROR")
 
 def transnumeration(word_st):
     "Convert an 8-string of capital letters to an 8-list numbers (each one from 1 to 26)." 
@@ -35,7 +34,7 @@ def transnumeration(word_st):
     if len(lst) == 8:
         return lst
     else:
-        print("L38. ERROR in transnumeration.")
+        print("L37. ERROR in transnumeration.")
 
 def left_rotate(num_ls):
     new_ls = []
@@ -59,9 +58,9 @@ def neo_mod(num):
             new_num = new_num - 62
         return new_num
     elif num < 0:
-        print("L62. ERROR in neo_mod: argument num < 0")
+        print("L61. ERROR in neo_mod: argument num < 0")
     else:
-        print("L64. ERROR in neo_mod: argument is not a number.")
+        print("L63. ERROR in neo_mod: argument is not a number.")
 
 def vector_sum(word1_LS, word2_LS):
     "Adds two 8-lists of natural numbers component-wise modulo 62."
@@ -80,7 +79,7 @@ def to_char(num):
     elif ((num >= 36) and (num <= 61)):
         return chr(61 + num)
     else:
-        print("L83. ERROR")
+        print("L82. ERROR")
 
 def transcharacterization(vector_LS):
     "Convert an 8-list of natural numbers into an 8-string of alphanumerics. This is the inverse of transnumeration."
@@ -98,9 +97,9 @@ def vector_average(vec_LS):
             sm = sm + vec_LS[i]
         return sm / 8
     else:
-        print("L101. ERROR in vector_average: argument vec_LS has length other than 8.")
+        print("L100. ERROR in vector_average: argument vec_LS has length other than 8.")
 
-def isproperword(word_ST):
+def is_proper_keyword(word_ST):
     "Returns True if word_ST is an 8-string of capital letters."
     if word_ST.isalpha():
         if len(word_ST) == 8:
@@ -110,21 +109,11 @@ def isproperword(word_ST):
     else:
         return False
 
-def isalphanumeric(char):
-    if ((ord(char) >= 48) and (ord(char) <= 57)):
-        return True
-    elif ((ord(char) >= 65) and (ord(char) <= 90)):
-        return True
-    elif ((ord(char) >= 97) and (ord(char) <= 122)):
-        return True
-    else:
-        return False
-
-def isproperwordoid(word_ST):
+def is_proper_keywordoid(word_ST):
     "Returns True if word_ST is an 8-string of alphanumerics."
     proper = True
     for i in range(len(word_ST)):
-        if not isalphanumeric(word_ST[i]):
+        if not word_ST[i].isalnum():
             proper = False
     return proper
 
@@ -150,7 +139,7 @@ def phi_variance(vec_LS):
 
 def phi_ordnum(word_ST):
     "Returns the 'order number' of an 8-list of natural numbers. Third part of a fingerprint/hash of such an 8-list."
-    if isproperwordoid(word_ST):
+    if is_proper_keywordoid(word_ST):
         x1 = word_ST[1] > word_ST[0]
         x2 = word_ST[2] > word_ST[1]
         x3 = word_ST[3] > word_ST[2]
@@ -165,7 +154,7 @@ def phi_ordnum(word_ST):
         num = x1 + x2*2 + x3*4 + x4*8 + x5*16 + x6*32 + x7*64 + x8*128 + x9*256 * x10*512 + x11*1024
         return num
     else:
-        print("L168. ERROR in phi_ordnum: argument word_ST is not a proper wordoid.")
+        print("L158. ERROR in phi_ordnum: argument word_ST is not a proper keywordoid.")
 
 "functions that are subsidiary to VAL"
 def is_string_a_float(st):
@@ -178,29 +167,33 @@ def is_string_a_float(st):
 def is_string_a_numeral(st):
     return st.isdigit() or is_string_a_float(st)
 
-digit_to_int = {'1' : 1, '2' : 2, '3' : 3, '4' : 4, '5' : 5, '6' : 6, '7' : 7, '8' : 8, '9' : 9, '0' : 0}
+#digit_to_int = {'1' : 1, '2' : 2, '3' : 3, '4' : 4, '5' : 5, '6' : 6, '7' : 7, '8' : 8, '9' : 9, '0' : 0}
 
-def string_to_int(st):
+"""def string_to_int(st):
     "Converts a string containing a natural number into an integer."
     L = len(st)
     sigma = 0
     for I in range(1, L+1):
         digit_st = st[-I]
-        digit = digit_to_int[digit_st]
+        #digit = digit_to_int[digit_st]
+        digit = int(digit_st)
         power = 10 ** (I - 1)
         sigma += digit * power
-    return sigma
+    return sigma"""
+"Replace string_to_int with int."
 
 def string_to_fract(st):
     "Converts, e.g., '123' to 0.123."
-    I = string_to_int(st)
+    #I = string_to_int(st)
+    I = int(st)
     L = len(st)
     return I / 10 ** L
 
 def string_to_float(st):
     "Converts a string containing a float into a float. (Assume that there is no exponential notation.)"
     pair = st.split('.')
-    I = string_to_int(pair[0])
+    #I = string_to_int(pair[0])
+    I = int(pair[0])
     F = string_to_fract(pair[1])
     return I+F
 
@@ -208,7 +201,8 @@ def VAL(st):
     if is_string_a_float(st):
         return string_to_float(st)
     else:
-        return string_to_int(st)
+        #return string_to_int(st)
+        return int(st)
 
 def string_hash_6(st):
     x = 31
@@ -278,7 +272,7 @@ def swallow_number(a_string):
         a_string = a_string[1:]
     return a_string
 
-def if_page_swallow(a_string):
+def if_page_then_swallow(a_string):
     digits_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     if (a_string[0:3] == "P. ") and (a_string[3] in digits_LS):
         a_string = a_string[3:]
@@ -286,10 +280,10 @@ def if_page_swallow(a_string):
         if (a_string[0] == " "):
             a_string = a_string[1:]
         else:
-            print("L289. ERROR in if_page_swallow: No space after the page number.")
+            print("L283. ERROR in if_page_then_swallow: No space after the page number.")
     return a_string
 
-def if_paragraph_swallow(a_string):
+def if_paragraph_then_swallow(a_string):
     digits_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     if (a_string[0:5] == "PAR. ") and (a_string[5] in digits_LS):
         a_string = a_string[5:]
@@ -297,12 +291,12 @@ def if_paragraph_swallow(a_string):
         if (a_string[0] == " "):
             a_string = a_string[1:]
         else:
-            print("L300. ERROR in if_paragraph_swallow: No space after the paragraph number.")
+            print("L294. ERROR in if_paragraph_then_swallow: No space after the paragraph number.")
     return a_string
 
 def letter_count(a_string):
-    a_string = if_page_swallow(a_string)
-    a_string = if_paragraph_swallow(a_string)
+    a_string = if_page_then_swallow(a_string)
+    a_string = if_paragraph_then_swallow(a_string)
     if is_eight_free(a_string):
         a_string = a_string.replace(" ", "")
         return len(a_string)
@@ -330,6 +324,26 @@ def is_eight_free(a_string):
         if len(extract) == 8:
             OK = False
     return OK
+
+def digit_Western_Arabic_to_Kannada(digit_CH):
+    decuplet = ['೦', '೧', '೨', '೩', '೪', '೫', '೬', '೭', '೮', '೯']
+    return decuplet[int(digit_CH)]
+
+def is_string(param):
+    return (param == str(param))
+
+def encode_to_Kannada(a_string):
+    new_string = ""
+    if is_string(a_string):
+        if (len(a_string) == 4):
+            for i in range(4):
+                a_char = a_string[i]
+                new_string += digit_Western_Arabic_to_Kannada(a_char)
+            return new_string
+        else:
+            print("L344. ERROR in encode_to_Kannada: The parameter should have four characters.")
+    else:
+        print("L346. ERROR in encode_to_Kannada: The parameter should be a string.")
 
 
 "PRE-MAIN"
@@ -360,8 +374,8 @@ if (mode == "r") or (mode == "a"):
                 elif len(line_LS) == 2:
                     if not line_LS[0] in ["Executor:", "Book:", "Author:", "Publisher:", "Location:", "Codeword hash:"]:
                         print("L362. ERROR: Not an approved first element for an ordered pair.")
-                    if (line_LS[0] == "Executor:") and (not line_LS[1] == "FourHundredWords2FourDigits.py"): 
-                        print("L364. ERROR: I am not the executor of this file.")    
+                    if (line_LS[0] == "Executor:") and (not line_LS[1] == "FourHundredWords2FourDigits_2.py"): 
+                        print("L379. ERROR: I am not the executor of this file.")    
                     if line_LS[0] == "Book:":
                         the_book = line_LS[1]
                         print("Book: " + the_book + "\n")
@@ -379,10 +393,10 @@ if (mode == "r") or (mode == "a"):
                         print("Codeword hash: " + str(the_codeword_hash) + "\n")
                     data.append((line_LS[0], line_LS[1]))                        
                 else:
-                    print("L382. len(line_LS) = " + str(len(line_LS)))
-                    print("L383. ERROR")
+                    print("L397. len(line_LS) = " + str(len(line_LS)))
+                    print("L398. ERROR")
             else:
-                print("L385. ERROR: Line is not wrapped in parentheses.")
+                print("L400. ERROR: Line is not wrapped in parentheses.")
     print("File has been loaded.")
 
     if (mode == "a"):
@@ -391,10 +405,11 @@ if (mode == "r") or (mode == "a"):
 "MAIN"
 is_toy_version = False          # This line is user-modifiable; the RHS should be either True or False.
 errorFlag = False
+if is_toy_version:
+    print("This execution is in toy mode.")
 if (mode == "c"):
     data = [0]
-    previous_word_ST = ""
-    previous_previous_word_ST = ""
+    keywords_LS = []
 old_vector_left_LS = [0, 0, 0, 0, 0, 0, 0, 0]
 old_vector_right_LS = [0, 0, 0, 0, 0, 0, 0, 0]
 if is_toy_version:
@@ -410,9 +425,9 @@ for i in range(1, upper_bound + 1):
             OK = False
             while not OK:
                 word_ST = ""
-                while not isproperword(word_ST):
+                while not is_proper_keyword(word_ST):
                     word_ST = input("Word #" + str(i) + ": ")
-                    if not isproperword(word_ST):
+                    if not is_proper_keyword(word_ST):
                         print("Error: Please enter an eight-letter word in all caps.")
                 OK = True
             time.sleep(1)
@@ -427,10 +442,10 @@ for i in range(1, upper_bound + 1):
                     OK = True
             if (respuesta == "Y"):
                 enter_loop_BL = False
-                if (word_ST == previous_word_ST) or (word_ST == previous_previous_word_ST):
-                    print("Please use a word that is different from the previous two words.")
+                if (word_ST in keywords_LS):
+                    print("Please use a keyword that is different from any previous keyword.")
                     enter_loop_BL = True
-                if not is_UALPHAnumeric(if_paragraph_swallow(if_page_swallow(loc))):
+                if not is_UALPHAnumeric(if_paragraph_then_swallow(if_page_then_swallow(loc))):
                     print("Error: After (optionally) specifying the page number (through \"P. #\")")
                     print("and (optionally, and immediately afterwards) specifying the paragraph number")
                     print("(through \"PAR. #\"), the remainder of the location (i.e., index) string should")
@@ -443,17 +458,16 @@ for i in range(1, upper_bound + 1):
                     else:
                         print("Index word(s) should have at least six letters among them. Please try again.")
                         enter_loop_BL = True
-        previous_previous_word_ST = previous_word_ST
-        previous_word_ST = word_ST
+        keywords_LS.append(word_ST)
     elif (mode == "r"):    
         "mode: reconstruct"
         print("\nLocation #" + str(i) + ": " + data[i][0])
         OK = False
         while not OK:
             word_ST = ""
-            while not isproperword(word_ST):
+            while not is_proper_keyword(word_ST):
                 word_ST = input("Word #" + str(i) + ": ")
-                if not isproperword(word_ST):
+                if not is_proper_keyword(word_ST):
                         print("Error: Please enter an eight-letter word in all caps.")
             vec_LS = transnumeration(word_ST)
             lett0 = phi_lett(vec_LS)
@@ -471,9 +485,9 @@ for i in range(1, upper_bound + 1):
             OK = False
             while not OK:
                 word_ST = ""
-                while not isproperword(word_ST):
+                while not is_proper_keyword(word_ST):
                     word_ST = input("Word #" + str(i) + ": ")
-                    if not isproperword(word_ST):
+                    if not is_proper_keyword(word_ST):
                         print("Error: Please enter an eight-letter word in all caps.")
                 vec_LS = transnumeration(word_ST)
                 lett0 = phi_lett(vec_LS)
@@ -486,9 +500,9 @@ for i in range(1, upper_bound + 1):
                     print("Fingerprint not ok; try again.")
         elif (i in [100, 200, 300]) or (is_toy_version and (i in [10, 20, 30])):
             word_ST = ""
-            while not isproperword(word_ST):
+            while not is_proper_keyword(word_ST):
                 word_ST = input("\nEnter some all-caps eight-letter word for location " + str(i) + ": ")
-                if not isproperword(word_ST):
+                if not is_proper_keyword(word_ST):
                     print("Error: Please enter an eight-letter word in all caps.")                
             vec_LS = transnumeration(word_ST)
             lett0 = phi_lett(vec_LS)
@@ -497,7 +511,7 @@ for i in range(1, upper_bound + 1):
             data[i] = (word_ST + " =", lett0, variance0, ordnum0)
             print("Alteration at location " + str(i) + " done.")
     else:
-        print("L494. ERROR: variable mode should be one of c, r, a.")
+        print("L515. ERROR: variable mode should be one of c, r, a.")
                 
     "Add to previous word."
     vector_LS = transnumeration(word_ST)
@@ -521,7 +535,7 @@ for i in range(1, upper_bound + 1):
         vecsum_left_400 = old_vector_left_LS
         vecsum_right_400 = old_vector_right_LS
         vecsum_total_400 = vecsum_left_400 + vecsum_right_400
-    "Fingerprint (of a word input)."
+    "Fingerprint (of a keyword input)."
     lett = phi_lett(vector_LS)
     variance = phi_variance(vector_LS)
     ordnum = phi_ordnum(word_ST)
@@ -538,36 +552,43 @@ digits[3] = vector_hash_6(vecsum_total_400) % 10
 
 "Check the digits for redundancies."
 if digits[0] == digits[1]:
-    print("ERROR: Digits 0 and 1 are the same.")
+    print("Error: Digits 0 and 1 are the same.")
     errorFlag = True
 
 if digits[0] == digits[2]:
-    print("ERROR: Digits 0 and 2 are the same.")
+    print("Error: Digits 0 and 2 are the same.")
     errorFlag = True
 
 if digits[0] == digits[3]:
-    print("ERROR: Digits 0 and 3 are the same.")
+    print("Error: Digits 0 and 3 are the same.")
     errorFlag = True
 
 if digits[1] == digits[2]:
-    print("ERROR: Digits 1 and 2 are the same.")
+    print("Error: Digits 1 and 2 are the same.")
     errorFlag = True
 
 if digits[1] == digits[3]:
-    print("ERROR: Digits 1 and 3 are the same.")
+    print("Error: Digits 1 and 3 are the same.")
     errorFlag = True
 
 if digits[2] == digits[3]:
-    print("ERROR: Digits 2 and 3 are the same.")
+    print("Error: Digits 2 and 3 are the same.")
     errorFlag = True
 
 if not errorFlag:
     print("The digits are OK (i.e., all different from each other).\n")
     codeword_hash = string_hash_6(str(digits[0]) + str(digits[1]) + str(digits[2]) + str(digits[3]))
-    #print("433. DEBUG: codeword_hash = " + str(codeword_hash))
+else:
+    print("Error: The digits are not OK. (At least two digits are equal to each other.)")
+    quit()
 
-if (not errorFlag) and (mode == "r"):
-    print("CAMOUFLAGE TRELLIS")
+if (mode == "r"):
+    output_mode = ""
+    while not (output_mode in ['t',  's']):
+        output_mode = input("Camouflage trellis (t) or password shuttle (s)? ")
+
+if (not errorFlag) and (mode == "r") and (output_mode == "t"):
+    print("\nCAMOUFLAGE TRELLIS")
     print("Add each row of digits module 10 mentally in order to obtain each digit.")
     print("Rows that end in question mark are buffers, but their sum must be input before")
     print("moving on to the next line.\n")
@@ -586,15 +607,30 @@ if (not errorFlag) and (mode == "r"):
         else:
             print("\n\n\n\n")
 
+if (not errorFlag) and (mode == "r") and (output_mode == "s"):
+    shuttle_position = 0
+    while not (shuttle_position in ['1', '2']):
+        shuttle_position = input("What position: 1 or 2? ")
+    #shuttle_position = int(shuttle_position)
+    if (shuttle_position == "1"):
+        file_1 = open("shuttle.txt", "w")
+        file_1.write(encode_to_Kannada(str(digits[0]) + str(digits[1]) + str(digits[2]) + str(digits[3])) + "\n")
+        file_1.close()
+        print("The password has been written into the shuttle's first position.")
+    elif (shuttle_position == "2"):
+        file_1 = open("shuttle.txt", "a")
+        file_1.write(encode_to_Kannada(str(digits[0]) + str(digits[1]) + str(digits[2]) + str(digits[3])))
+        file_1.close()
+        print("The password has been written into the shuttle's second position.")
+
 if (mode == "c") or (mode == "a"):
     data[0] = ("Codeword hash:", codeword_hash)
     
 if (mode == "r"):
-    #print("461. DEBUG: the_codeword_hash = " + str(the_codeword_hash))
     if codeword_hash == the_codeword_hash:
         print("Output's fingerprint is OK.")
     else:
-        print("L592. ERROR: Output's hash is NOT OK.")
+        print("L633. ERROR: Output's hash is NOT OK.")
         print("codeword_hash = " + str(codeword_hash))
         print("the_codeword_hash = " + str(the_codeword_hash))
 
@@ -603,7 +639,7 @@ if (mode == "c"):
     while not ((ans_CH == "y") or (ans_CH == "n")):
         ans_CH = input("Save (y/n)?")
     if ans_CH == "y":
-        data.append(("Executor:", "FourHundredWords2FourDigits.py"))
+        data.append(("Executor:", "FourHundredWords2FourDigits_2.py"))
         a_book = input("What is the book's name? ")
         an_author = input("Who is the book's author? ")
         a_publisher = input("Who is the book's publisher? ")
@@ -629,7 +665,7 @@ if (mode == "c"):
         print("one camouflage trellis; the second time from another camouflage trellis.\n")
         print("METADATA")
         print("Filename: " + f_ST)
-        print("Executor: FourHundredWords2FourDigits.py")
+        print("Executor: FourHundredWords2FourDigits_2.py")
         print("Book's name: " + a_book)
         print("Book's author: " + an_author)
         print("Books' publisher: " + a_publisher)
@@ -664,7 +700,7 @@ if (mode == "a"):
         print("(taken by smartphone) or else a second handwritten copy (independent of the first).\n")
         print("METADATA")
         print("Filename: " + f_ST)
-        print("Executor: FourHundredWords2FourDigits.py")
+        print("Executor: FourHundredWords2FourDigits_2.py")
         print("Book's name: " + a_book)
         print("Book's author: " + an_author)
         print("Book's publisher: " + a_publisher)
@@ -677,7 +713,7 @@ if (mode == "r"):
     print("Also play some mind-clearing game or puzzle.\n")
     print("METADATA")
     print("Filename: " + f_ST)
-    print("Executor: FourHundredWords2FourDigits.py")
+    print("Executor: FourHundredWords2FourDigits_2.py")
     print("Book's name: " + the_book)
     print("Book's author: " + the_author)
     print("Books' publisher: " + the_publisher)
