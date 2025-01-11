@@ -86,7 +86,7 @@ Links to files:
   </TR>
   <TR>
     <TD>.4H4D</TD>
-    <TD>FourHundredWords2FourDigits.py</TD>
+    <TD>FourHundredWords2FourDigits_2.py</TD>
     <TD>https://github.com/one61803/password-construction/blob/main/FourHundredWords2FourDigits_2.py</TD>
   </TR>
   <TR>
