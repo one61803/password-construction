@@ -582,7 +582,7 @@ else:
     print("Error: The digits are not OK. (At least two digits are equal to each other.)")
     quit()
 
-if (mode == "r"):
+if (not errorFlag) and (mode == "r"):
     output_mode = ""
     while not (output_mode in ['t',  's']):
         output_mode = input("Camouflage trellis (t) or password shuttle (s)? ")
