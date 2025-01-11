@@ -5,8 +5,8 @@
     <TH>LATEST</TH>
   </TR>
   <TR>
-    <TD>(.4L4D)</TD>
-    <TD>FourLines2FourDigits_5.py</TD>
+    <TD>.4L4D</TD>
+    <TD>FourLines2FourDigits_6.py</TD>
   </TR>
   <TR>
     <TD>.1H4D</TD>
@@ -50,9 +50,9 @@ Links to files:
     <TD>LINK</TD>
   </TR>
   <TR>
-    <TD>(.4L4D)</TD>
-    <TD>FourLines2FourDigits_5.py</TD>
-    <TD>https://github.com/one61803/password-construction/blob/main/FourLines2FourDigits_5.py</TD>
+    <TD>.4L4D</TD>
+    <TD>FourLines2FourDigits_6.py</TD>
+    <TD>https://github.com/one61803/password-construction/blob/main/FourLines2FourDigits_6.py</TD>
   </TR>
   <TR>
     <TD>.1H4D</TD>
