@@ -599,7 +599,7 @@ else:
 if (mode == "r"):
     output_mode = ""
     while not (output_mode in ['t',  's']):
-        output_mode = input("Camouflage trellis (t) or shuttle (s)? ")
+        output_mode = input("Camouflage trellis (t) or password shuttle (s)? ")
 
 if (not errorFlag) and (mode == "r") and (output_mode == "t"):
     print("CAMOUFLAGE TRELLIS")
