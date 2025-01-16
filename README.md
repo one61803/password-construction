@@ -38,7 +38,7 @@
   </TR>
   <TR>
     <TD>.4H16U</TD>
-    <TD>FourHundredWords2SixteenUALPHAnumbers.py</TD>
+    <TD>FourHundredWords2SixteenUALPHAnumbers_2.py</TD>
   </TR>
 </TABLE>
 
@@ -91,7 +91,7 @@ Links to files:
   </TR>
   <TR>
     <TD>.4H16U</TD>
-    <TD>FourHundredWords2SixteenUALPHAnumbers.py</TD>
-    <TD>https://github.com/one61803/password-construction/blob/main/FourHundredWords2SixteenUALPHAnumbers.py</TD>
+    <TD>FourHundredWords2SixteenUALPHAnumbers_2.py</TD>
+    <TD>https://github.com/one61803/password-construction/blob/main/FourHundredWords2SixteenUALPHAnumbers_2.py</TD>
   </TR>
 </TABLE>
