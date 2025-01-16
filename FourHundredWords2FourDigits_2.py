@@ -405,14 +405,13 @@ if (mode == "r") or (mode == "a"):
 "MAIN"
 is_toy_version = False          # This line is user-modifiable; the RHS should be either True or False.
 errorFlag = False
-if is_toy_version:
-    print("This execution is in toy mode.")
 if (mode == "c"):
     data = [0]
     keywords_LS = []
 old_vector_left_LS = [0, 0, 0, 0, 0, 0, 0, 0]
 old_vector_right_LS = [0, 0, 0, 0, 0, 0, 0, 0]
 if is_toy_version:
+    print("This execution is in toy mode.")
     upper_bound = 40
 else:
     upper_bound = 400
