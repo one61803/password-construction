@@ -436,7 +436,7 @@ for i in range(1, upper_bound + 1):
             else:
                 OK = False
             while not OK:
-                respuesta = input("Is the index and word pair correct (Y/N)? ")
+                respuesta = input("Is the index–keyword pair correct (Y/N)? ")
                 if (respuesta in ["Y", "N"]):
                     OK = True
             if (respuesta == "Y"):
