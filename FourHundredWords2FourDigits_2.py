@@ -169,7 +169,6 @@ def is_string_a_numeral(st):
 
 def string_to_fract(st):
     "Converts, e.g., '123' to 0.123."
-    #I = string_to_int(st)
     I = int(st)
     L = len(st)
     return I / 10 ** L
@@ -177,7 +176,6 @@ def string_to_fract(st):
 def string_to_float(st):
     "Converts a string containing a float into a float. (Assume that there is no exponential notation.)"
     pair = st.split('.')
-    #I = string_to_int(pair[0])
     I = int(pair[0])
     F = string_to_fract(pair[1])
     return I+F
@@ -186,7 +184,6 @@ def VAL(st):
     if is_string_a_float(st):
         return string_to_float(st)
     else:
-        #return string_to_int(st)
         return int(st)
 
 def string_hash_6(st):
@@ -265,7 +262,7 @@ def if_page_then_swallow(a_string):
         if (a_string[0] == " "):
             a_string = a_string[1:]
         else:
-            print("L283. ERROR in if_page_then_swallow: No space after the page number.")
+            print("L265. ERROR in if_page_then_swallow: No space after the page number.")
     return a_string
 
 def if_paragraph_then_swallow(a_string):
@@ -276,7 +273,7 @@ def if_paragraph_then_swallow(a_string):
         if (a_string[0] == " "):
             a_string = a_string[1:]
         else:
-            print("L294. ERROR in if_paragraph_then_swallow: No space after the paragraph number.")
+            print("L276. ERROR in if_paragraph_then_swallow: No space after the paragraph number.")
     return a_string
 
 def letter_count(a_string):
@@ -326,9 +323,9 @@ def encode_to_Kannada(a_string):
                 new_string += digit_Western_Arabic_to_Kannada(a_char)
             return new_string
         else:
-            print("L344. ERROR in encode_to_Kannada: The parameter should have four characters.")
+            print("L326. ERROR in encode_to_Kannada: The parameter should have four characters.")
     else:
-        print("L346. ERROR in encode_to_Kannada: The parameter should be a string.")
+        print("L328. ERROR in encode_to_Kannada: The parameter should be a string.")
 
 
 "PRE-MAIN"
@@ -378,10 +375,10 @@ if (mode == "r") or (mode == "a"):
                         print("Codeword hash: " + str(the_codeword_hash) + "\n")
                     data.append((line_LS[0], line_LS[1]))                        
                 else:
-                    print("L397. len(line_LS) = " + str(len(line_LS)))
-                    print("L398. ERROR")
+                    print("L378. len(line_LS) = " + str(len(line_LS)))
+                    print("L379. ERROR")
             else:
-                print("L400. ERROR: Line is not wrapped in parentheses.")
+                print("L381. ERROR: Line is not wrapped in parentheses.")
     print("File has been loaded.")
 
     if (mode == "a"):
@@ -495,7 +492,7 @@ for i in range(1, upper_bound + 1):
             data[i] = (word_ST + " =", lett0, variance0, ordnum0)
             print("Alteration at location " + str(i) + " done.")
     else:
-        print("L515. ERROR: variable mode should be one of c, r, a.")
+        print("L495. ERROR: variable mode should be one of c, r, a.")
                 
     "Add to previous word."
     vector_LS = transnumeration(word_ST)
@@ -595,7 +592,6 @@ if (not errorFlag) and (mode == "r") and (output_mode == "s"):
     shuttle_position = 0
     while not (shuttle_position in ['1', '2']):
         shuttle_position = input("What position: 1 or 2? ")
-    #shuttle_position = int(shuttle_position)
     if (shuttle_position == "1"):
         file_1 = open("shuttle.txt", "w")
         file_1.write(encode_to_Kannada(str(digits[0]) + str(digits[1]) + str(digits[2]) + str(digits[3])) + "\n")
@@ -614,7 +610,7 @@ if (mode == "r"):
     if codeword_hash == the_codeword_hash:
         print("Output's fingerprint is OK.")
     else:
-        print("L633. ERROR: Output's hash is NOT OK.")
+        print("L613. ERROR: Output's hash is NOT OK.")
         print("codeword_hash = " + str(codeword_hash))
         print("the_codeword_hash = " + str(the_codeword_hash))
 
