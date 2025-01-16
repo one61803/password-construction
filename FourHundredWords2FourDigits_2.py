@@ -167,21 +167,6 @@ def is_string_a_float(st):
 def is_string_a_numeral(st):
     return st.isdigit() or is_string_a_float(st)
 
-#digit_to_int = {'1' : 1, '2' : 2, '3' : 3, '4' : 4, '5' : 5, '6' : 6, '7' : 7, '8' : 8, '9' : 9, '0' : 0}
-
-"""def string_to_int(st):
-    "Converts a string containing a natural number into an integer."
-    L = len(st)
-    sigma = 0
-    for I in range(1, L+1):
-        digit_st = st[-I]
-        #digit = digit_to_int[digit_st]
-        digit = int(digit_st)
-        power = 10 ** (I - 1)
-        sigma += digit * power
-    return sigma"""
-"Replace string_to_int with int."
-
 def string_to_fract(st):
     "Converts, e.g., '123' to 0.123."
     #I = string_to_int(st)
