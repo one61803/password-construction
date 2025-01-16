@@ -268,7 +268,7 @@ def stringify_tuple(a_tuple):
 
 def swallow_number(a_string):
     digits_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    while a_string[0] in digits_LS:
+    while (len(a_string) > 0) and (a_string[0] in digits_LS):
         a_string = a_string[1:]
     return a_string
 
