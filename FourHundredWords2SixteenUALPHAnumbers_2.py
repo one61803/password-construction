@@ -254,18 +254,6 @@ def letter_count(a_string):
     else:
         return -9
 
-"""def is_UALPHAnumeric(a_string):
-    allowed_chars_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    allowed_chars_LS += ["A", "B", "C", "D", "E", "F", "G", "H", "Y"]
-    allowed_chars_LS += ["I", "J", "K", "L", "M", "N", "O", "P", "Z"]
-    allowed_chars_LS += ["Q", "R", "S", "T", "U", "V", "W", "X", " "]
-    OK = True
-    for i in range(len(a_string)):
-        a_char = a_string[i]
-        if not (a_char in allowed_chars_LS):
-            OK = False
-    return OK"""
-
 def is_UALPHAnumeric(a_string):
     return a_string.isalnum() and (a_string == a_string.upper())
 
@@ -400,7 +388,7 @@ for i in range(1, upper_bound + 1):
         while not OK:
             word_ST = ""
             while not is_proper_keyword(word_ST):
-                word_ST = input("Word #" + str(i) + ": ")
+                word_ST = input("Keyword #" + str(i) + ": ")
                 if not is_proper_keyword(word_ST):
                         print("Error: Please enter an eight-letter word in all caps.")
             vec_LS = transnumeration(word_ST)
@@ -420,7 +408,7 @@ for i in range(1, upper_bound + 1):
             while not OK:
                 word_ST = ""
                 while not is_proper_keyword(word_ST):
-                    word_ST = input("Word #" + str(i) + ": ")
+                    word_ST = input("Keyword #" + str(i) + ": ")
                     if not is_proper_keyword(word_ST):
                         print("Error: Please enter an eight-letter word in all caps.")
                 vec_LS = transnumeration(word_ST)
