@@ -37,6 +37,10 @@
     <TD>FourHundredWords2FourDigits_2.py</TD>
   </TR>
   <TR>
+    <TD>.4H16A</TD>
+    <TD>FourHundredWords2SixteenAlphanumbers.py</TD>
+  </TR>
+  <TR>
     <TD>.4H16U</TD>
     <TD>FourHundredWords2SixteenUALPHAnumbers_2.py</TD>
   </TR>
@@ -88,6 +92,11 @@ Links to files:
     <TD>.4H4D</TD>
     <TD>FourHundredWords2FourDigits_2.py</TD>
     <TD>https://github.com/one61803/password-construction/blob/main/FourHundredWords2FourDigits_2.py</TD>
+  </TR>
+  <TR>
+    <TD>.4H16A</TD>
+    <TD>FourHundredWords2SixteenAlphanumbers.py</TD>
+    <TD>https://github.com/one61803/password-construction/blob/main/FourHundredWords2SixteenAlphanumbers.py</TD>
   </TR>
   <TR>
     <TD>.4H16U</TD>
