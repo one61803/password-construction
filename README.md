@@ -18,7 +18,7 @@
   </TR>
   <TR>
     <TD>.1H16U</TD>
-    <TD>OneHundredWords2SixteenUALPHAnumbers.py</TD>
+    <TD>OneHundredWords2SixteenUALPHAnumbers_2.py</TD>
   </TR>
   <TR>
     <TD>.2H4D</TD>
@@ -66,8 +66,8 @@ Links to files:
   </TR>
   <TR>
     <TD>.1H16U</TD>
-    <TD>OneHundredWords2SixteenUALPHAnumbers.py</TD>
-    <TD>https://github.com/one61803/password-construction/blob/main/OneHundredWords2SixteenUALPHAnumbers.py</TD>
+    <TD>OneHundredWords2SixteenUALPHAnumbers_2.py</TD>
+    <TD>https://github.com/one61803/password-construction/blob/main/OneHundredWords2SixteenUALPHAnumbers_2.py</TD>
   </TR>
   <TR>
     <TD>.2H4D</TD>
