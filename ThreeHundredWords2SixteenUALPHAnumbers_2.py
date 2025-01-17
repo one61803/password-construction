@@ -359,7 +359,7 @@ for i in range(1, upper_bound + 1):
                 while not is_proper_keyword(word_ST):
                     word_ST = input("Keyword #" + str(i) + ": ")
                     if not is_proper_keyword(word_ST):
-                        print("Error: Please enter an eight-letter word in all caps.")                    
+                        print("Error: Please enter an eight-letter word in all caps (or \"XXXXXXXX\" to cancel).")                    
                 OK = True
             time.sleep(1)
             if (word_ST == "XXXXXXXX"):
@@ -376,7 +376,7 @@ for i in range(1, upper_bound + 1):
                 if (word_ST in keywords_LS):
                     print("Please use a keyword that is different from any previous keyword.")
                     enter_loop_BL = True
-                if not is_UALPHAnumeric(if_paragraph_then_swallow(if_page_then_swallow(loc))):
+                if not is_UALPHAnumeric(if_paragraph_then_swallow(if_page_then_swallow(loc)).replace(" ", "")):
                     print("Error: After (optionally) specifying the page number (through \"P. #\")")
                     print("and (optionally, and immediately afterwards) specifying the paragraph number")
                     print("(through \"PAR. #\"), the remainder of the location (i.e., index) string should")
