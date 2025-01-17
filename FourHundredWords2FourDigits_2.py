@@ -285,7 +285,7 @@ def letter_count(a_string):
     else:
         return -9
 
-def is_UALPHAnumeric(a_string):
+"""def is_UALPHAnumeric(a_string):
     allowed_chars_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     allowed_chars_LS += ["A", "B", "C", "D", "E", "F", "G", "H", "Y"]
     allowed_chars_LS += ["I", "J", "K", "L", "M", "N", "O", "P", "Z"]
@@ -295,7 +295,10 @@ def is_UALPHAnumeric(a_string):
         a_char = a_string[i]
         if not (a_char in allowed_chars_LS):
             OK = False
-    return OK
+    return OK"""
+
+def is_UALPHAnumeric(a_string):
+    return a_string.isalnum() and (a_string == a_string.upper())
 
 def is_eight_free(a_string):
     a_list = a_string.split(" ")
