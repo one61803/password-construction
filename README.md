@@ -10,7 +10,7 @@
   </TR>
   <TR>
     <TD>.1H4D</TD>
-    <TD>OneHundredWords2FourDigits.py</TD>
+    <TD>OneHundredWords2FourDigits_2.py</TD>
   </TR>
   <TR>
     <TD>.1H16A</TD>
@@ -56,8 +56,8 @@ Links to files:
   </TR>
   <TR>
     <TD>.1H4D</TD>
-    <TD>OneHundredWords2FourDigits.py</TD>
-    <TD>https://github.com/one61803/password-construction/blob/main/OneHundredWords2FourDigits.py</TD>
+    <TD>OneHundredWords2FourDigits_2.py</TD>
+    <TD>https://github.com/one61803/password-construction/blob/main/OneHundredWords2FourDigits_2.py</TD>
   </TR>
   <TR>
     <TD>.1H16A</TD>
