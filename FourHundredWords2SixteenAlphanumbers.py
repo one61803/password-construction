@@ -346,7 +346,7 @@ for i in range(1, upper_bound + 1):
                 while not is_proper_keyword(word_ST):
                     word_ST = input("Word #" + str(i) + ": ")
                     if not is_proper_keyword(word_ST):
-                        print("Error: Please enter an eight-letter word in all caps.")
+                        print("Error: Please enter an eight-letter word in all caps (or \"XXXXXXXX\" to cancel).")
                 OK = True
             time.sleep(1)
             if (word_ST == "XXXXXXXX"):
