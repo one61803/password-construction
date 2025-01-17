@@ -27,7 +27,7 @@ def neo_code(ch):
     elif ((ord(ch) >= 97) and (ord(ch) <= 122)):
         return ord(ch) - 61
     else:
-        print("L30. ERROR")
+        print("L30. ERROR in neo_code")
 
 def transnumeration(word_st):
     "Convert an 8-string of capital letters to an 8-list numbers (each one from 1 to 26)." 
@@ -83,7 +83,7 @@ def to_char(num):
     elif ((num >= 36) and (num <= 61)):
         return chr(61 + num)
     else:
-        print("L86. ERROR")
+        print("L86. ERROR in to_char")
 
 def transcharacterization(vector_LS):
     "Convert an 8-list of natural numbers into an 8-string of alphanumerics. This is the inverse of transnumeration."
@@ -117,7 +117,6 @@ def is_proper_keywordoid(word_ST):
     "Returns True if word_ST is an 8-string of alphanumerics."
     proper = True
     for i in range(len(word_ST)):
-        #if not isalphanumeric(word_ST[i]):
         if not word_ST[i].isalnum():
             proper = False
     return proper
@@ -232,7 +231,7 @@ def if_page_then_swallow(a_string):
         if (a_string[0] == " "):
             a_string = a_string[1:]
         else:
-            print("L235. ERROR in if_page_then_swallow: No space after the page number.")
+            print("L234. ERROR in if_page_then_swallow: No space after the page number.")
     return a_string
 
 def if_paragraph_then_swallow(a_string):
@@ -243,7 +242,7 @@ def if_paragraph_then_swallow(a_string):
         if (a_string[0] == " "):
             a_string = a_string[1:]
         else:
-            print("L246. ERROR in if_paragraph_then_swallow: No space after the paragraph number.")
+            print("L245. ERROR in if_paragraph_then_swallow: No space after the paragraph number.")
     return a_string
 
 def letter_count(a_string):
@@ -305,9 +304,9 @@ if (mode == "r") or (mode == "a"):
                     data.append((line_LS[0], line_LS[1], line_LS[2], line_LS[3]))
                 elif len(line_LS) == 2:
                     if not line_LS[0] in ["Executor:", "Book:", "Author:", "Publisher:", "Location:", "Codeword hash:"]:
-                        print("L308. ERROR: Not an approved first element for an ordered pair.")
+                        print("L307. ERROR: Not an approved first element for an ordered pair.")
                     if (line_LS[0] == "Executor:") and (not line_LS[1] == "FourHundredWords2SixteenUALPHAnumbers_2.py"): 
-                        print("L310. ERROR: I am not the executor of this file.")
+                        print("L309. ERROR: I am not the executor of this file.")
                         exit()
                     if line_LS[0] == "Book:":
                         the_book = line_LS[1]
@@ -358,7 +357,7 @@ for i in range(1, upper_bound + 1):
             while not OK:
                 word_ST = ""
                 while not is_proper_keyword(word_ST):
-                    word_ST = input("Word #" + str(i) + ": ")
+                    word_ST = input("Keyword #" + str(i) + ": ")
                     if not is_proper_keyword(word_ST):
                         print("Error: Please enter an eight-letter word in all caps.")
                 OK = True
