@@ -227,10 +227,11 @@ def if_page_then_swallow(a_string):
     if (a_string[0:3] == "P. ") and (a_string[3] in digits_LS):
         a_string = a_string[3:]
         a_string = swallow_number(a_string)
-        if (a_string[0] == " "):
+        if (len(a_string) > 0) and (a_string[0] == " "):
             a_string = a_string[1:]
         else:
             print("L234. ERROR in if_page_then_swallow: No space after the page number.")
+            a_string = ""
     return a_string
 
 def if_paragraph_then_swallow(a_string):
@@ -238,10 +239,11 @@ def if_paragraph_then_swallow(a_string):
     if (a_string[0:5] == "PAR. ") and (a_string[5] in digits_LS):
         a_string = a_string[5:]
         a_string = swallow_number(a_string)
-        if (a_string[0] == " "):
+        if (len(a_string) > 0) and (a_string[0] == " "):
             a_string = a_string[1:]
         else:
             print("L245. ERROR in if_paragraph_then_swallow: No space after the paragraph number.")
+            a_string = ""
     return a_string
 
 def letter_count(a_string):
