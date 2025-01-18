@@ -361,7 +361,7 @@ for i in range(1, upper_bound + 1):
             if (respuesta == "Y"):
                 enter_loop_BL = False
                 if (word_ST in keywords_LS):
-                    print("Please use a keyword that is different from the previous keyword.")
+                    print("Please use a keyword that is different from any previous keyword.")
                     enter_loop_BL = True
                 if not is_UALPHAnumeric(if_paragraph_then_swallow(if_page_then_swallow(loc)).replace(" ", "")):
                     print("Error: After (optionally) specifying the page number (through \"P. #\")")
