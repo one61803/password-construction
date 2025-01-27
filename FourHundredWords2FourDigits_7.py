@@ -56,7 +56,7 @@ def neo_mod(num):
     "Returns a number between 0 and 61 (inclusive) that is equivalent (mod 62) to num."
     new_num = num
     if (num >= 0):
-        while new_num > 61:
+        while (new_num > 61):
             new_num = new_num - 62
         return new_num
     elif (num < 0):
@@ -659,9 +659,9 @@ if (mode == "r") or (mode == "a"):
                     line_LS[2] = VAL(line_LS[2])
                     data.append((line_LS[0], line_LS[1], line_LS[2], line_LS[3]))
                 elif (len(line_LS) == 2):
-                    if not line_LS[0] in ["Executor:", "Book:", "Author:", "Publisher:", "Location:", "Codeword hash:"]:
+                    if not (line_LS[0] in ["Executor:", "Book:", "Author:", "Publisher:", "Location:", "Codeword hash:"]):
                         print("L663. ERROR: Not an approved first element for an ordered pair.")
-                    if (line_LS[0] == "Executor:") and (not (line_LS[1] == "FourHundredWords2FourDigits_7.py")): 
+                    if (line_LS[0] == "Executor:") and not (line_LS[1] == "FourHundredWords2FourDigits_7.py"): 
                         print("Error: I am not the executor of this file.")
                         exit()
                     if (line_LS[0] == "Book:"):
