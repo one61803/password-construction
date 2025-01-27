@@ -31,7 +31,7 @@ def transnumeration(word_st):
     for i in range(len(word_st)):
         ch = word_st[i]
         lst.append(neo_code(ch))
-    if len(lst) == 8:
+    if (len(lst) == 8):
         return lst
     else:
         print("L37. ERROR in transnumeration.")
@@ -55,11 +55,11 @@ def right_rotate(num_ls):
 def neo_mod(num):
     "Returns a number between 0 and 61 (inclusive) that is equivalent (mod 62) to num."
     new_num = num
-    if num >= 0:
+    if (num >= 0):
         while new_num > 61:
             new_num = new_num - 62
         return new_num
-    elif num < 0:
+    elif (num < 0):
         print("L63. ERROR in neo_mod: argument num < 0")
     else:
         print("L65. ERROR in neo_mod: argument is not a number.")
@@ -95,7 +95,7 @@ def transcharacterization(vector_LS):
 def vector_average(vec_LS):
     "Returns the average of an 8-list of natural numbers."
     sm = 0
-    if len(vec_LS) == 8:
+    if (len(vec_LS) == 8):
         for i in range(len(vec_LS)):
             sm = sm + vec_LS[i]
         return sm / 8
@@ -105,7 +105,7 @@ def vector_average(vec_LS):
 def is_proper_keyword(word_ST):
     "Returns True if word_ST is an 8-string of capital letters."
     if word_ST.isalpha():
-        if len(word_ST) == 8:
+        if (len(word_ST) == 8):
             return word_ST.isupper()
         else:
             return False
@@ -158,7 +158,7 @@ def phi_ordnum(word_ST):
 def is_string_a_float(st):
     "Returns True if string st contains a float: two natural numbers separated by a period. (Would this return False for a negative float?)"
     pair = st.split('.')
-    if len(pair) != 2:
+    if (len(pair) != 2):
         return False
     else:
         return pair[0].isdigit() and pair[1].isdigit()
@@ -238,9 +238,9 @@ def digit_mask(digit):
         digit_sum %= 10
         digit_string += "  "
     gap = digit - digit_sum
-    while gap < 0:
+    while (gap < 0):
         gap = gap + 10
-    while gap >= 10:
+    while (gap >= 10):
         gap = gap - 10
     digit_string += str(gap)
     print(digit_string)
@@ -318,10 +318,10 @@ def is_eight_free(a_string):
     "Checks to see if any word in a string of words has eight-letters. If it does then return False else return True."
     a_list = a_string.split(" ")
     OK = True
-    while len(a_list) > 0:
+    while (len(a_list) > 0):
         extract = a_list[0]
         a_list = a_list[1:]
-        if len(extract) == 8:
+        if (len(extract) == 8):
             OK = False
     return OK
 
@@ -654,29 +654,29 @@ if (mode == "r") or (mode == "a"):
             if (line[0] == "(") and (line[-1] == ")"):
                 line = line[1:-1]
                 line_LS = line.split(';;')
-                if len(line_LS) == 4:
+                if (len(line_LS) == 4):
                     line_LS[3] = int(line_LS[3])
                     line_LS[2] = VAL(line_LS[2])
                     data.append((line_LS[0], line_LS[1], line_LS[2], line_LS[3]))
-                elif len(line_LS) == 2:
+                elif (len(line_LS) == 2):
                     if not line_LS[0] in ["Executor:", "Book:", "Author:", "Publisher:", "Location:", "Codeword hash:"]:
                         print("L663. ERROR: Not an approved first element for an ordered pair.")
-                    if (line_LS[0] == "Executor:") and (not line_LS[1] == "FourHundredWords2FourDigits_7.py"): 
+                    if (line_LS[0] == "Executor:") and (not (line_LS[1] == "FourHundredWords2FourDigits_7.py")): 
                         print("Error: I am not the executor of this file.")
                         exit()
-                    if line_LS[0] == "Book:":
+                    if (line_LS[0] == "Book:"):
                         the_book = line_LS[1]
                         print(f"Book: {the_book}\n")
-                    elif line_LS[0] == "Author:":
+                    elif (line_LS[0] == "Author:"):
                         the_author = line_LS[1]
                         print(f"Author: {the_author}\n")
-                    elif line_LS[0] == "Publisher:":
+                    elif (line_LS[0] == "Publisher:"):
                         the_publisher = line_LS[1]
                         print(f"Publisher: {the_publisher}\n")
-                    elif line_LS[0] == "Location:":
+                    elif (line_LS[0] == "Location:"):
                         the_location = line_LS[1]
                         print(f"Location: {the_location}\n")
-                    elif line_LS[0] == "Codeword hash:":
+                    elif (line_LS[0] == "Codeword hash:"):
                         the_codeword_hash = int(line_LS[1])
                         print(f"Codeword hash: {the_codeword_hash}\n")
                     data.append((line_LS[0], line_LS[1]))                        
@@ -950,19 +950,19 @@ for i in range(1, upper_bound + 1):
     old_vector_left_LS = left_rotate(vecsum_left_LS)
     vecsum_right_LS = vector_sum(old_vector_right_LS, vector_LS)
     old_vector_right_LS = right_rotate(vecsum_right_LS)
-    if i==100 or (is_toy_version and i==10):
+    if (i==100) or (is_toy_version and i==10):
         vecsum_left_100 = old_vector_left_LS
         vecsum_right_100 = old_vector_right_LS
         vecsum_total_100 = vecsum_left_100 + vecsum_right_100
-    if i==200 or (is_toy_version and i==20):
+    if (i==200) or (is_toy_version and i==20):
         vecsum_left_200 = old_vector_left_LS
         vecsum_right_200 = old_vector_right_LS
         vecsum_total_200 = vecsum_left_200 + vecsum_right_200
-    if i==300 or (is_toy_version and i==30):
+    if (i==300) or (is_toy_version and i==30):
         vecsum_left_300 = old_vector_left_LS
         vecsum_right_300 = old_vector_right_LS
         vecsum_total_300 = vecsum_left_300 + vecsum_right_300
-    if i==400 or (is_toy_version and i==40):
+    if (i==400) or (is_toy_version and i==40):
         vecsum_left_400 = old_vector_left_LS
         vecsum_right_400 = old_vector_right_LS
         vecsum_total_400 = vecsum_left_400 + vecsum_right_400
@@ -982,27 +982,27 @@ digits[2] = vector_hash_6(vecsum_total_300) % 10
 digits[3] = vector_hash_6(vecsum_total_400) % 10
 
 "Check the digits for redundancies."
-if digits[0] == digits[1]:
+if (digits[0] == digits[1]):
     print("Error: Digits 0 and 1 are the same.")
     errorFlag = True
 
-if digits[0] == digits[2]:
+if (digits[0] == digits[2]):
     print("Error: Digits 0 and 2 are the same.")
     errorFlag = True
 
-if digits[0] == digits[3]:
+if (digits[0] == digits[3]):
     print("Error: Digits 0 and 3 are the same.")
     errorFlag = True
 
-if digits[1] == digits[2]:
+if (digits[1] == digits[2]):
     print("Error: Digits 1 and 2 are the same.")
     errorFlag = True
 
-if digits[1] == digits[3]:
+if (digits[1] == digits[3]):
     print("Error: Digits 1 and 3 are the same.")
     errorFlag = True
 
-if digits[2] == digits[3]:
+if (digits[2] == digits[3]):
     print("Error: Digits 2 and 3 are the same.")
     errorFlag = True
 
@@ -1068,7 +1068,7 @@ if (mode == "c"):
     ans_CH = ""
     while not ((ans_CH == "y") or (ans_CH == "n")):
         ans_CH = input("Save (y/n)?")
-    if ans_CH == "y":
+    if (ans_CH == "y"):
         data.append(("Executor:", "FourHundredWords2FourDigits_7.py"))
         a_book = input("What is the book's name? ")
         an_author = input("Who is the book's author? ")
@@ -1113,7 +1113,7 @@ if (mode == "a"):
         filename_OK = False
         while not filename_OK:
             f_ST = input("Enter filename: ")
-            if (len(f_ST) < 6) or (not (f_ST[-5:] == ".4H4D")):
+            if (len(f_ST) < 6) or not (f_ST[-5:] == ".4H4D"):
                 print("Error: The filename should have extension .4H4D.")
             elif (f_ST == old_f_ST):
                 print("Error: The altered file should be different than the original file.")
