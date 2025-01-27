@@ -689,6 +689,8 @@ if (mode == "r") or (mode == "a"):
 
     if (mode == "a"):
         old_f_ST = f_ST
+    elif (mode == "r"):
+        reconstruct_changed = False
 
 "MAIN"
 is_toy_version = False          # This line is user-modifiable; the RHS should be either True or False.
@@ -873,12 +875,13 @@ for i in range(1, upper_bound + 1):
                             prefix = f"P. {page_num} PAR. {par_num} "
                             data[i - 1] = (prefix + data[i - 1][0], data[i - 1][1], data[i - 1][2], data[i - 1][3])
                             print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
+                            reconstruct_changed = True
                             print("\nNow back to the present entry.")
                             print(f"\nLocation #{i}: {data[i][0]}")
                         else:
                             print("Error: Cannot prepend a page–number prefix to a string that already has periods in it.")
                     elif (i == 1) and (word_ST == ":CORRECTION:"):
-                        print("Error: It is not possible to correct a non-existent zeroth entry.")
+                        print("Error: It is not possible to correct a non-existent zeroth entry.")                            
                     else:
                         print("Error: Please enter an eight-letter word in all caps.")
             vec_LS = transnumeration(word_ST)
@@ -1118,6 +1121,16 @@ if (mode == "a"):
         print(f"Book's location: {a_location}")
 
 if (mode == "r"):
+    if reconstruct_changed:
+        ans_CH = ""
+        while not ((ans_CH == "y") or (ans_CH == "n")):
+            ans_CH = input("\nSave (y/n)? ")
+        if (ans_CH == "y"):
+            "save data in file {f_ST}"
+            with open(f_ST, "w") as f:
+                for item in data:
+                    f.write(stringify_tupe(item) + "\n")
+    print("The corrections to the file have been written.")
     print("Close this window down when ending the session.")
     print("If the password has just been assigned then record its metadata in")
     print("the log for the post which the password has been assigned to guard.\n")    
