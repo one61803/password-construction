@@ -877,6 +877,8 @@ for i in range(1, upper_bound + 1):
                             print(f"\nLocation #{i}: {data[i][0]}")
                         else:
                             print("Error: Cannot prepend a page–number prefix to a string that already has periods in it.")
+                    elif (i == 1) and (word_ST == ":CORRECTION:"):
+                        print("Error: It is not possible to correct a non-existent zeroth entry.")
                     else:
                         print("Error: Please enter an eight-letter word in all caps.")
             vec_LS = transnumeration(word_ST)
@@ -921,7 +923,7 @@ for i in range(1, upper_bound + 1):
             data[i] = (word_ST + " =", lett0, variance0, ordnum0)
             print(f"Alteration at location {i} has been done.")
     else:
-        print("L924. ERROR: variable mode should be one of c, r, a.")
+        print("L926. ERROR: variable mode should be one of c, r, a.")
                 
     "Any mode: add to previous word."
     vector_LS = transnumeration(word_ST)
@@ -1039,7 +1041,7 @@ if (mode == "r"):
     if (codeword_hash == the_codeword_hash):
         print("Output's fingerprint is OK.")
     else:
-        print("L1042. ERROR: Output's hash is NOT OK.")
+        print("L1044. ERROR: Output's hash is NOT OK.")
         print(f"codeword_hash = {codeword_hash}")
         print(f"the_codeword_hash = {the_codeword_hash}")
 
