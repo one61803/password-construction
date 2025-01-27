@@ -708,6 +708,8 @@ else:
 if (mode == "c"):
     print("Type \":HELP:\" and <ENTER> for explanatory help.")
     prefix = ""
+if (mode == "r"):
+    prefix = ""    
 for i in range(1, upper_bound + 1):
     if (mode == "c"):
         "mode: create new"
@@ -822,6 +824,7 @@ for i in range(1, upper_bound + 1):
                     OK = False
             else:
                 OK = False
+                "update of prefix"
                 index_word_string = if_paragraph_then_swallow(if_page_then_swallow(loc))
                 amount = len(index_word_string)
                 prefix_length = len(loc) - amount
@@ -862,6 +865,13 @@ for i in range(1, upper_bound + 1):
         "mode: reconstruct"
         print(f"\nLocation #{i}: {data[i][0]}")
         OK = False
+        "update of prefix"
+        datum = data[i][0]
+        index_word_string = if_paragraph_then_swallow(if_page_then_swallow(datum))
+        amount = len(index_word_string)
+        prefix_length = len(datum) - amount
+        if (prefix_length > 0):
+            prefix = datum[0:prefix_length]        
         while not OK:
             word_ST = ""
             while not is_proper_keyword(word_ST):
@@ -872,16 +882,22 @@ for i in range(1, upper_bound + 1):
                         if (data[i - 1][0].count(".") == 0):
                             page_num = input("Enter the page number: ")
                             par_num = input("Enter the paragraph number: ")
-                            prefix = f"P. {page_num} PAR. {par_num} "
-                            data[i - 1] = (prefix + data[i - 1][0], data[i - 1][1], data[i - 1][2], data[i - 1][3])
+                            new_prefix = f"P. {page_num} PAR. {par_num} "
+                            data[i - 1] = (new_prefix + data[i - 1][0], data[i - 1][1], data[i - 1][2], data[i - 1][3])
                             print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
                             reconstruct_changed = True
+                            prefix = new_prefix
                             print("\nNow back to the present entry.")
                             print(f"\nLocation #{i}: {data[i][0]}")
                         else:
                             print("Error: Cannot prepend a page–number prefix to a string that already has periods in it.")
                     elif (i == 1) and (word_ST == ":CORRECTION:"):
-                        print("Error: It is not possible to correct a non-existent zeroth entry.")                            
+                        print("Error: It is not possible to correct a non-existent zeroth entry.")
+                    elif (word_ST == "??"):
+                        if (len(prefix) > 0):
+                            print(prefix)
+                        else:
+                            print("No page number – paragraph number prefix has been entered yet.")                 
                     else:
                         print("Error: Please enter an eight-letter word in all caps.")
             vec_LS = transnumeration(word_ST)
@@ -1129,8 +1145,8 @@ if (mode == "r"):
             "save data in file {f_ST}"
             with open(f_ST, "w") as f:
                 for item in data:
-                    f.write(stringify_tupe(item) + "\n")
-    print("The corrections to the file have been written.")
+                    f.write(stringify_tuple(item) + "\n")
+            print("The corrections to the file have been written.")
     print("Close this window down when ending the session.")
     print("If the password has just been assigned then record its metadata in")
     print("the log for the post which the password has been assigned to guard.\n")    
