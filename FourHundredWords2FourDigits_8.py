@@ -1,6 +1,7 @@
 "This file is called FourHundredWords2FourDigits_8.py."
 "It was forked from FourHundredWords2FourDigits_7.py and modified."
-"Objective of this version: compatibility with ShuttleReader_2.py."
+"""Objective of this version: compatibility with ShuttleReader_2.py (or, changing how
+passwords are stored in the password shuttle)."""
 import random
 import time
 
@@ -753,7 +754,7 @@ if (mode == "r") or (mode == "a"):
         reconstruct_changed = False
 
 "MAIN"
-is_toy_version = True          # This line is user-modifiable; the RHS should be either True or False.
+is_toy_version = False          # This line is user-modifiable; the RHS should be either True or False.
 errorFlag = False
 if (mode == "c"):
     data = [0]
