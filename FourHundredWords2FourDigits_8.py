@@ -619,6 +619,7 @@ def is_string(param):
     "Boolean-valued function which checks whether argument param is a string or not."
     return (param == str(param))
 
+"Functions for writing in the password shuttle."
 def four_digit_shuffle(a, b, c, d):
     "Shuffles a quadruplet of four digits (or any four values passed as parameters, actually)."
     for i in range(6):
