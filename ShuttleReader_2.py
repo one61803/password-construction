@@ -1,6 +1,6 @@
 "This file is called ShuttleReader_2.py."
 "It was forked from ShuttleReader.py."
-"Objective of this version: a new way of storing four-digit passwords in the shuttle."
+"Objective of this version: responding to a new way of storing four-digit passwords in the shuttle."
 import random
 
 
@@ -45,7 +45,7 @@ def digit_mask(digit):
     print(digit_string)
 
 def camouflage_trellis(title):
-    """Presents a camouflage trellis for the four-tuple of digits in global variable digit. String argument title 
+    """Presents a camouflage trellis for the four-tuple of digits in global variable digits. String argument title 
     is the headline of the brief intro."""
     print(title)
     print("Add each row of digits modulo 10 mentally in order to obtain each digit.")
@@ -71,7 +71,7 @@ def is_string(param):
     return (param == str(param))
 
 def Mro_to_Western_Arabic(a_string):
-    "Replaces Mro digits in a_string to their equivalent Western Arabic digits."
+    "Replaces Mro digits in string a_string to their equivalent Western Arabic digits."
     a_string = a_string.replace("𖩠", "0")
     a_string = a_string.replace("𖩡", "1")
     a_string = a_string.replace("𖩢", "2")
