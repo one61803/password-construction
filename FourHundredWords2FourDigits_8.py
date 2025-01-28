@@ -233,7 +233,7 @@ def buffer_digit():
             OK = True
 
 def digit_mask(digit):
-    """Writes a line of 16 digits whose sum modulo 10 equals parameter digit. (The first 15 are random and the last one
+    """Writes a line of 16 digits whose sum modulo 10 equals argument digit. (The first 15 are random and the last one
     is compensating in order for the sum to equal the target digit.)"""
     digit_string = ""
     digit_sum = 0
@@ -332,7 +332,7 @@ def is_eight_free(a_string):
     return OK
 
 def print_pause(a_string, opt):
-    "Prints string a_string, then pauses for five seconds if the Boolean parameter opt is set to True. (The pause is skipped if opt is False.)"
+    "Prints string a_string, then pauses for five seconds if the Boolean argument opt is set to True. (The pause is skipped if opt is False.)"
     print(a_string)
     if opt:
         time.sleep(5)
@@ -616,7 +616,7 @@ def help_page_15(opt):
     print_pause("of that previous entry; and focus will return to the present entry.", opt)
 
 def is_string(param):
-    "Boolean-valued function which checks whether parameter param is a string or not."
+    "Boolean-valued function which checks whether argument param is a string or not."
     return (param == str(param))
 
 def four_digit_shuffle(a, b, c, d):
