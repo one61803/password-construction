@@ -42,9 +42,9 @@ def digit_mask(digit):
         digit_sum %= 10
         digit_string += "  "
     gap = digit - digit_sum
-    while gap < 0:
+    while (gap < 0):
         gap = gap + 10
-    while gap >= 10:
+    while (gap >= 10):
         gap = gap - 10
     digit_string += str(gap)
     print(digit_string)
@@ -151,7 +151,7 @@ answer = ""
 errorFlag = False
 while not (answer in ['y', 'n']):
     answer = input("Load (y/n)? ")
-if answer == "y":
+if (answer == "y"):
     filename_OK = False
     while not filename_OK:
         filename = input("Enter filename: ")        
@@ -163,13 +163,13 @@ if answer == "y":
         i = -5
         for fileline in thefile:
             fileline = fileline.rstrip('\n')
-            if i <= -1:
+            if (i <= -1):
                 print(fileline)
-            elif i <= 3:
+            elif (i <= 3):
                 numbers[i] = int(fileline[14:])
             else:
                 print(fileline)
-                if fileline == "Program: FourLines2FourDigits_7.py":
+                if (fileline == "Program: FourLines2FourDigits_7.py"):
                     print("Python program and file match.\n")
                 else:
                     print("Error: Python program and file DO NOT match.\n")
@@ -186,10 +186,10 @@ for i in range(4):
     lines[i] = input_string
     thehash = string_hash_9(lines[i])
     print("line " + str(j) + ": " + str(thehash))
-    if answer == "n":
+    if (answer == "n"):
         numbers[i] = thehash
-    elif answer == "y":
-        if thehash == numbers[i]:
+    elif (answer == "y"):
+        if (thehash == numbers[i]):
             print("Line " + str(j) + " has the expected hash.")
         else:
             print("Line " + str(j) + " has the wrong hash.")
@@ -198,27 +198,27 @@ for i in range(4):
     digits[i] = string_hash_6(lines[i]) % 10
 
 "Check the digits for redundancies."
-if digits[0] == digits[1]:
+if (digits[0] == digits[1]):
     print("ERROR: Digits 0 and 1 are the same.")
     errorFlag = True
 
-if digits[0] == digits[2]:
+if (digits[0] == digits[2]):
     print("ERROR: Digits 0 and 2 are the same.")
     errorFlag = True
 
-if digits[0] == digits[3]:
+if (digits[0] == digits[3]):
     print("ERROR: Digits 0 and 3 are the same.")
     errorFlag = True
 
-if digits[1] == digits[2]:
+if (digits[1] == digits[2]):
     print("ERROR: Digits 1 and 2 are the same.")
     errorFlag = True
 
-if digits[1] == digits[3]:
+if (digits[1] == digits[3]):
     print("ERROR: Digits 1 and 3 are the same.")
     errorFlag = True
 
-if digits[2] == digits[3]:
+if (digits[2] == digits[3]):
     print("ERROR: Digits 2 and 3 are the same.")
     errorFlag = True
 
@@ -248,7 +248,7 @@ if (not errorFlag) and (answer == "y") and (output_mode == "t"):
         contanswer = ""
         while not (contanswer in ['y', 'n']):
             contanswer = input("Again (y/n)? ")
-        if contanswer == "n":
+        if (contanswer == "n"):
             cont = False
         else:
             print("\n\n\n\n")
@@ -272,7 +272,7 @@ if (answer == "n") and (not errorFlag):
     saveanswer = ""
     while not (saveanswer in ["y", "n"]):
         saveanswer = input("Save (y/n)?")
-    if saveanswer == "y":
+    if (saveanswer == "y"):
         newfilename_OK = False
         while not newfilename_OK:
             newfilename = input("Enter filename: ")
