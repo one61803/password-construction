@@ -1131,11 +1131,10 @@ elif (mode == "r") or (mode == "a"):
         quit()
 elif (mode == "c"):
     print("Error: The digits are not OK. (At least two digits are equal to each other.)")
-    print("A possibility is to save the erroneous word labyrinth and then")
+    print("A possibility is to save the erroneous word-labyrinth and then")
     print("reopen it in 'alter' mode, perform an alteration that fixes the digit")
     print("crash problem, and then save that. (Note that an attempt to go through")
-    print("the unmodified word labyrinth in 'reconstruct' mode will ultimately")
-    print("yield error.)")
+    print("the unaltered word-labyrinth in 'reconstruct' mode will yield error.)")
 codeword_hash = string_hash_6(str(digits[0]) + str(digits[1]) + str(digits[2]) + str(digits[3]))
 
 
