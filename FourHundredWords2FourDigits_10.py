@@ -45,7 +45,7 @@ def transnumeration(word_st):
     if (len(lst) == 8):
         return lst
     else:
-        print("L37. ERROR in transnumeration.")
+        print("L48. ERROR in transnumeration.")
 
 def left_rotate(num_ls):
     "Leftward one-place cyclic permutation of a list of eight numbers."
@@ -71,9 +71,9 @@ def neo_mod(num):
             new_num = new_num - 62
         return new_num
     elif (num < 0):
-        print("L63. ERROR in neo_mod: argument num < 0")
+        print("L74. ERROR in neo_mod: argument num < 0")
     else:
-        print("L65. ERROR in neo_mod: argument is not a number.")
+        print("L76. ERROR in neo_mod: argument is not a number.")
 
 def vector_sum(word1_LS, word2_LS):
     "Adds two 8-lists of natural numbers component-wise modulo 62."
@@ -93,7 +93,7 @@ def to_char(num):
     elif ((num >= 36) and (num <= 61)):
         return chr(61 + num)
     else:
-        print("L85. ERROR")
+        print("L96. ERROR")
 
 def transcharacterization(vector_LS):
     "Convert an 8-list of natural numbers into an 8-string of alphanumerics. This is the inverse of transnumeration."
@@ -111,7 +111,7 @@ def vector_average(vec_LS):
             sm = sm + vec_LS[i]
         return sm / 8
     else:
-        print("L103. ERROR in vector_average: argument vec_LS has length other than 8.")
+        print("L114. ERROR in vector_average: argument vec_LS has length other than 8.")
 
 def is_proper_keyword(word_ST):
     "Returns True if word_ST is an 8-string of capital letters."
@@ -163,7 +163,7 @@ def phi_ordnum(word_ST):
         num = x1 + x2*2 + x3*4 + x4*8 + x5*16 + x6*32 + x7*64 + x8*128 + x9*256 * x10*512 + x11*1024
         return num
     else:
-        print("L155. ERROR in phi_ordnum: argument word_ST is not a proper keywordoid.")
+        print("L166. ERROR in phi_ordnum: argument word_ST is not a proper keywordoid.")
 
 "functions that are subsidiary to VAL"
 def is_string_a_float(st):
@@ -283,7 +283,7 @@ def if_page_then_swallow(a_string):
         if (len(a_string) > 0) and (a_string[0] == " "):
             a_string = a_string[1:]
         else:
-            print("L273. ERROR in if_page_then_swallow: No space after the page number.")
+            print("L286. ERROR in if_page_then_swallow: No space after the page number.")
             a_string = ""
     return a_string
 
@@ -296,7 +296,7 @@ def if_paragraph_then_swallow(a_string):
         if (len(a_string) > 0) and (a_string[0] == " "):
             a_string = a_string[1:]
         else:
-            print("L286. ERROR in if_paragraph_then_swallow: No space after the paragraph number.")
+            print("L299. ERROR in if_paragraph_then_swallow: No space after the paragraph number.")
             a_string = ""
     return a_string
 
@@ -601,7 +601,7 @@ def help_page_14(opt):
     print_pause("heeded or overriden)). [That has been implemented now in the latest version.]", opt)
     print_pause("Another possible error in a location string is missing the prefix for", opt)
     print_pause("page number and paragraph number when the associated index word is in", opt)
-    print_pause("a different paragraph than the previous index word. There is now a", opt)
+    print_pause("a different paragraph from the previous index word. There is now a", opt)
     print_pause("“??” command in creation mode that causes the last-declared page and", opt)
     print_pause("paragraph numbers to be displayed.", opt)
     print("\n")
@@ -827,7 +827,7 @@ def swift_alter():
                 if (len(f_ST) < 6) or not (f_ST[-5:] == ".4H4D"):
                     print("Error: The filename should have extension .4H4D.")
                 elif (f_ST == old_f_ST):
-                    print("Error: The altered file should have a different filename than the original file.")
+                    print("Error: The altered file should have a different filename from the original file.")
                 else:
                     filename_OK = True
             "save data in file"
@@ -882,7 +882,7 @@ if (mode == "r") or (mode == "a"):
                     data.append((line_LS[0], line_LS[1], line_LS[2], line_LS[3]))
                 elif (len(line_LS) == 2):
                     if not (line_LS[0] in ["Executor:", "Book:", "Author:", "Publisher:", "Location:", "Codeword hash:"]):
-                        print(f"L882. ERROR: Not an approved first element for an ordered pair: '{line_LS[0]}'")
+                        print(f"L885. ERROR: Not an approved first element for an ordered pair: '{line_LS[0]}'")
                     if (line_LS[0] == "Executor:") and not (line_LS[1] == "FourHundredWords2FourDigits_10.py"): 
                         print("Error: I am not the executor of this file.")
                         exit()
@@ -907,10 +907,10 @@ if (mode == "r") or (mode == "a"):
                             quit()
                     data.append((line_LS[0], line_LS[1]))                        
                 else:
-                    print(f"L907. len(line_LS) = {len(line_LS)}")
-                    print("L908. ERROR")
+                    print(f"L910. len(line_LS) = {len(line_LS)}")
+                    print("L911. ERROR")
             else:
-                print("L910. ERROR: Line is not wrapped in parentheses.")
+                print("L913. ERROR: Line is not wrapped in parentheses.")
     print("File has been loaded.")
 
     if (mode == "a"):
@@ -1247,7 +1247,7 @@ for i in range(1, upper_bound + 1):
             data[i] = (word_ST + " =", lett0, variance0, ordnum0)
             print(f"Alteration at location {i} has been done.")
     else:
-        print("L1223. ERROR: variable mode should be one of c, r, a.")
+        print("L1250. ERROR: variable mode should be one of c, r, a.")
                 
     "Any mode: add to previous word."
     vector_LS = transnumeration(word_ST)
@@ -1319,7 +1319,7 @@ elif (mode == "r") or (mode == "a"):
         quit()
 elif (mode == "c"):
     print("Error: The digits are not OK. (At least two digits are equal to each other.)")
-    print("A possibility is to save the erroneous word labyrinth and then")
+    print("A possibility is to save the erroneous word-labyrinth and then")
     print("reopen it in 'alter' mode, perform an alteration that fixes the digit")
     print("crash problem, and then save that. (Note that an attempt to go through")
     print("the unaltered word-labyrinth in 'reconstruct' mode will yield error.)")
@@ -1330,7 +1330,7 @@ if (mode == "r"):
     if (codeword_hash == the_codeword_hash):
         print("Output's fingerprint is OK.")
     else:
-        print("L1306. ERROR: Output's hash is NOT OK.")
+        print("L1333. ERROR: Output's hash is NOT OK.")
         print(f"codeword_hash = {codeword_hash}")
         print(f"the_codeword_hash = {the_codeword_hash}")
         quit()
@@ -1438,7 +1438,7 @@ if (mode == "a") and not errorFlag:
             if (len(f_ST) < 6) or not (f_ST[-5:] == ".4H4D"):
                 print("Error: The filename should have extension .4H4D.")
             elif (f_ST == old_f_ST):
-                print("Error: The altered file should have a different filename than the original file.")
+                print("Error: The altered file should have a different filename from the original file.")
             else:
                 filename_OK = True
         "save data in file"
