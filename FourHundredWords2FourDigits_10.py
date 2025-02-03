@@ -1058,10 +1058,13 @@ for i in range(1, upper_bound + 1):
                         if (prefix == loc[0:prefix_length]):
                             print("Error: The prefix has been repeated, but the location string is now\nbeing automatically corrected.")
                             loc = loc[prefix_length:]
+                            prefix_change = False
                         else:
                             older_prefix = prefix
                             prefix = loc[0:prefix_length]
                             prefix_change = True
+                    else:
+                        prefix_change = False
             else:
                 OK = False
                 "update of prefix: 'create new' mode"
@@ -1072,10 +1075,13 @@ for i in range(1, upper_bound + 1):
                     if (prefix == loc[0:prefix_length]):
                         print("Error: The prefix has been repeated, but the location string is now\nbeing automatically corrected.")
                         loc = loc[prefix_length:]
+                        prefix_change = False
                     else:
                         older_prefix = prefix
                         prefix = loc[0:prefix_length]
                         prefix_change = True
+                else:
+                    prefix_change = False
             while not OK:
                 word_ST = ""
                 while not is_proper_keyword(word_ST):
