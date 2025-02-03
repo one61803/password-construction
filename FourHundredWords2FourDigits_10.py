@@ -858,6 +858,7 @@ def DEBUG(flag_BL, msg_ST):
 
 data = []
 debug_0 = False
+debug_1 = False
 "LOAD?"
 mode = ""
 while not (mode in ['c',  'r',  'a']):
@@ -937,13 +938,14 @@ if (mode == "c"):
     print("Type \":HELP:\" and <ENTER> for explanatory help.")
 older_prefix = ""
 prefix = ""
-prefix_change = False
+prefix_changed = False
 for i in range(1, upper_bound + 1):
     if (mode == "c"):
         "mode: create new"
         enter_loop_BL = True
         while enter_loop_BL:
             loc = input(f"\nInput location #{i}: ")
+            prefix_changed = False
             if (loc == ":HELP:"):
                 help_intro()
                 OK = True
@@ -954,6 +956,8 @@ for i in range(1, upper_bound + 1):
                     page_num = input("Enter the page number: ")
                     par_num = input("Enter the paragraph number: ")
                     prefix = f"P. {page_num} PAR. {par_num} "
+                    older_prefix = prefix
+                    DEBUG(debug_1, f"L959. prefix = {prefix}")
                     data[i - 1] = (prefix + data[i - 1][0], data[i - 1][1], data[i - 1][2], data[i - 1][3])
                     print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
                     word_ST = "ZZZZZZZZ"
@@ -973,7 +977,7 @@ for i in range(1, upper_bound + 1):
                     print("No page number – paragraph number prefix has been entered yet.")
                 word_ST = "ZZZZZZZZ"
                 OK = True
-                respuesta = "N"                
+                respuesta = "N"
             elif (len(loc) > 0) and (loc[0] == "?"):
                 question = loc[1:]
                 if not is_proper_keyword(question):
@@ -1052,36 +1056,34 @@ for i in range(1, upper_bound + 1):
                     OK = False
                     "update of prefix: 'create new' mode > 'CONTINUE' case"
                     index_word_string = if_paragraph_then_swallow(if_page_then_swallow(loc))
-                    amount = len(index_word_string)
-                    prefix_length = len(loc) - amount
+                    prefix_length = len(loc) - len(index_word_string)
                     if (prefix_length > 0):
-                        if (prefix == loc[0:prefix_length]):
+                        if (loc[0:prefix_length] == prefix):
                             print("Error: The prefix has been repeated, but the location string is now\nbeing automatically corrected.")
                             loc = loc[prefix_length:]
-                            prefix_change = False
                         else:
                             older_prefix = prefix
                             prefix = loc[0:prefix_length]
-                            prefix_change = True
+                            DEBUG(debug_1, f"L1067. prefix = {prefix}")
+                            prefix_changed = True
                     else:
-                        prefix_change = False
+                        older_prefix = prefix
             else:
                 OK = False
                 "update of prefix: 'create new' mode"
                 index_word_string = if_paragraph_then_swallow(if_page_then_swallow(loc))
-                amount = len(index_word_string)
-                prefix_length = len(loc) - amount
+                prefix_length = len(loc) - len(index_word_string)
                 if (prefix_length > 0):
                     if (prefix == loc[0:prefix_length]):
                         print("Error: The prefix has been repeated, but the location string is now\nbeing automatically corrected.")
                         loc = loc[prefix_length:]
-                        prefix_change = False
                     else:
                         older_prefix = prefix
                         prefix = loc[0:prefix_length]
-                        prefix_change = True
+                        DEBUG(debug_1, f"L1086. prefix = {prefix}")
+                        prefix_changed = True
                 else:
-                    prefix_change = False
+                    older_prefix = prefix
             while not OK:
                 word_ST = ""
                 while not is_proper_keyword(word_ST):
@@ -1096,22 +1098,22 @@ for i in range(1, upper_bound + 1):
                 OK = True
                 respuesta = "N"
                 print("The index–keyword pair has been canceled.")
-                if prefix_change:
+                if prefix_changed:
                     prefix = older_prefix
-                    prefix_change = False
+                    DEBUG(debug_1, f"L1107. prefix = {prefix}")
             elif (word_ST == "ZZZZZZZZ"):
                 OK = True
                 respuesta = "N"
-                if prefix_change:
+                if prefix_changed:
                     prefix = older_prefix
-                    prefix_change = False
+                    DEBUG(debug_1, f"L1114. prefix = {prefix}")
             elif (word_ST in keywords_LS):
                 OK = True
                 respuesta = "N"
                 print("Please use a keyword that is different from any previous keyword.")
-                if prefix_change:
+                if prefix_changed:
                     prefix = older_prefix
-                    prefix_change = False
+                    DEBUG(debug_1, f"L1122. prefix = {prefix}")
             else:
                 OK = False
                 time.sleep(1)
@@ -1121,9 +1123,9 @@ for i in range(1, upper_bound + 1):
                     OK = True
             if (respuesta == "Y"):
                 enter_loop_BL = False
-            elif (respuesta == "N") and prefix_change:
+            elif (respuesta == "N") and prefix_changed:
                 prefix = older_prefix
-                prefix_change = False
+                DEBUG(debug_1, f"prefix = {prefix}")
         keywords_LS.append(word_ST)
     elif (mode == "r"):    
         "mode: reconstruct"
@@ -1140,7 +1142,8 @@ for i in range(1, upper_bound + 1):
                 datum = datum[prefix_length:]
                 data[i] = (datum, data[i][1], data[i][2], data[i][3])
             else:            
-                prefix = datum[0:prefix_length]        
+                prefix = datum[0:prefix_length]
+                DEBUG(debug_1, f"prefix = {prefix}")
         while not OK:
             word_ST = ""
             while not is_proper_keyword(word_ST):
@@ -1157,6 +1160,7 @@ for i in range(1, upper_bound + 1):
                                 print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
                                 reconstruct_changed = True
                                 prefix = new_prefix
+                                DEBUG(debug_1, f"prefix = {prefix}")
                             else:
                                 print("Error: The same location prefix should not be repeated.")
                             print("\nNow back to the present entry.")
@@ -1197,7 +1201,8 @@ for i in range(1, upper_bound + 1):
                     datum = datum[prefix_length:]
                     data[i] = (datum, data[i][1], data[i][2], data[i][3])
                 else:                
-                    prefix = datum[0:prefix_length]              
+                    prefix = datum[0:prefix_length]
+                    DEBUG(debug_1, f"prefix = {prefix}")
             while not OK:
                 word_ST = ""
                 while not is_proper_keyword(word_ST):
@@ -1214,6 +1219,7 @@ for i in range(1, upper_bound + 1):
                                     print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
                                     reconstruct_changed = True
                                     prefix = new_prefix
+                                    DEBUG(f"prefix = {prefix}")
                                 else:
                                     print("Error: The same location prefix should not be repeated.")
                                 print("\nNow back to the present entry.")
