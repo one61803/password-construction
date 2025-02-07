@@ -1202,8 +1202,7 @@ for i in range(1, upper_bound + 1):
         "update of prefix: 'reconstruct' mode"
         datum = data[i][0]
         index_word_string = if_paragraph_then_swallow(if_page_then_swallow(datum))
-        amount = len(index_word_string)
-        prefix_length = len(datum) - amount
+        prefix_length = len(datum) - len(index_word_string)
         if (prefix_length > 0):
             if (prefix == datum[0:prefix_length]):
                 print("Error: The prefix has been repeated, but the location string is now\nbeing automatically corrected.")
@@ -1262,8 +1261,7 @@ for i in range(1, upper_bound + 1):
             "update of prefix: 'alter' mode"
             datum = data[i][0]
             index_word_string = if_paragraph_then_swallow(if_page_then_swallow(datum))
-            amount = len(index_word_string)
-            prefix_length = len(datum) - amount
+            prefix_length = len(datum) - len(index_word_string)
             if (prefix_length > 0):
                 if (prefix == datum[0:prefix_length]):
                     print("Error: The prefix has been repeated, but the location string is now\nbeing automatically corrected.")
