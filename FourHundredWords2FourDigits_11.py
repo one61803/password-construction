@@ -11,7 +11,8 @@ Also in 'alter' mode: when a new, altered, password has been saved, it is
 subsequently outputted; that way it is not necessary to reconstruct it all over again.
 (This is similar to the edit to swift_alter mode.)
 Also at the end of reconstruct and alter modes: a new function: optional logging of
-passwords in a password construction log. (This is just a text file that can be accessed
+passwords (i.e., filenames of word-labyrinth files that are used to reconstruct passwords)
+in a password construction log. (This is just a text file that can be accessed
 with any text editor.) (This is for additional safety.)"""
 import random
 import time
