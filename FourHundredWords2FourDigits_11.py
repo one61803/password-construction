@@ -1098,7 +1098,7 @@ for i in range(1, upper_bound + 1):
                 print("and (included as part of the option) specifying the paragraph number")
                 print("(through \"PAR. {#} \"), the remainder of the location string should")
                 print("consist only of spaces, digits, and uppercase letters (containing at least")
-                print("one non-space). Please try again.")
+                print("six non-spaces). Please try again.")
                 OK = True
                 respuesta = "N"
                 word_ST = "ZZZZZZZZ"
