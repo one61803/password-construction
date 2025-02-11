@@ -907,7 +907,7 @@ def swift_alter():
                     fil_chron.write("- - - - - - - -\n")
                     todays_date = date.today()
                     fil_chron.write(f"Today's date: {todays_date}\n")
-                    fil_chron.write(f"Created through alteration: {f_ST}\n")
+                    fil_chron.write(f"Created through swift alteration: {f_ST}\n")
                     if (output_mode == "t"):
                         fil_chron.write("Output mode: trellis\n")
                     elif (output_mode == "s"):
@@ -1097,7 +1097,8 @@ for i in range(1, upper_bound + 1):
                 print("Error: After (optionally) specifying the page number (through \"P. {#} \")")
                 print("and (included as part of the option) specifying the paragraph number")
                 print("(through \"PAR. {#} \"), the remainder of the location string should")
-                print("consist only of spaces, digits, and uppercase letters. Please try again.")
+                print("consist only of spaces, digits, and uppercase letters (containing at least")
+                print("one non-space). Please try again.")
                 OK = True
                 respuesta = "N"
                 word_ST = "ZZZZZZZZ"
@@ -1143,7 +1144,7 @@ for i in range(1, upper_bound + 1):
                 prefix_length = len(loc) - len(index_word_string)
                 if (prefix_length > 0):
                     if (prefix == loc[0:prefix_length]):
-                        print("Error: The prefix has been repeated, but the location string is now\nbeing automatically corrected.")
+                        print("Error: The prefix has been repeated; but the location string is now\nbeing automatically corrected.")
                         loc = loc[prefix_length:]
                     else:
                         older_prefix = prefix
@@ -1205,7 +1206,7 @@ for i in range(1, upper_bound + 1):
         prefix_length = len(datum) - len(index_word_string)
         if (prefix_length > 0):
             if (prefix == datum[0:prefix_length]):
-                print("Error: The prefix has been repeated, but the location string is now\nbeing automatically corrected.")
+                print("Error: The prefix has been repeated; but the location string is now\nbeing automatically corrected.")
                 datum = datum[prefix_length:]
                 data[i] = (datum, data[i][1], data[i][2], data[i][3])
             else:            
@@ -1495,8 +1496,8 @@ if (mode == "a") and not errorFlag:
         with open(f_ST, "w") as f:
             for item in data:
                 f.write(stringify_tuple(item) + "\n")
-        print("The altered file has been written. Reconstruct the password in order to confirm it.")
-        print("Do not assign the password until it has been confirmed.\n")
+        print("The altered file has been saved.") #Reconstruct the password in order to confirm it.")
+        #print("Do not assign the password until it has been confirmed.\n")
         print("When assigning the password, it has to be entered twice. The first time from,")
         print("e.g., a handwritten copy; the second time from, e.g., a photographic copy")
         print("(taken by smartphone) or else a second handwritten copy (independent of the first).\n")
@@ -1518,7 +1519,7 @@ if (mode == "a") and not errorFlag:
         "log"
         antwoord_CH = ""
         while not (antwoord_CH in ["y", "n"]):
-            antwoord_CH = input("\nWould you like this alteration episode to be logged (y/n)? ")
+            antwoord_CH = input("\nWould you like this alteration session to be logged (y/n)? ")
         if (antwoord_CH == "y"):
             "append entry in password_construction_log.txt"
             with open("password_construction_log.txt", "a") as fil_chron:
@@ -1549,7 +1550,7 @@ if (mode == "r") and not errorFlag:
         while not ((ans_CH == "y") or (ans_CH == "n")):
             ans_CH = input("\nSave (y/n)? ")
         if (ans_CH == "y"):
-            "save data in file {f_ST}"
+            "save data in the file"
             with open(f_ST, "w") as f:
                 for item in data:
                     f.write(stringify_tuple(item) + "\n")
