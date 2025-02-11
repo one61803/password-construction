@@ -413,7 +413,7 @@ for i in range(1, upper_bound + 1):
                 print("Fingerprint not ok; try again.")
     elif (mode == "a"):
         "mode: alter"
-        if not (i in [75, 150, 225]) or not (is_toy_version and (i in [8, 15, 22])):
+        if not (i in [75, 150, 225]) and not (is_toy_version and (i in [8, 15, 22])):
             print("\nLocation #" + str(i) + ": " + data[i][0])
             OK = False
             while not OK:
