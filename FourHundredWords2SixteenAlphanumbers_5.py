@@ -746,7 +746,7 @@ def swift_alter():
         lett = lett0
         variance = variance0
         ordnum = ordnum0
-        data[i] = (word_ST + " =", lett, variance, ordnum)
+        #data[i] = (word_ST + " =", lett, variance, ordnum)
         print(f"phi_lett = {lett}\nphi_variance = {variance}\nphi_ordnum = {ordnum}")
         time.sleep(1)
     "outputting"
