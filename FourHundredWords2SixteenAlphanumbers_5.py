@@ -793,7 +793,7 @@ def swift_alter():
         print(f"Book's author: {an_author}")
         print(f"Book's publisher: {a_publisher}")
         print(f"Book's location: {a_location}")
-        "log"
+        "log: swift alteration"
         antwoord_CH = ""
         while not (antwoord_CH in ["y", "n"]):
             antwoord_CH = input("\nWould you like this alteration episode to be logged (y/n)? ")
@@ -804,6 +804,7 @@ def swift_alter():
                 todays_date = date.today()
                 fil_chron.write(f"Today's date: {todays_date}\n")
                 fil_chron.write(f"Created through swift alteration: {f_ST}\n")
+                fil_chron.write(f"It was modified from: {old_f_ST}\n")
             print("A brief mention has been written in password_construction_log.txt.")                   
         return 1
 
@@ -1305,7 +1306,7 @@ if (mode == "c"):
         print("Book's author: " + an_author)
         print("Books' publisher: " + a_publisher)
         print("Book's location: " + a_location)
-        "log"
+        "log: creation"
         antwoord_CH = ""
         while not (antwoord_CH in ["y", "n"]):
             antwoord_CH = input("\nWould you like this creation session to be logged (y/n)? ")
@@ -1354,7 +1355,7 @@ if (mode == "a"):
         print(f"Book's author: {an_author}")
         print(f"Book's publisher: {a_publisher}")
         print(f"Book's location: {a_location}")
-        "log"
+        "log: alteration"
         antwoord_CH = ""
         while not (antwoord_CH in ["y", "n"]):
             antwoord_CH = input("\nWould you like this alteration session to be logged (y/n)? ")
@@ -1364,7 +1365,8 @@ if (mode == "a"):
                 fil_chron.write("- - - - - - - - - - - - - - - -\n")
                 todays_date = date.today()
                 fil_chron.write(f"Today's date: {todays_date}\n")
-                fil_chron.write(f"Created through alteration: {f_ST}\n")              
+                fil_chron.write(f"Created through alteration: {f_ST}\n")
+                fil_chron.write(f"It was modified from: {old_f_ST}\n")
             print("A brief mention has been written in password_construction_log.txt.")  
 
 if (mode == "r"):
@@ -1389,7 +1391,7 @@ if (mode == "r"):
     print(f"Book's author: {the_author}")
     print(f"Books' publisher: {the_publisher}")
     print(f"Book's location: {the_location}")
-    "log"
+    "log: reconstruction"
     antwoord_CH = ""
     while not (antwoord_CH in ["y", "n"]):
         antwoord_CH = input("\nWould you like this reconstruction episode to be logged (y/n)? ")
