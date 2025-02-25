@@ -1170,7 +1170,7 @@ for i in range(1, upper_bound + 1):
             while not OK:
                 word_ST = ""
                 while not is_proper_keyword(word_ST):
-                    word_ST = input("Keyword #{i}: ")
+                    word_ST = input(f"Keyword #{i}: ")
                     if not is_proper_keyword(word_ST):
                         if (i > 1) and (word_ST == ":CORRECTION:"):
                             print(f"Current previous (#{i - 1}) location string: {data[i - 1][0]}")
