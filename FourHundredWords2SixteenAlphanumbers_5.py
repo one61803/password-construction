@@ -1205,7 +1205,6 @@ for i in range(1, upper_bound + 1):
                                 print(prefix)
                             else:
                                 print("Error: Please enter an eight-letter word in all caps.")
-                keywords_LS.append(word_ST)
                 vec_LS = transnumeration(word_ST)
                 lett0 = phi_lett(vec_LS)
                 variance0 = phi_variance(vec_LS)
@@ -1213,6 +1212,7 @@ for i in range(1, upper_bound + 1):
                 if (data[i][1] == lett0) and (data[i][2] == variance0) and (data[i][3] == ordnum0):
                     print("Fingerprint OK.")
                     OK = True
+                    keywords_LS.append(word_ST)                 
                 else:
                     print("Fingerprint not ok; try again.")
         elif (i in [100, 200, 300]) or (is_toy_version and (i in [10, 20, 30])):
