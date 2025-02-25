@@ -882,7 +882,7 @@ is_toy_version = False          # This line is user-modifiable; the RHS should b
 if (mode == "c"):
     data = [0]
     keywords_LS = []
-elif (mode == "r"):
+elif (mode == "r") or (mode == "a"):
     keywords_LS = []
 old_vector_left_LS = [0, 0, 0, 0, 0, 0, 0, 0]
 old_vector_right_LS = [0, 0, 0, 0, 0, 0, 0, 0]
@@ -1205,6 +1205,7 @@ for i in range(1, upper_bound + 1):
                                 print(prefix)
                             else:
                                 print("Error: Please enter an eight-letter word in all caps.")
+                keywords_LS.append(word_ST)
                 vec_LS = transnumeration(word_ST)
                 lett0 = phi_lett(vec_LS)
                 variance0 = phi_variance(vec_LS)
