@@ -168,7 +168,7 @@ def is_string_a_decimal(st):
     if (len(pair) != 2):
         return False
     else:
-        return pair[0].isdigit() and pair[1].isdigit()
+        return (pair[0].isdigit() or (pair[0] == '')) and pair[1].isdigit()
 
 def is_string_a_number(st):
     "Returns True if the string contains a number."
