@@ -201,6 +201,10 @@ def string_to_fract(st):
 def string_decimal_to_number(st):
     "Converts a string containing a decimal number into that number. (It is assumed that there is no exponential notation.)"
     pair = st.split('.')
+    if (pair[0] == ""):
+        pair[0] = "0"
+    elif (pair[0] == "-"):
+        pair[0] = "-0"    
     I = int(pair[0])
     F = string_to_fract(pair[1])
     if (I >= 0):
