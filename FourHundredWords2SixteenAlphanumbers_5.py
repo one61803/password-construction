@@ -52,6 +52,7 @@ def transnumeration(word_st):
         print("L41. ERROR in transnumeration.")
 
 def left_rotate(num_ls):
+    "Leftward one-place cyclic permutation of a list of eight numbers."    
     new_ls = []
     for i in [1, 2, 3, 4, 5, 6, 7]:
         new_ls.append(num_ls[i])
@@ -59,6 +60,7 @@ def left_rotate(num_ls):
     return new_ls
 
 def right_rotate(num_ls):
+    "Rightward one-place cyclic permutation of a list of eight numbers."    
     new_ls = []
     new_ls.append(num_ls[7])
     for i in [0, 1, 2, 3, 4, 5, 6]:
@@ -87,6 +89,8 @@ def vector_sum(word1_LS, word2_LS):
     return new_word_LS
 
 def to_char(num):
+    "Converts a number from 0 to 61 amphi-inclusive into a character of three types: (1) a digit,\
+    (2) an uppercase letter, (3) a lowercase letter. (The letters belonging to the English alphabet.)"
     if ((num >= 0) and (num <= 9)):
         return chr(48 + num)
     elif ((num >= 10) and (num <= 35)):
@@ -133,6 +137,7 @@ def is_proper_keywordoid(word_ST):
     return proper
 
 def is_string(a_ST):
+    "Boolean-valued function which checks whether parameter param is a string or not."    
     return a_ST == str(a_ST)        
 
 def phi_lett(vec_LS):
@@ -172,6 +177,8 @@ def phi_ordnum(word_ST):
 
 "functions that are subsidiary to VAL"
 def is_string_a_float(st):
+    "Returns True if string st contains a float: two natural numbers separated by a period.\
+    (Would this return False for a negative float?)"
     pair = st.split('.')
     if len(pair) != 2:
         return False
@@ -179,6 +186,7 @@ def is_string_a_float(st):
         return pair[0].isdigit() and pair[1].isdigit()
 
 def is_string_a_numeral(st):
+    "Returns True if the string contains a number expressed as a numeral."
     return st.isdigit() or is_string_a_float(st)
 
 def string_to_fract(st):
@@ -195,12 +203,15 @@ def string_to_float(st):
     return I+F
 
 def VAL(st):
+    "Converts a string containing a number into the number contained by that string. (The name 'VAL'\
+    is borrowed from BASIC.)"
     if is_string_a_float(st):
         return string_to_float(st)
     else:
         return int(st)
 
 def string_hash_16(st):
+    "Calculates a hash for string st using a method similar to vector_hash_6."
     x = 101
     Z = 9999999999999937
     for i in range(len(st)):
@@ -211,6 +222,8 @@ def string_hash_16(st):
     return accumulator
 
 def vector_hash_16(vector_LS):
+    "Calculates a polynomial in x whose coefficients are components of vector_LS, using Horner's method, \
+    for the purpose of providing a hash for a string which is encoded in vector_LS."
     x = 101
     Z = 9999999999999937
     for i in range(16):
@@ -221,6 +234,8 @@ def vector_hash_16(vector_LS):
     return accumulator
 
 def stringify_tuple(a_tuple):
+    "Packages the data in a_tuple into a string that can be written into a file, with double-semicolon \
+    separators and parenthetical boundaries."    
     a_string = "("
     for item in a_tuple:
         a_string += str(item)
@@ -229,12 +244,14 @@ def stringify_tuple(a_tuple):
     return a_string
 
 def swallow_number(a_string):
+    "Removes a number from the beginning of a_string."    
     digits_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     while (len(a_string) > 0) and (a_string[0] in digits_LS):
         a_string = a_string[1:]
     return a_string
 
 def if_page_then_swallow(a_string):
+    "Checks a_string to see if it starts with a page prefix and if it does, then removes it."    
     digits_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     if (a_string[0:3] == "P. ") and (a_string[3] in digits_LS):
         a_string = a_string[3:]
@@ -247,6 +264,7 @@ def if_page_then_swallow(a_string):
     return a_string
 
 def if_paragraph_then_swallow(a_string):
+    "Checks a_string to see if it starts with a paragraph prefix and if it does, then removes it."    
     digits_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     if (a_string[0:5] == "PAR. ") and (a_string[5] in digits_LS):
         a_string = a_string[5:]
@@ -259,6 +277,7 @@ def if_paragraph_then_swallow(a_string):
     return a_string
 
 def letter_count(a_string):
+    "Counts the quantity of alphanumbers in the latter (non-prefix, index-word) part of a location string."    
     a_string = if_page_then_swallow(a_string)
     a_string = if_paragraph_then_swallow(a_string)
     if is_eight_free(a_string):
@@ -267,10 +286,26 @@ def letter_count(a_string):
     else:
         return -9
 
+def index_word_count(loc_string):
+    "Counts the number of index words (or numbers) in loc_string."
+    loc_string = if_page_then_swallow(loc_string)
+    loc_string = if_paragraph_then_swallow(loc_string)
+    if (loc_string[-2:] == " S"):
+        loc_string = loc_string[0:-2]
+    while (loc_string.count(" S ") > 0):
+        loc_string = loc_string.replace(" S ", " ")
+    while (loc_string.count("  ") > 0):
+        loc_string = loc_string.replace("  ", " ")
+    words_LS = loc_string.split(" ")
+    return len(words_LS) 
+
 def is_UALPHAnumeric(a_string):
+    "Returns True if string a_string contains only uppercase alphanumbers."    
     return a_string.isalnum() and (a_string == a_string.upper())
 
 def is_eight_free(a_string):
+    "Checks to see if any word in a string of words has eight-letters. If it does then return False\
+    else return True."    
     a_list = a_string.split(" ")
     OK = True
     while len(a_list) > 0:
@@ -281,6 +316,8 @@ def is_eight_free(a_string):
     return OK
 
 def print_pause(a_string):
+    "Prints string a_string, then pauses for five seconds if the Boolean parameter opt is set to True.\
+    (The pause is skipped if opt is False.)"    
     print(a_string)
     time.sleep(5)
 
@@ -697,6 +734,8 @@ def NATO_spell_out(string_ST):
         char_CH = string_ST[0:1]
         string_ST = string_ST[1:]
         spell_out += NATO_alphanumber(char_CH) + " "
+        if (len(string_ST) in [12, 8, 4]):
+            spell_out += "\n"
     return spell_out
 
 def swift_alter():
@@ -808,6 +847,11 @@ def swift_alter():
             print("A brief mention has been written in password_construction_log.txt.")                   
         return 1
 
+def DEBUG(flag_BL, line_NT, msg_ST):
+    "If flag_BL is True then prints line number line_NT followed by message msg_ST."
+    if flag_BL:
+        print(f"L{line_NT}. {msg_ST}")
+
 def what_prefix(datum_ST):
     "Extracts the page–paragraph prefix from datum_ST and returns it."
     index_word_string = if_paragraph_then_swallow(if_page_then_swallow(datum_ST))
@@ -902,6 +946,7 @@ for i in range(1, upper_bound + 1):
         enter_loop_BL = True
         while enter_loop_BL:
             loc = input(f"\nInput location #{i}: ")
+            prefix_changed = False      # pref.
             if (loc == ":HELP:"):
                 help_intro()
                 OK = True
@@ -1212,7 +1257,7 @@ for i in range(1, upper_bound + 1):
                 if (data[i][1] == lett0) and (data[i][2] == variance0) and (data[i][3] == ordnum0):
                     print("Fingerprint OK.")
                     OK = True
-                    keywords_LS.append(word_ST)                 
+                    keywords_LS.append(word_ST)                    
                 else:
                     print("Fingerprint not ok; try again.")
         elif (i in [100, 200, 300]) or (is_toy_version and (i in [10, 20, 30])):
