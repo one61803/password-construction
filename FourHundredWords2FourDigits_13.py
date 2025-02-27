@@ -1,33 +1,22 @@
-"This file is called FourHundredWords2SixteenAlphanumbers_5.py."
-"It was forked from FourHundredWords2SixteenAlphanumbers_4.py."
-"""Objective: Add an output and a log section to the end of
-mode alter.
-Also: updating help_intro, turning it into a help scroll.
-Also: propagating an update of the inputting system from
-FourHundredWords2FourDigits_11.py hither.
-Also: add swift_alter function and call it at the conclusion of
-reconstruct mode. (Not at the conclusion of alter mode. Why not?
-swift_alter is called at the end of alter mode in 4H4D(11) because
-creating a new (word-labyrinth that outputs a) four-digit password
-is always risky because there is a liability for a 'digit crash'.
-The chance of not having a digit crash is (10*9*8*7)/(10*10*10*10)
- = 50.4%.)
- Also: new NATO_alphanumber and NATO_spell_out functions for help
- with outputting alphanumberic passwords."""
+"This file is called FourHundredWords2FourDigits_13.py."
+"It was forked from FourHundredWords2FourDigits_12.py and modified."
+"""Objectives of version 13: Ignore the codeword hash."""
 import random
 import time
 from datetime import date
 
-"A filename (of a file processed by the program) should have extension .4H16A."
-"The output password has password entropy 16*lg(62) = 95.2."
-"The input consists of 400 eight-letter words, uppercase."
-"The output consists of sixteen alphanumeric characters."
+"A filename (of a file processed by the program) should have extension .4H4D."
+"The output password has password entropy 4*lg(10) = 13.2 bits."
+"The output password has information entropy lg(10*9*8*7) = 12.3 shannons."
+"The output of shuttle output mode of this program can be read with ShuttleReader_2.py."
+
 
 """SUMMARY OF PROGRAM'S ATTRIBUTES
-Name: FourHundredWords2SixteenAlphanumbers_5.py
-Extension of password constructing file: .4H16A
+Name: FourHundredWords2FourDigits_13.py
+Extension of password constructing file: .4H4D
 Input work level: 400 words
-Output password entropy: 95.2 bits"""
+Output password entropy: 13.2 bits
+Output information entropy: 12.3 shannons"""
 
 def neo_code(ch):
     "0=0, 1=1, ..., 9=9, A=10, B=11, ..., Y=34, Z=35, a=36, b=37, ..., y=60, z=61"
@@ -38,7 +27,7 @@ def neo_code(ch):
     elif ((ord(ch) >= 97) and (ord(ch) <= 122)):
         return ord(ch) - 61
     else:
-        print("L30. ERROR in neo_code.")
+        print("L26. ERROR")
 
 def transnumeration(word_st):
     "Convert an 8-string of capital letters to an 8-list numbers (each one from 1 to 26)." 
@@ -46,13 +35,13 @@ def transnumeration(word_st):
     for i in range(len(word_st)):
         ch = word_st[i]
         lst.append(neo_code(ch))
-    if len(lst) == 8:
+    if (len(lst) == 8):
         return lst
     else:
-        print("L41. ERROR in transnumeration.")
+        print("L48. ERROR in transnumeration.")
 
 def left_rotate(num_ls):
-    "Leftward one-place cyclic permutation of a list of eight numbers."    
+    "Leftward one-place cyclic permutation of a list of eight numbers."
     new_ls = []
     for i in [1, 2, 3, 4, 5, 6, 7]:
         new_ls.append(num_ls[i])
@@ -60,7 +49,7 @@ def left_rotate(num_ls):
     return new_ls
 
 def right_rotate(num_ls):
-    "Rightward one-place cyclic permutation of a list of eight numbers."    
+    "Rightward one-place cyclic permutation of a list of eight numbers."
     new_ls = []
     new_ls.append(num_ls[7])
     for i in [0, 1, 2, 3, 4, 5, 6]:
@@ -70,14 +59,14 @@ def right_rotate(num_ls):
 def neo_mod(num):
     "Returns a number between 0 and 61 (inclusive) that is equivalent (mod 62) to num."
     new_num = num
-    if num >= 0:
-        while new_num > 61:
+    if (num >= 0):
+        while (new_num > 61):
             new_num = new_num - 62
         return new_num
-    elif num < 0:
-        print("L65. ERROR in neo_mod: argument num < 0")
+    elif (num < 0):
+        print("L74. ERROR in neo_mod: argument num < 0")
     else:
-        print("L67. ERROR in neo_mod: argument is not a number.")
+        print("L76. ERROR in neo_mod: argument is not a number.")
 
 def vector_sum(word1_LS, word2_LS):
     "Adds two 8-lists of natural numbers component-wise modulo 62."
@@ -98,7 +87,7 @@ def to_char(num):
     elif ((num >= 36) and (num <= 61)):
         return chr(61 + num)
     else:
-        print("L86. ERROR in to_char.")
+        print("L96. ERROR")
 
 def transcharacterization(vector_LS):
     "Convert an 8-list of natural numbers into an 8-string of alphanumerics. This is the inverse of transnumeration."
@@ -111,17 +100,17 @@ def transcharacterization(vector_LS):
 def vector_average(vec_LS):
     "Returns the average of an 8-list of natural numbers."
     sm = 0
-    if len(vec_LS) == 8:
+    if (len(vec_LS) == 8):
         for i in range(len(vec_LS)):
             sm = sm + vec_LS[i]
         return sm / 8
     else:
-        print("L104. ERROR in vector_average: argument vec_LS has length other than 8.")
+        print("L114. ERROR in vector_average: argument vec_LS has length other than 8.")
 
 def is_proper_keyword(word_ST):
     "Returns True if word_ST is an 8-string of capital letters."
     if word_ST.isalpha():
-        if len(word_ST) == 8:
+        if (len(word_ST) == 8):
             return word_ST.isupper()
         else:
             return False
@@ -134,18 +123,13 @@ def is_proper_keywordoid(word_ST):
     for i in range(len(word_ST)):
         if not word_ST[i].isalnum():
             proper = False
-    return proper
-
-def is_string(a_ST):
-    "Boolean-valued function which checks whether parameter param is a string or not."    
-    return a_ST == str(a_ST)        
+    return proper      
 
 def phi_lett(vec_LS):
     "Returns a letter which is the modulo Z sum of the natural numbers in the 8-list vec_LS. First part of fingerprint/hash."
     sm = 0
     for i in range(len(vec_LS)):
         sm = sm + vec_LS[i]
-    #return chr(64 + mod(sm))
     return to_char(neo_mod(sm))
 
 def phi_variance(vec_LS):
@@ -173,10 +157,10 @@ def phi_ordnum(word_ST):
         num = x1 + x2*2 + x3*4 + x4*8 + x5*16 + x6*32 + x7*64 + x8*128 + x9*256 * x10*512 + x11*1024
         return num
     else:
-        print("L161. ERROR in phi_ordnum: argument word_ST is not a proper wordoid.")
+        print("L166. ERROR in phi_ordnum: argument word_ST is not a proper keywordoid.")
 
 "functions that are subsidiary to VAL"
-def is_string_a_decimal(st):    
+def is_string_a_decimal(st):
     "Returns True if string st contains a decimal number: two natural numbers separated by a period."
     if (st[0] == "-"):
         st = st[1:]
@@ -193,13 +177,13 @@ def is_string_a_number(st):
     return st.isdigit() or is_string_a_decimal(st)
 
 def string_to_fract(st):
-    "Converts, e.g., '123' to 0.123: an integer into a fractional part."
+    "Converts, e.g., '123' to 0.123."
     I = int(st)
     L = len(st)
     return I / 10 ** L
 
 def string_decimal_to_number(st):
-    "Converts a string containing a decimal number into that number. (It is assumed that there is no exponential notation.)"
+    "Converts a string containing a decimal number into that number. (Assume that there is no exponential notation.)"
     pair = st.split('.')
     I = int(pair[0])
     F = string_to_fract(pair[1])
@@ -210,7 +194,7 @@ def string_decimal_to_number(st):
             return I+F
     else:
         return -I-F
-
+        
 def VAL(st):
     "Converts a string containing a number into the number contained by that string. (The name 'VAL'\
     is borrowed from BASIC.)"
@@ -220,12 +204,12 @@ def VAL(st):
         else:
             return int(st)
     else:
-        print("L223. ERROR: string argument st should contain a number.")
+        print("L208. ERROR: string argument st should contain a number.")
 
-def string_hash_16(st):
+def string_hash_6(st):
     "Calculates a hash for string st using a method similar to vector_hash_6."
-    x = 101
-    Z = 9999999999999937
+    x = 31
+    Z = 999983
     for i in range(len(st)):
         if (i == 0):
             accumulator = ord(st[0])
@@ -233,11 +217,11 @@ def string_hash_16(st):
             accumulator = ((x * accumulator) + ord(st[i])) % Z
     return accumulator
 
-def vector_hash_16(vector_LS):
+def vector_hash_6(vector_LS):
     "Calculates a polynomial in x whose coefficients are components of vector_LS, using Horner's method, \
     for the purpose of providing a hash for a string which is encoded in vector_LS."
-    x = 101
-    Z = 9999999999999937
+    x = 31
+    Z = 999983
     for i in range(16):
         if (i == 0):
             accumulator = vector_LS[0]
@@ -245,9 +229,46 @@ def vector_hash_16(vector_LS):
             accumulator = ((x * accumulator) + vector_LS[i]) % Z
     return accumulator
 
+def buffer_digit():
+    """Prompts the user with a string of 16 random digits and a question mark, asking for the sum modulo 10 of those digits,
+    and re-prompting if the answer is wrong."""
+    OK = False
+    while not OK:
+        digit_string = ""
+        digit_sum = 0
+        for i in range(16):
+            new_digit = random.randrange(0, 10)
+            digit_string += str(new_digit)
+            digit_sum += new_digit
+            digit_sum %= 10
+            digit_string += "  "
+        digit_string += "? "
+        input_digit = input(digit_string)
+        input_digit = int(input_digit)
+        if (input_digit == digit_sum):
+            OK = True
+
+def digit_mask(digit):
+    """Writes a line of 16 digits whose sum modulo 10 equals parameter digit. (The first 15 are random and the last one
+    is compensating in order for the sum to equal the target digit.)"""
+    digit_string = ""
+    digit_sum = 0
+    for i in range(15):
+        new_digit = random.randrange(0, 10)
+        digit_string += str(new_digit)
+        digit_sum += new_digit
+        digit_sum %= 10
+        digit_string += "  "
+    gap = digit - digit_sum
+    while (gap < 0):
+        gap = gap + 10
+    while (gap >= 10):
+        gap = gap - 10
+    digit_string += str(gap)
+    print(digit_string)
+
 def stringify_tuple(a_tuple):
-    "Packages the data in a_tuple into a string that can be written into a file, with double-semicolon \
-    separators and parenthetical boundaries."    
+    "Packages the data in a_tuple into a string that can be written into a file, with double-semicolon separators and parenthetical boundaries."
     a_string = "("
     for item in a_tuple:
         a_string += str(item)
@@ -256,14 +277,14 @@ def stringify_tuple(a_tuple):
     return a_string
 
 def swallow_number(a_string):
-    "Removes a number from the beginning of a_string."    
+    "Removes a number from the beginning of a_string."
     digits_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     while (len(a_string) > 0) and (a_string[0] in digits_LS):
         a_string = a_string[1:]
     return a_string
 
 def if_page_then_swallow(a_string):
-    "Checks a_string to see if it starts with a page prefix and if it does, then removes it."    
+    "Checks a_string to see if it starts with a page prefix and if it does, then removes it."
     digits_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     if (a_string[0:3] == "P. ") and (a_string[3] in digits_LS):
         a_string = a_string[3:]
@@ -271,12 +292,12 @@ def if_page_then_swallow(a_string):
         if (len(a_string) > 0) and (a_string[0] == " "):
             a_string = a_string[1:]
         else:
-            print("L230. ERROR in if_page_then_swallow: No space after the page number.")
+            print("L286. ERROR in if_page_then_swallow: No space after the page number.")
             a_string = ""
     return a_string
 
 def if_paragraph_then_swallow(a_string):
-    "Checks a_string to see if it starts with a paragraph prefix and if it does, then removes it."    
+    "Checks a_string to see if it starts with a paragraph prefix and if it does, then removes it."
     digits_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     if (a_string[0:5] == "PAR. ") and (a_string[5] in digits_LS):
         a_string = a_string[5:]
@@ -284,12 +305,12 @@ def if_paragraph_then_swallow(a_string):
         if (len(a_string) > 0) and (a_string[0] == " "):
             a_string = a_string[1:]
         else:
-            print("L242. ERROR in if_paragraph_then_swallow: No space after the paragraph number.")
+            print("L299. ERROR in if_paragraph_then_swallow: No space after the paragraph number.")
             a_string = ""
     return a_string
 
 def letter_count(a_string):
-    "Counts the quantity of alphanumbers in the latter (non-prefix, index-word) part of a location string."    
+    "Counts the quantity of alphanumbers in the latter (non-prefix, index-word) part of a location string."
     a_string = if_page_then_swallow(a_string)
     a_string = if_paragraph_then_swallow(a_string)
     if is_eight_free(a_string):
@@ -309,29 +330,30 @@ def index_word_count(loc_string):
     while (loc_string.count("  ") > 0):
         loc_string = loc_string.replace("  ", " ")
     words_LS = loc_string.split(" ")
-    return len(words_LS) 
+    return len(words_LS)
 
 def is_UALPHAnumeric(a_string):
-    "Returns True if string a_string contains only uppercase alphanumbers."    
+    "Returns True if string a_string contains only uppercase alphanumbers."
     return a_string.isalnum() and (a_string == a_string.upper())
 
 def is_eight_free(a_string):
     "Checks to see if any word in a string of words has eight-letters. If it does then return False\
-    else return True."    
+    else return True."
     a_list = a_string.split(" ")
     OK = True
-    while len(a_list) > 0:
+    while (len(a_list) > 0):
         extract = a_list[0]
         a_list = a_list[1:]
-        if len(extract) == 8:
+        if (len(extract) == 8):
             OK = False
     return OK
 
-def print_pause(a_string):
+def print_pause(a_string, opt):
     "Prints string a_string, then pauses for five seconds if the Boolean parameter opt is set to True.\
-    (The pause is skipped if opt is False.)"    
+    (The pause is skipped if opt is False.)"
     print(a_string)
-    time.sleep(5)
+    if opt:
+        time.sleep(5)
 
 def help_intro():
     "Introductory help scroll."
@@ -611,150 +633,130 @@ def help_page_15(opt):
     print_pause("the page–paragraph prefix will be prepended to the location string", opt)
     print_pause("of that previous entry; and focus will return to the present entry.", opt)
 
-def NATO_alphanumber(char_CH):
-    "NATO phonetic alphabet: base case"
-    match char_CH:
-        case "A":
-            return "Alpha"
-        case "B":
-            return "Bravo"
-        case "C":
-            return "Charlie"
-        case "D":
-            return "Delta"
-        case "E":
-            return "Echo"
-        case "F":
-            return "Foxtrot"
-        case "G":
-            return "Golf"
-        case "H":
-            return "Hotel"
-        case "I":
-            return "India"
-        case "J":
-            return "Juliett"
-        case "K":
-            return "Kilo"
-        case "L":
-            return "Lima"
-        case "M":
-            return "Mike"
-        case "N":
-            return "November"
-        case "O":
-            return "Oscar"
-        case "P":
-            return "Papa"
-        case "Q":
-            return "Quebec"
-        case "R":
-            return "Romeo"
-        case "S":
-            return "Sierra"
-        case "T":
-            return "Tango"
-        case "U":
-            return "Uniform"
-        case "V":
-            return "Victor"
-        case "W":
-            return "Whiskey"
-        case "X":
-            return "Xray"
-        case "Y":
-            return "Yankee"
-        case "Z":
-            return "Zulu"
-        case "a":
-            return "alpha"
-        case "b":
-            return "bravo"
-        case "c":
-            return "charlie"
-        case "d":
-            return "delta"
-        case "e":
-            return "echo"
-        case "f":
-            return "foxtrot"
-        case "g":
-            return "golf"
-        case "h":
-            return "hotel"
-        case "i":
-            return "india"
-        case "j":
-            return "juliett"
-        case "k":
-            return "kilo"
-        case "l":
-            return "lima"
-        case "m":
-            return "mike"
-        case "n":
-            return "november"
-        case "o":
-            return "oscar"
-        case "p":
-            return "papa"
-        case "q":
-            return "quebec"
-        case "r":
-            return "romeo"
-        case "s":
-            return "sierra"
-        case "t":
-            return "tango"
-        case "u":
-            return "uniform"
-        case "v":
-            return "victor"
-        case "w":
-            return "whiskey"
-        case "x":
-            return "xray"
-        case "y":
-            return "yankee"
-        case "z":
-            return "zulu"
-        case "1":
-            return "1ne"
-        case "2":
-            return "2wo"
-        case "3":
-            return "3hree"
-        case "4":
-            return "4our"
-        case "5":
-            return "5ive"
-        case "6":
-            return "6ix"
-        case "7":
-            return "7even"
-        case "8":
-            return "8ight"
-        case "9":
-            return "9ine"
-        case "0":
-            return "0ero"
+def is_string(param):
+    "Boolean-valued function which checks whether parameter param is a string or not."
+    return (param == str(param))
 
-def NATO_spell_out(string_ST):
-    "NATO (phonetic alphabet) spelling-out of argument string_ST."
-    spell_out = ""
-    while (len(string_ST) > 0):
-        char_CH = string_ST[0:1]
-        string_ST = string_ST[1:]
-        spell_out += NATO_alphanumber(char_CH) + " "
-        if (len(string_ST) in [12, 8, 4]):
-            spell_out += "\n"
-    return spell_out
+"Functions for writing in the password shuttle."
+def four_digit_shuffle(a, b, c, d):
+    "Shuffles a quadruplet of four digits (or any four values passed as parameters, actually)."
+    for i in range(6):
+        if (random.randint(0, 1) == 1):
+            b = a + b
+            a = b - a
+            b = b - a
+        if (random.randint(0, 1) == 1):
+            c = a + c
+            a = c - a
+            c = c - a
+        if (random.randint(0, 1) == 1):
+            d = a + d
+            a = d - a
+            d = d - a
+        if (random.randint(0, 1) == 1):
+            c = b + c
+            b = c - b
+            c = c - b
+        if (random.randint(0, 1) == 1):
+            d = b + d
+            b = d - b
+            d = d - b
+        if (random.randint(0, 1) == 1):
+            d = c + d
+            c = d - c
+            d = d - c
+    return (a, b, c, d)
+
+def one_digit_mask(dgt):
+    """Given digit dgt, this function returns a quadruplet of four digits that somewhat covertly imply that digit.
+    Here is how it works: There are five even digits and five odd digits. To mask an even digit, present the remaining
+    four even digits in shuffled order. To mask an odd digit, present the remaining four odd digits in shuffled order."""
+    a = (dgt + 2) % 10
+    b = (dgt + 4) % 10
+    c = (dgt + 6) % 10
+    d = (dgt + 8) % 10
+    return four_digit_shuffle(a, b, c, d)
+
+def four_digit_mask(a, b, c, d):
+    """Given a quadruplet of digits, returns a 16-tuple of digits that imply those four digits; but in a way that might not be immediately obvious:
+    that is, in a way that might prevent their instantaneous, all-at-once apperception. How it works: The one_digit_mask of each digit is interleaved with the
+    one_digit_mask's of the other three digits."""
+    a_m = one_digit_mask(a)
+    b_m = one_digit_mask(b)
+    c_m = one_digit_mask(c)
+    d_m = one_digit_mask(d)
+    return (a_m[0], b_m[0], c_m[0], d_m[0], a_m[1], b_m[1], c_m[1], d_m[1], a_m[2], b_m[2], c_m[2], d_m[2], a_m[3], b_m[3], c_m[3], d_m[3])
+
+def four_digit_mask_ST(a, b, c, d):
+    "Wraps four_digit_mask in a string."
+    a_string = str(four_digit_mask(a, b, c, d))
+    return a_string
+
+def Western_Arabic_to_Mro(a_string):
+    "Replaces Western Arabic digits in a_string with their Mro digit equivalents."
+    a_string = a_string.replace("0", "𖩠")
+    a_string = a_string.replace("1", "𖩡")
+    a_string = a_string.replace("2", "𖩢")
+    a_string = a_string.replace("3", "𖩣")
+    a_string = a_string.replace("4", "𖩤")
+    a_string = a_string.replace("5", "𖩥")
+    a_string = a_string.replace("6", "𖩦")
+    a_string = a_string.replace("7", "𖩧")
+    a_string = a_string.replace("8", "𖩨")
+    a_string = a_string.replace("9", "𖩩")
+    return a_string
+
+def four_digit_mask_Mro_ST(a, b, c, d):
+    "Encodes four (Western Arabic) digits into a string containing a 16-tuple of Mro digits."
+    a_string = four_digit_mask_ST(a, b, c, d)
+    a_string = Western_Arabic_to_Mro(a_string)
+    return a_string
+
+def camouflage_trellis():
+    "Outputs the four digits in a masked way, so that the user cannot (or should not) perceive them all at once."
+    print("\nCAMOUFLAGE TRELLIS")
+    print("Add each row of digits module 10 mentally in order to obtain each digit.")
+    print("Rows that end in question mark are buffers, but their sum must be input before")
+    print("moving on to the next line.\n")
+    cont = True    # default
+    while cont:
+        print("The four digits are (add):\n")
+        buffer_digit()
+        for i in range(4):
+            digit_mask(digits[i])
+            buffer_digit()
+        cont_answer = ""        # continue answer = answer about continuation
+        while not (cont_answer in ["y", "n"]):
+            cont_answer = input("Another (y/n)? ")
+        if (cont_answer == "n"):
+            cont = False
+        else:
+            print("\n\n\n\n")
+
+def password_shuttle():
+    shuttle_position = 0
+    while not (shuttle_position in ["1", "2"]):
+        shuttle_position = input("What position: 1 or 2? ")
+    if (shuttle_position == "1"):
+        file_1 = open("shuttle_2.txt", "w")
+        file_1.write(four_digit_mask_Mro_ST(digits[0], digits[1], digits[2], digits[3]) + "\n")
+        file_1.close()
+        print("The password has been written into the shuttle's first position.")
+    elif (shuttle_position == "2"):
+        file_1 = open("shuttle_2.txt", "a")
+        file_1.write(four_digit_mask_Mro_ST(digits[0], digits[1], digits[2], digits[3]))
+        file_1.close()
+        print("The password has been written into the shuttle's second position.")
+    return int(shuttle_position)
 
 def swift_alter():
-    "Swift alteration mode. Assumed global variables: data, the_book, the_author, the_publisher, the_codeword_hash, old_f_ST, keywords_LS, upper_bound."
+    "Swift alteration mode. Global variables used: data, the_book, the_author, the_publisher, the_codeword_hash, old_f_ST, keywords_LS, upper_bound."
     "(MAIN)"
+    errorFlag = False
     old_vector_left_LS = [0, 0, 0, 0, 0, 0, 0, 0]
     old_vector_right_LS = [0, 0, 0, 0, 0, 0, 0, 0]
+    DEBUG(debug_0, f"len(keywords_LS) = {len(keywords_LS)}")
+    DEBUG(debug_0, f"keywords_LS = {keywords_LS}")
     "ignore prefix"
     for i in range(1, upper_bound + 1):
         "mode: alter"
@@ -781,7 +783,7 @@ def swift_alter():
             lett0 = phi_lett(vec_LS)
             variance0 = phi_variance(vec_LS)
             ordnum0 = phi_ordnum(word_ST)
-            data[i] = (word_ST + " =", lett0, variance0, ordnum0)
+            data[i] = (word_ST +  " =", lett0, variance0, ordnum0)
             print(f"Alteration at location {i} has been done.")
         "Add to previous word."
         vector_LS = transnumeration(word_ST)
@@ -789,80 +791,141 @@ def swift_alter():
         old_vector_left_LS = left_rotate(vecsum_left_LS)
         vecsum_right_LS = vector_sum(old_vector_right_LS, vector_LS)
         old_vector_right_LS = right_rotate(vecsum_right_LS)
-        if (i == 400) or (is_toy_version and (i == 40)):
+        if (i == 100) or (is_toy_version and (i == 10)):
+            vecsum_left_100 = old_vector_left_LS
+            vecsum_right_100 = old_vector_right_LS
+            vecsum_total_100 = vecsum_left_100 + vecsum_right_100
+        elif (i == 200) or (is_toy_version and (i == 20)):
+            vecsum_left_200 = old_vector_left_LS
+            vecsum_right_200 = old_vector_right_LS
+            vecsum_total_200 = vecsum_left_200 + vecsum_right_200
+        elif (i == 300) or (is_toy_version and (i == 30)):
+            vecsum_left_300 = old_vector_left_LS
+            vecsum_right_300 = old_vector_right_LS
+            vecsum_total_300 = vecsum_left_300 + vecsum_right_300
+        elif (i == 400) or (is_toy_version and (i == 40)):
             vecsum_left_400 = old_vector_left_LS
             vecsum_right_400 = old_vector_right_LS
             vecsum_total_400 = vecsum_left_400 + vecsum_right_400
         "Fingerprint (of a keyword)."
-        lett = lett0
-        variance = variance0
-        ordnum = ordnum0
-        #data[i] = (word_ST + " =", lett, variance, ordnum)
+        lett = phi_lett(vector_LS)
+        variance = phi_variance(vector_LS)
+        ordnum = phi_ordnum(word_ST)
         print(f"phi_lett = {lett}\nphi_variance = {variance}\nphi_ordnum = {ordnum}")
         time.sleep(1)
-    "outputting"
-    output = transcharacterization(vecsum_total_400)
-    #output = output.upper()
-    codeword_hash = string_hash_16(output)
-    print(f"\nThe password is {output}")
-    print(f"\nNATO alphanumeric spell-out of the password: {NATO_spell_out(output)}")
-    data[0] = ("Codeword hash:", codeword_hash)
-    "save?"
-    ans_CH = ""
-    while not (ans_CH in ["y", "n"]):
-        ans_CH = input("\nSave (y/n)? ")
-        if not (ans_CH in ["y", "n"]):
-            print("Error: Please enter either \"y\" or \"n\".")
-    if (ans_CH == "n"):
-        return 0.5
-    elif (ans_CH == "y"):
-        a_book = the_book
-        an_author = the_author
-        a_publisher = the_publisher
-        a_location = the_location
-        filename_OK = False
-        while not filename_OK:
-            f_ST = input("Enter filename: ")
-            if (len(f_ST) < 7) or not (f_ST[-6:] == ".4H16A"):
-                print("Error: The filename should have extension .4H16A.")
-            elif (f_ST == old_f_ST):
-                print("Error: The altered file should have a different filename from the original file.")
-            else:
-                filename_OK = True
-        "save data in file"
-        with open(f_ST, "w") as f:
-            for item in data:
-                f.write(stringify_tuple(item) + "\n")
-        print("The altered file has been written.")
-        print("When assigning the password, it has to be entered twice. The first time from,")
-        print("e.g., a handwritten copy; the second time from, e.g., a photographic copy")
-        print("(taken by smartphone) or else a second handwritten copy (independent of the first).\n")
-        print("METADATA")
-        print(f"Filename: {f_ST}")
-        print("Executor: FourHundredWords2SixteenAlphanumbers_5.py")
-        print(f"Book's name: {a_book}")
-        print(f"Book's author: {an_author}")
-        print(f"Book's publisher: {a_publisher}")
-        print(f"Book's location: {a_location}")
-        "log: swift alteration"
-        antwoord_CH = ""
-        while not (antwoord_CH in ["y", "n"]):
-            antwoord_CH = input("\nWould you like this alteration episode to be logged (y/n)? ")
-        if (antwoord_CH == "y"):
-            "append entry in password_construction_log.txt"
-            with open("password_construction_log.txt", "a") as fil_chron:
-                fil_chron.write("- - - - - - - - - - - - - - - -\n")
-                todays_date = date.today()
-                fil_chron.write(f"Today's date: {todays_date}\n")
-                fil_chron.write(f"Created through swift alteration: {f_ST}\n")
-                fil_chron.write(f"It was modified from: {old_f_ST}\n")
-            print("A brief mention has been written in password_construction_log.txt.")                   
-        return 1
+    "Extract single digits from the four sums."
+    digits = [-1, -1, -1, -1]
+    digits[0] = vector_hash_6(vecsum_total_100) % 10
+    digits[1] = vector_hash_6(vecsum_total_200) % 10
+    digits[2] = vector_hash_6(vecsum_total_300) % 10
+    digits[3] = vector_hash_6(vecsum_total_400) % 10
+    "Check the digits for redundancies."
+    if (digits[0] == digits[1]):
+        print("Error: Digits 0 and 1 are the same.")
+        errorFlag = True
+    if (digits[0] == digits[2]):
+        print("Error: Digits 0 and 2 are the same.")
+        errorFlag = True
+    if (digits[0] == digits[3]):
+        print("Error: Digits 0 and 3 are the same.")
+        errorFlag = True
+    if (digits[1] == digits[2]):
+        print("Error: Digits 1 and 2 are the same.")
+        errorFlag = True
+    if (digits[1] == digits[3]):
+        print("Error: Digits 1 and 3 are the same.")
+        errorFlag = True
+    if (digits[2] == digits[3]):
+        print("Error: Digits 2 and 3 are the same.")
+        errorFlag = True
+    if not errorFlag:
+        print("The digits are OK (i.e., all different from each other).\n")
+    elif errorFlag:
+        print("Error: The digits are not OK.")
+        answer_CH = ""
+        while not (answer_CH in ["y", "n"]):
+            answer_CH = input("Would you like to try \"swift alter\" mode again (\"y\", \"n\")? ")
+            if not (answer_CH in ["y", "n"]):
+                print("Error: please enter either \"y\" or \"n\".")
+        if (answer_CH == "y"):
+            return swift_alter()                  # recursive
+        else:
+            return 0
+    #codeword_hash = string_hash_6(str(digits[0]) + str(digits[1]) + str(digits[2]) + str(digits[3]))
+    codeword_hash = 12
+    if not errorFlag:
+        data[0] = ("Codeword hash:", codeword_hash)
+    elif errorFlag:
+        data[0] = ("Codeword hash:", -13)
+    if not errorFlag:
+        ans_CH = ""
+        while not (ans_CH in ["y", "n"]):
+            ans_CH = input("\nSave (y/n)? ")
+            if not (ans_CH in ["y", "n"]):
+                print("Error: Please enter either \"y\" or \"n\".")
+        if (ans_CH == "n"):
+            return 0.5
+        elif (ans_CH == "y"):
+            a_book = the_book
+            an_author = the_author
+            a_publisher = the_publisher
+            a_location = the_location
+            filename_OK = False
+            while not filename_OK:
+                f_ST = input("Enter filename: ")
+                if (len(f_ST) < 6) or not (f_ST[-5:] == ".4H4D"):
+                    print("Error: The filename should have extension .4H4D.")
+                elif (f_ST == old_f_ST):
+                    print("Error: The altered file should have a different filename from the original file.")
+                else:
+                    filename_OK = True
+            "save data in file"
+            with open(f_ST, "w") as f:
+                for item in data:
+                    f.write(stringify_tuple(item) + "\n")
+            print("The altered file has been written.")  #Reconstruct the password in order to confirm it.")
+            #print("Do not assign the password until it has been confirmed.\n")
+            print("When assigning the password, it has to be entered twice. The first time from,")
+            print("e.g., a handwritten copy; the second time from, e.g., a photographic copy")
+            print("(taken by smartphone) or else a second handwritten copy (independent of the first).\n")
+            print("METADATA")
+            print(f"Filename: {f_ST}")
+            print("Executor: FourHundredWords2FourDigits_13.py")
+            print(f"Book's name: {a_book}")
+            print(f"Book's author: {an_author}")
+            print(f"Book's publisher: {a_publisher}")
+            print(f"Book's location: {a_location}")
+            "output"
+            output_mode = ""
+            while not (output_mode in ["t",  "s"]):
+                output_mode = input("\nCamouflage trellis (t) or password shuttle (s)? ")
+            if (output_mode == "t"):
+                camouflage_trellis()
+            if (output_mode == "s"):
+                shuttle_pos = password_shuttle()
+            "log: swift alteration"
+            antwoord_CH = ""
+            while not (antwoord_CH in ["y", "n"]):
+                antwoord_CH = input("\nWould you like this alteration episode to be logged (y/n)? ")
+            if (antwoord_CH == "y"):
+                "append entry in password_construction_log.txt"
+                with open("password_construction_log.txt", "a") as fil_chron:
+                    fil_chron.write("- - - - - - - -\n")
+                    todays_date = date.today()
+                    fil_chron.write(f"Today's date: {todays_date}\n")
+                    fil_chron.write(f"Created through swift alteration: {f_ST}\n")
+                    fil_chron.write(f"It was modified from: {old_f_ST}\n")
+                    if (output_mode == "t"):
+                        fil_chron.write("Output mode: trellis\n")
+                    elif (output_mode == "s"):
+                        fil_chron.write(f"Output mode: shuttle, #{shuttle_pos}\n")
+                print("A brief mention has been written in password_construction_log.txt.")                   
+            return 1
 
-def DEBUG(flag_BL, line_NT, msg_ST):
-    "If flag_BL is True then prints line number line_NT followed by message msg_ST."
+def DEBUG(flag_BL, msg_ST):
+    "Prints msg_ST only if flag_BL is True."
     if flag_BL:
-        print(f"L{line_NT}. {msg_ST}")
+        print(msg_ST)
 
 def what_prefix(datum_ST):
     "Extracts the page–paragraph prefix from datum_ST and returns it."
@@ -870,75 +933,81 @@ def what_prefix(datum_ST):
     prefix_length_NT = len(datum_ST) - len(index_word_string)
     the_prefix_ST = datum_ST[0:prefix_length_NT]
     return the_prefix_ST
-            
+
 
 "PRE-MAIN"
 
 data = []
+debug_0 = False
+debug_1 = False
 "LOAD?"
 mode = ""
-while not (mode in ['c', 'r', 'a']):
+while not (mode in ['c',  'r',  'a']):
     mode = input("Create new (c), reconstruct (r), or alter (a)? ")
 if (mode == "r") or (mode == "a"):
     filename_OK = False
     while not filename_OK:
         f_ST = input("Enter filename: ")
-        if (len(f_ST) < 7) or not (f_ST[-6:] == ".4H16A"):
-            print("Error: The filename's extension should be .4H16A.")
+        if (len(f_ST) < 6) or not (f_ST[-5:] == ".4H4D"):
+            print("Error: The filename's extension should be .4H4D.")
         else:
-            filename_OK = True
+            filename_OK = True    
     with open(f_ST) as f:
         for line in f:
             line = line.rstrip('\n')
             if (line[0] == "(") and (line[-1] == ")"):
                 line = line[1:-1]
                 line_LS = line.split(';;')
-                if len(line_LS) == 4:
+                if (len(line_LS) == 4):
                     line_LS[3] = int(line_LS[3])
                     line_LS[2] = VAL(line_LS[2])
                     data.append((line_LS[0], line_LS[1], line_LS[2], line_LS[3]))
-                elif len(line_LS) == 2:
-                    if not line_LS[0] in ["Executor:", "Book:", "Author:", "Publisher:", "Location:", "Codeword hash:"]:
-                        print("L308. ERROR: Not an approved first element for an ordered pair.")
-                    if (line_LS[0] == "Executor:") and (not line_LS[1] == "FourHundredWords2SixteenAlphanumbers_5.py"): 
-                        print("L310. ERROR: I am not the executor of this file.")
+                elif (len(line_LS) == 2):
+                    if not (line_LS[0] in ["Executor:", "Book:", "Author:", "Publisher:", "Location:", "Codeword hash:"]):
+                        print(f"L885. ERROR: Not an approved first element for an ordered pair: '{line_LS[0]}'")
+                    if (line_LS[0] == "Executor:") and not (line_LS[1] == "FourHundredWords2FourDigits_13.py"): 
+                        print("Error: I am not the executor of this file.")
                         exit()
-                    if line_LS[0] == "Book:":
+                    if (line_LS[0] == "Book:"):
                         the_book = line_LS[1]
                         print(f"Book: {the_book}\n")
-                    elif line_LS[0] == "Author:":
+                    elif (line_LS[0] == "Author:"):
                         the_author = line_LS[1]
                         print(f"Author: {the_author}\n")
-                    elif line_LS[0] == "Publisher:":
+                    elif (line_LS[0] == "Publisher:"):
                         the_publisher = line_LS[1]
                         print(f"Publisher: {the_publisher}\n")
-                    elif line_LS[0] == "Location:":
+                    elif (line_LS[0] == "Location:"):
                         the_location = line_LS[1]
                         print(f"Location: {the_location}\n")
-                    elif line_LS[0] == "Codeword hash:":
+                    elif (line_LS[0] == "Codeword hash:"):
                         the_codeword_hash = int(line_LS[1])
-                        print(f"Codeword hash: {the_codeword_hash}\n")
+                        #print(f"Codeword hash: {the_codeword_hash}\n")
+                        if (the_codeword_hash == -13) and (mode == "r"):
+                            print("There is an error with the password so it should not be reconstructed.")
+                            print("Instead, consider altering it.")
+                            quit()
                     data.append((line_LS[0], line_LS[1]))                        
                 else:
-                    print(f"L329. len(line_LS) = {len(line_LS)}")
-                    print("L330. ERROR")
+                    print(f"L910. len(line_LS) = {len(line_LS)}")
+                    print("L911. ERROR")
             else:
-                print("L332. ERROR: Line is not wrapped in parentheses.")
+                print("L913. ERROR: Line is not wrapped in parentheses.")
     print("File has been loaded.")
 
     if (mode == "a"):
         old_f_ST = f_ST
     elif (mode == "r"):
         reconstruct_changed = False
-        old_f_ST = f_ST                  # might be used in swift_alter
-
+        old_f_ST = f_ST              # might be used in swift_alter
 
 "MAIN"
 is_toy_version = False          # This line is user-modifiable; the RHS should be either True or False.
+errorFlag = False
 if (mode == "c"):
     data = [0]
     keywords_LS = []
-elif (mode == "r") or (mode == "a"):
+elif (mode == "a") or (mode == "r"):
     keywords_LS = []
 old_vector_left_LS = [0, 0, 0, 0, 0, 0, 0, 0]
 old_vector_right_LS = [0, 0, 0, 0, 0, 0, 0, 0]
@@ -958,11 +1027,10 @@ for i in range(1, upper_bound + 1):
         enter_loop_BL = True
         while enter_loop_BL:
             loc = input(f"\nInput location #{i}: ")
-            prefix_changed = False      # pref.
+            prefix_changed = False
             if (loc == ":HELP:"):
                 help_intro()
                 OK = True
-                #respuesta = "N"
                 word_ST = "ZZZZZZZZ"
             elif (i > 1) and (loc == ":CORRECTION:"):
                 print(f"Current previous (#{i - 1}) location string: {data[i - 1][0]}")
@@ -979,7 +1047,7 @@ for i in range(1, upper_bound + 1):
                         OK = True
                         respuesta = "N"                        
                     else:
-                        print("Error: The same location prefix should not be repeated.")                 
+                        print("Error: The same location prefix should not be repeated.")   
                 elif (data[i - 1][0].count(".") == 2):
                     page_num = input("Enter the new page number: ")
                     par_num = input("Enter the new paragraph number: ")
@@ -991,7 +1059,7 @@ for i in range(1, upper_bound + 1):
                     print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
                     word_ST = "ZZZZZZZZ"
                     OK = True
-                    respuesta = "N"       
+                    respuesta = "N"                         
                 else:
                     print(f"L906. ERROR: Wrong number of periods ({data[i - 1][0].count('.')}) in the location string.")
             elif (i == 1) and (loc == ":CORRECTION:"):
@@ -1035,7 +1103,7 @@ for i in range(1, upper_bound + 1):
                 word_ST = "ZZZZZZZZ"
                 OK = True
                 respuesta = "N"
-            elif not (loc.count(".") in [0, 2]):
+            elif not (loc.count(".") in [0,2]):
                 if (loc.count(".") > 2):
                     print("Error: There cannot be more than two periods.")
                     print("Type :HELP: and <ENTER> for explanatory help.")
@@ -1048,7 +1116,7 @@ for i in range(1, upper_bound + 1):
                     elif (loc[0:3] == "P. ") and (loc[3:4].isdigit()):
                         print("Specification of page number should be immediately followed")
                         print("by a specification of paragraph number. I.e., a \"P. {#} \" prefix")
-                        print("should be immediately followed by a \"PAR. {#} \" prefix.")
+                        print("should be immediately followed by a \"PAR. {#}  \" prefix.")
                     else:
                         print("Type :HELP: and <ENTER> for explanatory help.")
                 OK = True
@@ -1085,26 +1153,28 @@ for i in range(1, upper_bound + 1):
                 elif (response == "CONTINUE"):
                     OK = False
                     "update of prefix: 'create new' mode > 'CONTINUE' case"
-                    if (len(what_prefix(loc)) > 0):
+                    if (len(what_prefix(loc)) > 0):    
                         if (what_prefix(loc) == prefix):
                             print("Error: The prefix has been repeated, but the location string is now\nbeing automatically corrected.")
                             loc = loc[len(prefix):]
                         else:
                             older_prefix = prefix
                             prefix = what_prefix(loc)
+                            DEBUG(debug_1, f"L1067. prefix = {prefix}")
                             prefix_changed = True
                     else:
-                        oldex_prefix = prefix
+                        older_prefix = prefix
             else:
                 OK = False
                 "update of prefix: 'create new' mode"
-                if (len(what_prefix(loc)) > 0):
-                    if (what_prefix(loc) == prefix):
+                if (len(what_prefix(loc)) > 0):    
+                    if (what_prefix(loc) == prefix):   
                         print("Error: The prefix has been repeated; but the location string is now\nbeing automatically corrected.")
                         loc = loc[len(prefix):]
                     else:
                         older_prefix = prefix
                         prefix = what_prefix(loc)
+                        DEBUG(debug_1, f"L1086. prefix = {prefix}")
                         prefix_changed = True
                 else:
                     older_prefix = prefix
@@ -1124,17 +1194,20 @@ for i in range(1, upper_bound + 1):
                 print("The index–keyword pair has been canceled.")
                 if prefix_changed:
                     prefix = older_prefix
+                    DEBUG(debug_1, f"L1107. prefix = {prefix}")
             elif (word_ST == "ZZZZZZZZ"):
                 OK = True
                 respuesta = "N"
                 if prefix_changed:
                     prefix = older_prefix
+                    DEBUG(debug_1, f"L1114. prefix = {prefix}")
             elif (word_ST in keywords_LS):
                 OK = True
                 respuesta = "N"
                 print("Please use a keyword that is different from any previous keyword.")
                 if prefix_changed:
                     prefix = older_prefix
+                    DEBUG(debug_1, f"L1122. prefix = {prefix}")
             else:
                 OK = False
                 time.sleep(1)
@@ -1146,10 +1219,11 @@ for i in range(1, upper_bound + 1):
                 enter_loop_BL = False
             elif (respuesta == "N") and prefix_changed:
                 prefix = older_prefix
-        keywords_LS.append(word_ST)                
-    elif (mode == "r"):
+                DEBUG(debug_1, f"prefix = {prefix}")
+        keywords_LS.append(word_ST)
+    elif (mode == "r"):    
         "mode: reconstruct"
-        print("\nLocation #" + str(i) + ": " + data[i][0])
+        print(f"\nLocation #{i}: {data[i][0]}")
         OK = False
         "update of prefix: 'reconstruct' mode"
         datum = data[i][0]
@@ -1158,8 +1232,9 @@ for i in range(1, upper_bound + 1):
                 print("Error: The prefix has been repeated; but the location string is now\nbeing automatically corrected.")
                 new_datum = datum[len(prefix):]
                 data[i] = (new_datum, data[i][1], data[i][2], data[i][3])
-            else:
+            else:            
                 prefix = what_prefix(datum)
+                DEBUG(debug_1, f"prefix = {prefix}")
         while not OK:
             word_ST = ""
             while not is_proper_keyword(word_ST):
@@ -1176,6 +1251,7 @@ for i in range(1, upper_bound + 1):
                                 print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
                                 reconstruct_changed = True
                                 prefix = new_prefix
+                                DEBUG(debug_1, f"prefix = {prefix}")
                             else:
                                 print("Error: The same location prefix should not be repeated.")
                             print("\nNow back to the present entry.")
@@ -1188,17 +1264,17 @@ for i in range(1, upper_bound + 1):
                             data[i - 1] = (new_datum, data[i - 1][1], data[i - 1][2], data[i - 1][3])
                             prefix = new_prefix
                             print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
-                            reconstruct_changed = True
+                            reconstruct_changed = True                        
                         else:
-                            print("Error: Cannot prepend a page-number prefix to a string that already has periods in it.")
+                            print("Error: Cannot prepend a page–number prefix to a string that already has periods in it.")
                     elif (i == 1) and (word_ST == ":CORRECTION:"):
                         print("Error: It is not possible to correct a non-existent zeroth entry.")
                     elif (word_ST == "??"):
                         if (len(prefix) > 0):
                             print(prefix)
                         else:
-                            print("No page number – paragraph number prefix has been entered yet.")
-                    else:                                   
+                            print("No page number – paragraph number prefix has been entered yet.")                 
+                    else:
                         print("Error: Please enter an eight-letter word in all caps.")
             vec_LS = transnumeration(word_ST)
             lett0 = phi_lett(vec_LS)
@@ -1219,11 +1295,12 @@ for i in range(1, upper_bound + 1):
             datum = data[i][0]
             if (len(what_prefix(datum)) > 0):
                 if (what_prefix(datum) == prefix):
-                    print("Error: The prefix has been repeated; but the location string is now\nbeing automatically corrected.")
+                    print("Error: The prefix has been repeated, but the location string is now\nbeing automatically corrected.")
                     new_datum = datum[len(prefix):]
                     data[i] = (new_datum, data[i][1], data[i][2], data[i][3])
-                else:
+                else:                
                     prefix = what_prefix(datum)
+                    DEBUG(debug_1, f"prefix = {prefix}")
             while not OK:
                 word_ST = ""
                 while not is_proper_keyword(word_ST):
@@ -1240,6 +1317,7 @@ for i in range(1, upper_bound + 1):
                                     print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
                                     reconstruct_changed = True
                                     prefix = new_prefix
+                                    DEBUG(f"prefix = {prefix}")
                                 else:
                                     print("Error: The same location prefix should not be repeated.")
                                 print("\nNow back to the present entry.")
@@ -1252,16 +1330,18 @@ for i in range(1, upper_bound + 1):
                                 data[i - 1] = (new_datum, data[i - 1][1], data[i - 1][2], data[i - 1][3])
                                 prefix = new_prefix
                                 print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
-                                reconstruct_changed = True
+                                reconstruct_changed = True                               
                             else:
-                                print("Error: Cannot prepend a page-number prefix to a string that already has periods in it.")
+                                print("Error: Cannot prepend a page–number prefix to a string that already has periods in it.")
                         elif (i == 1) and (word_ST == ":CORRECTION:"):
                             print("Error: It is not possible to correct a non-existent zeroth entry.")
                         elif (word_ST == "??"):
                             if (len(prefix) > 0):
                                 print(prefix)
                             else:
-                                print("Error: Please enter an eight-letter word in all caps.")
+                                print("No page number – paragraph number prefix has been entered yet.")                 
+                        else:                        
+                            print("Error: Please enter an eight-letter word in all caps.")
                 vec_LS = transnumeration(word_ST)
                 lett0 = phi_lett(vec_LS)
                 variance0 = phi_variance(vec_LS)
@@ -1269,13 +1349,13 @@ for i in range(1, upper_bound + 1):
                 if (data[i][1] == lett0) and (data[i][2] == variance0) and (data[i][3] == ordnum0):
                     print("Fingerprint OK.")
                     OK = True
-                    keywords_LS.append(word_ST)                    
+                    keywords_LS.append(word_ST)
                 else:
                     print("Fingerprint not ok; try again.")
         elif (i in [100, 200, 300]) or (is_toy_version and (i in [10, 20, 30])):
             word_ST = ""
             while not is_proper_keyword(word_ST):
-                word_ST = input(f"\nEnter some all-caps eight-letter word for location {i}: ")
+                word_ST = input(f"\nEnter some all-caps eight-letter word for location {i}: " )
                 if not is_proper_keyword(word_ST):
                     print("Error: Please enter an eight-letter word in all caps.")
             keywords_LS.append(word_ST)
@@ -1286,7 +1366,7 @@ for i in range(1, upper_bound + 1):
             data[i] = (word_ST + " =", lett0, variance0, ordnum0)
             print(f"Alteration at location {i} has been done.")
     else:
-        print("L446. ERROR: variable mode should be one of c, r, a.")
+        print("L1250. ERROR: variable mode should be one of c, r, a.")
                 
     "Any mode: add to previous word."
     vector_LS = transnumeration(word_ST)
@@ -1294,11 +1374,23 @@ for i in range(1, upper_bound + 1):
     old_vector_left_LS = left_rotate(vecsum_left_LS)
     vecsum_right_LS = vector_sum(old_vector_right_LS, vector_LS)
     old_vector_right_LS = right_rotate(vecsum_right_LS)
-    if (i == 400) or (is_toy_version and (i == 40)):
+    if (i == 100) or (is_toy_version and (i == 10)):
+        vecsum_left_100 = old_vector_left_LS
+        vecsum_right_100 = old_vector_right_LS
+        vecsum_total_100 = vecsum_left_100 + vecsum_right_100
+    elif (i == 200) or (is_toy_version and (i == 20)):
+        vecsum_left_200 = old_vector_left_LS
+        vecsum_right_200 = old_vector_right_LS
+        vecsum_total_200 = vecsum_left_200 + vecsum_right_200
+    elif (i == 300) or (is_toy_version and (i == 30)):
+        vecsum_left_300 = old_vector_left_LS
+        vecsum_right_300 = old_vector_right_LS
+        vecsum_total_300 = vecsum_left_300 + vecsum_right_300
+    elif (i == 400) or (is_toy_version and (i == 40)):
         vecsum_left_400 = old_vector_left_LS
         vecsum_right_400 = old_vector_right_LS
         vecsum_total_400 = vecsum_left_400 + vecsum_right_400
-    "Fingerprint (of a keyword input)."
+    "Fingerprint (of a keyword)."
     lett = phi_lett(vector_LS)
     variance = phi_variance(vector_LS)
     ordnum = phi_ordnum(word_ST)
@@ -1306,34 +1398,87 @@ for i in range(1, upper_bound + 1):
     if (mode == "c"):
         data.append((loc, lett, variance, ordnum))
 
-"outputting"
-output = transcharacterization(vecsum_total_400)
-#output = output.upper()
-codeword_hash = string_hash_16(output)
+"Extract single digits from the four sums."
+digits = [-1, -1, -1, -1]
+digits[0] = vector_hash_6(vecsum_total_100) % 10
+digits[1] = vector_hash_6(vecsum_total_200) % 10
+digits[2] = vector_hash_6(vecsum_total_300) % 10
+digits[3] = vector_hash_6(vecsum_total_400) % 10
 
-if (mode == "r") or (mode == "a"):
-    print(f"\nThe password is {output}")
-    print(f"\nNATO alphanumeric spell-out of the password: {NATO_spell_out(output)}")
+"Check the digits for redundancies."
+if (digits[0] == digits[1]):
+    print("Error: Digits 0 and 1 are the same.")
+    errorFlag = True
 
-if (mode == "c") or (mode == "a"):
-    data[0] = ("Codeword hash:", codeword_hash)
+if (digits[0] == digits[2]):
+    print("Error: Digits 0 and 2 are the same.")
+    errorFlag = True
+
+if (digits[0] == digits[3]):
+    print("Error: Digits 0 and 3 are the same.")
+    errorFlag = True
+
+if (digits[1] == digits[2]):
+    print("Error: Digits 1 and 2 are the same.")
+    errorFlag = True
+
+if (digits[1] == digits[3]):
+    print("Error: Digits 1 and 3 are the same.")
+    errorFlag = True
+
+if (digits[2] == digits[3]):
+    print("Error: Digits 2 and 3 are the same.")
+    errorFlag = True
+
+if not errorFlag:
+    print("The digits are OK (i.e., all different from each other).\n")
+elif (mode == "r") or (mode == "a"):
+    print("Error: The digits are not OK.")
+    if (mode == "r"):
+        quit()
+elif (mode == "c"):
+    print("Error: The digits are not OK. (At least two digits are equal to each other.)")
+    print("A possibility is to save the erroneous word-labyrinth and then")
+    print("reopen it in 'alter' mode, perform an alteration that fixes the digit")
+    print("crash problem, and then save that. (Note that an attempt to go through")
+    print("the unaltered word-labyrinth in 'reconstruct' mode will yield error.)")
+#codeword_hash = string_hash_6(str(digits[0]) + str(digits[1]) + str(digits[2]) + str(digits[3]))
+codeword_hash = 12
 
 if (mode == "r"):
     if (codeword_hash == the_codeword_hash):
-        print("Output's fingerprint is OK.")
+        #print("Output's fingerprint is OK.")
+        vestigial_BL = True
     else:
-        print("L480. ERROR: Output's hash is NOT OK.")
-        print("codeword_hash = " + str(codeword_hash))
-        print("the_codeword_hash = " + str(the_codeword_hash))
+        print("L1435. ERROR: Output's hash is NOT OK.")
+        print(f"codeword_hash = {codeword_hash}")
+        print(f"the_codeword_hash = {the_codeword_hash}")
+        quit()
 
-"saving & logging"
+if (not errorFlag) and (mode == "r"):
+    output_mode = ""
+    while not (output_mode in ["t",  "s"]):
+        output_mode = input("Camouflage trellis (t) or password shuttle (s)? ")
+
+if (not errorFlag) and (mode == "r") and (output_mode == "t"):
+    camouflage_trellis()
+
+if (not errorFlag) and (mode == "r") and (output_mode == "s"):
+    shuttle_pos = password_shuttle()
+
+if (mode == "c") or (mode == "a"):
+    if not errorFlag:
+        data[0] = ("Codeword hash:", codeword_hash)
+    elif errorFlag:
+        data[0] = ("Codeword hash:", -13)
+
 if (mode == "c"):
     ans_CH = ""
     while not ((ans_CH == "y") or (ans_CH == "n")):
-        ans_CH = input("\nSave (y/n)? ")
-    if ans_CH == "y":
-        data.append(("Executor:", "FourHundredWords2SixteenAlphanumbers_5.py"))
-        a_book = input("\nWhat is the book's name? ")
+        ans_CH = input("Save (y/n)?")
+    if (ans_CH == "y"):
+        data.append(("Executor:", "FourHundredWords2FourDigits_13.py"))
+        a_book = input("What is the book's name? ")
         an_author = input("Who is the book's author? ")
         a_publisher = input("Who is the book's publisher? ")
         a_location = input("Where is the book usually located? ")
@@ -1344,26 +1489,28 @@ if (mode == "c"):
         filename_OK = False
         while not filename_OK:
             f_ST = input("Enter filename: ")
-            if (len(f_ST) < 7) or not (f_ST[-6:] == ".4H16A"):
-                print("Error: The filename should have extension .4H16A.")
+            if (len(f_ST) < 6) or not (f_ST[-5:] == ".4H4D"):
+                print("Error: The filename should have extension .4H4D.")
             else:
-                filename_OK = True
+                filename_OK = True        
         "save data in filename"
-        with open(f_ST, 'w') as f:
+        with open(f_ST, "w") as f:
             for item in data:
-                f.write(stringify_tuple(item) + '\n')
-        print("The new file has been written. Reconstruct the password in order to confirm it.")
-        print("Do not assign the password until it has been confirmed.\n")
-        print("When assigning the password, it has to be entered twice. The first time from,")
-        print("e.g., a handwritten copy; the second time from, e.g., a photographic copy")
-        print("(taken by smartphone) or else a second handwritten copy (independent of the first).\n")
+                f.write(stringify_tuple(item) + "\n")
+        if not errorFlag:
+            print("The new file has been written. Reconstruct the password in order to confirm it.")
+            print("Do not assign the password until it has been confirmed.\n")
+            print("When assigning the password, it has to be entered twice. The first time from")
+            print("one camouflage trellis; the second time from another camouflage trellis.\n")
+        elif errorFlag:
+            print("The new file has been written. Do not reconstruct it but instead alter it.\n")
         print("METADATA")
-        print("Filename: " + f_ST)
-        print("Executor: FourHundredWords2SixteenAlphanumbers_5.py")        
-        print("Book's name: " + a_book)
-        print("Book's author: " + an_author)
-        print("Books' publisher: " + a_publisher)
-        print("Book's location: " + a_location)
+        print(f"Filename: {f_ST}")
+        print("Executor: FourHundredWords2FourDigits_13.py")
+        print(f"Book's name: {a_book}")
+        print(f"Book's author: {an_author}")
+        print(f"Book's publisher: {a_publisher}")
+        print(f"Book's location: {a_location}")
         "log: creation"
         antwoord_CH = ""
         while not (antwoord_CH in ["y", "n"]):
@@ -1377,7 +1524,7 @@ if (mode == "c"):
                 fil_chron.write(f"Created a new word-labyrinth: {f_ST}\n")              
             print("A brief mention has been written in password_construction_log.txt.")          
 
-if (mode == "a"):
+if (mode == "a") and not errorFlag:
     ans_CH = ""
     while not ((ans_CH == "y") or (ans_CH == "n")):
         ans_CH = input("\nSave (y/n)? ")
@@ -1391,10 +1538,10 @@ if (mode == "a"):
         filename_OK = False
         while not filename_OK:
             f_ST = input("Enter filename: ")
-            if (len(f_ST) < 7) or (not (f_ST[-6:] == ".4H16A")):
-                print ("Error: The filename should have extension .4H16A.")
+            if (len(f_ST) < 6) or not (f_ST[-5:] == ".4H4D"):
+                print("Error: The filename should have extension .4H4D.")
             elif (f_ST == old_f_ST):
-                print("Error: The altered file should be different than the loaded file.")
+                print("Error: The altered file should have a different filename from the original file.")
             else:
                 filename_OK = True
         "save data in file"
@@ -1408,11 +1555,19 @@ if (mode == "a"):
         print("(taken by smartphone) or else a second handwritten copy (independent of the first).\n")
         print("METADATA")
         print(f"Filename: {f_ST}")
-        print("Executor: FourHundredWords2SixteenAlphanumbers_5.py")        
+        print("Executor: FourHundredWords2FourDigits_13.py")
         print(f"Book's name: {a_book}")
         print(f"Book's author: {an_author}")
         print(f"Book's publisher: {a_publisher}")
         print(f"Book's location: {a_location}")
+        "output"
+        output_mode = ""
+        while not (output_mode in ["t",  "s"]):
+            output_mode = input("Camouflage trellis (t) or password shuttle (s)? ")
+        if (output_mode == "t"):
+            camouflage_trellis()
+        if (output_mode == "s"):
+            shuttle_pos = password_shuttle()
         "log: alteration"
         antwoord_CH = ""
         while not (antwoord_CH in ["y", "n"]):
@@ -1420,14 +1575,29 @@ if (mode == "a"):
         if (antwoord_CH == "y"):
             "append entry in password_construction_log.txt"
             with open("password_construction_log.txt", "a") as fil_chron:
-                fil_chron.write("- - - - - - - - - - - - - - - -\n")
+                fil_chron.write("- - - - - - - -\n")
                 todays_date = date.today()
                 fil_chron.write(f"Today's date: {todays_date}\n")
                 fil_chron.write(f"Created through alteration: {f_ST}\n")
                 fil_chron.write(f"It was modified from: {old_f_ST}\n")
-            print("A brief mention has been written in password_construction_log.txt.")  
+                if (output_mode == "t"):
+                    fil_chron.write("Output mode: trellis\n")
+                elif (output_mode == "s"):
+                    fil_chron.write(f"Output mode: shuttle, #{shuttle_pos}\n")                
+            print("A brief mention has been written in password_construction_log.txt.")            
 
-if (mode == "r"):
+DEBUG(debug_0, f"mode = {mode}")
+DEBUG(debug_0, f"errorFlag = {errorFlag}")
+if (mode == "a") and errorFlag:
+    answer_CH = ""
+    while not (answer_CH in ["y", "n"]):
+        answer_CH = input("Would you like to enter \"swift alter\" mode (\"y\", \"n\")? ")
+        if not (answer_CH in ["y", "n"]):
+            print("Error: please enter either \"y\" or \"n\".")
+    if (answer_CH == "y"):
+        print("Net result = " + str(swift_alter()))
+
+if (mode == "r") and not errorFlag:
     if reconstruct_changed:
         ans_CH = ""
         while not ((ans_CH == "y") or (ans_CH == "n")):
@@ -1438,16 +1608,16 @@ if (mode == "r"):
                 for item in data:
                     f.write(stringify_tuple(item) + "\n")
             print("The corrections to the file have been written.")
-    print("Close this window down when ending the session (and delete the two")
-    print("copies of the password).")
+    print("Close this window down when ending the session.")
     print("If the password has just been assigned then record its metadata in")
-    print("the log for the post to which the password has been assigned to guard.")    
-    print("\nMETADATA")
+    print("the log for the post which the password has been assigned to guard.\n")    
+    print("Also play some mind-clearing game or puzzle.\n")
+    print("METADATA")
     print(f"Filename: {f_ST}")
-    print("Executor: FourHundredWords2SixteenAlphanumbers_5.py")    
+    print("Executor: FourHundredWords2FourDigits_13.py")
     print(f"Book's name: {the_book}")
     print(f"Book's author: {the_author}")
-    print(f"Books' publisher: {the_publisher}")
+    print(f"Book's publisher: {the_publisher}")
     print(f"Book's location: {the_location}")
     "log: reconstruction"
     antwoord_CH = ""
@@ -1456,11 +1626,15 @@ if (mode == "r"):
     if (antwoord_CH == "y"):
         "append entry in password_construction_log.txt"
         with open("password_construction_log.txt", "a") as fil_chron:
-            fil_chron.write("- - - - - - - - - - - - - - - -\n")
+            fil_chron.write("- - - - - - - -\n")
             todays_date = date.today()
             fil_chron.write(f"Today's date: {todays_date}\n")
             fil_chron.write(f"Reconstructed: {f_ST}\n")
-        print("A brief mention has been written in password_construction_log.txt.")    
+            if (output_mode == "t"):
+                fil_chron.write("Output mode: trellis\n")
+            elif (output_mode == "s"):
+                fil_chron.write(f"Output mode: shuttle, #{shuttle_pos}\n")
+        print("A brief mention has been written in password_construction_log.txt.")
     "swift alter mode"
     answer_CH = ""
     while not (answer_CH in ["y", "n"]):
@@ -1468,4 +1642,4 @@ if (mode == "r"):
         if not (answer_CH in ["y", "n"]):
             print("Error: please enter either \"y\" or \"n\".")
     if (answer_CH == "y"):
-        print("Net result = " + str(swift_alter()))  
+        print("Net result = " + str(swift_alter()))    
