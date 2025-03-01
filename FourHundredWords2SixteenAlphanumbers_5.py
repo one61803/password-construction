@@ -976,7 +976,7 @@ for i in range(1, upper_bound + 1):
                     new_prefix = f"P. {page_num} PAR. {par_num} "
                     if not (new_prefix == prefix):
                         data[i - 1] = (new_prefix + data[i - 1][0], data[i - 1][1], data[i - 1][2], data[i - 1][3])
-                        print(f"New previous (#{i - 1}) location string: {data}")
+                        print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
                         prefix = new_prefix
                         older_prefix = prefix
                         word_ST = "ZZZZZZZZ"
