@@ -1268,7 +1268,9 @@ for i in range(1, upper_bound + 1):
                             data[i - 1] = (new_datum, data[i - 1][1], data[i - 1][2], data[i - 1][3])
                             prefix = new_prefix
                             print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
-                            reconstruct_changed = True                        
+                            reconstruct_changed = True
+                            print("\nNow back to the present entry.")
+                            print(f"\nLocation #{i}: {data[i][0]}")                            
                         else:
                             print("Error: Cannot prepend a page–number prefix to a string that already has periods in it.")
                     elif (i == 1) and (word_ST == ":CORRECTION:"):
