@@ -745,7 +745,7 @@ def NATO_alphanumber(char_CH):
 
 def NATO_spell_out(string_ST):
     "NATO (phonetic alphabet) spelling-out of argument string_ST."
-    spell_out = ""
+    spell_out = "\n"
     while (len(string_ST) > 0):
         char_CH = string_ST[0:1]
         string_ST = string_ST[1:]
