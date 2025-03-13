@@ -803,7 +803,7 @@ def swift_alter():
         ordnum = ordnum0
         #data[i] = (word_ST + " =", lett, variance, ordnum)
         print(f"phi_lett = {lett}\nphi_variance = {variance}\nphi_ordnum = {ordnum}")
-        time.sleep(1)
+        time.sleep(0.3)
     "outputting"
     output = transcharacterization(vecsum_total_400)
     #output = output.upper()

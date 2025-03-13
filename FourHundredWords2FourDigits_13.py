@@ -816,7 +816,7 @@ def swift_alter():
         variance = phi_variance(vector_LS)
         ordnum = phi_ordnum(word_ST)
         print(f"phi_lett = {lett}\nphi_variance = {variance}\nphi_ordnum = {ordnum}")
-        time.sleep(1)
+        time.sleep(0.3)
     "Extract single digits from the four sums."
     digits = [-1, -1, -1, -1]
     digits[0] = vector_hash_6(vecsum_total_100) % 10
