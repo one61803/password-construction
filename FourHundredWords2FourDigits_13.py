@@ -4,6 +4,7 @@
 import random
 import time
 from datetime import date
+from array import *
 
 "A filename (of a file processed by the program) should have extension .4H4D."
 "The output password has password entropy 4*lg(10) = 13.2 bits."
@@ -716,7 +717,7 @@ def four_digit_mask_Mro_ST(a, b, c, d):
     a_string = Western_Arabic_to_Mro(a_string)
     return a_string
 
-def camouflage_trellis():
+def camouflage_trellis(digits_AR):
     "Outputs the four digits in a masked way, so that the user cannot (or should not) perceive them all at once."
     print("\nCAMOUFLAGE TRELLIS")
     print("Add each row of digits module 10 mentally in order to obtain each digit.")
@@ -727,7 +728,7 @@ def camouflage_trellis():
         print("The four digits are (add):\n")
         buffer_digit()
         for i in range(4):
-            digit_mask(digits[i])
+            digit_mask(digits_AR[i])
             buffer_digit()
         cont_answer = ""        # continue answer = answer about continuation
         while not (cont_answer in ["y", "n"]):
@@ -737,18 +738,18 @@ def camouflage_trellis():
         else:
             print("\n\n\n\n")
 
-def password_shuttle():
+def password_shuttle(digits_AR):
     shuttle_position = 0
     while not (shuttle_position in ["1", "2"]):
         shuttle_position = input("What position: 1 or 2? ")
     if (shuttle_position == "1"):
         file_1 = open("shuttle_2.txt", "w")
-        file_1.write(four_digit_mask_Mro_ST(digits[0], digits[1], digits[2], digits[3]) + "\n")
+        file_1.write(four_digit_mask_Mro_ST(digits_AR[0], digits_AR[1], digits_AR[2], digits_AR[3]) + "\n")
         file_1.close()
         print("The password has been written into the shuttle's first position.")
     elif (shuttle_position == "2"):
         file_1 = open("shuttle_2.txt", "a")
-        file_1.write(four_digit_mask_Mro_ST(digits[0], digits[1], digits[2], digits[3]))
+        file_1.write(four_digit_mask_Mro_ST(digits_AR[0], digits_AR[1], digits_AR[2], digits_AR[3]))
         file_1.close()
         print("The password has been written into the shuttle's second position.")
     return int(shuttle_position)
@@ -818,7 +819,7 @@ def swift_alter():
         print(f"phi_lett = {lett}\nphi_variance = {variance}\nphi_ordnum = {ordnum}")
         time.sleep(0.3)
     "Extract single digits from the four sums."
-    digits = [-1, -1, -1, -1]
+    digits = array('i', [-1, -1, -1, -1])
     digits[0] = vector_hash_6(vecsum_total_100) % 10
     digits[1] = vector_hash_6(vecsum_total_200) % 10
     digits[2] = vector_hash_6(vecsum_total_300) % 10
@@ -904,9 +905,9 @@ def swift_alter():
             while not (output_mode in ["t",  "s"]):
                 output_mode = input("\nCamouflage trellis (t) or password shuttle (s)? ")
             if (output_mode == "t"):
-                camouflage_trellis()
+                camouflage_trellis(digits)
             if (output_mode == "s"):
-                shuttle_pos = password_shuttle()
+                shuttle_pos = password_shuttle(digits)
             "log: swift alteration"
             antwoord_CH = ""
             while not (antwoord_CH in ["y", "n"]):
@@ -1405,7 +1406,7 @@ for i in range(1, upper_bound + 1):
         data.append((loc, lett, variance, ordnum))
 
 "Extract single digits from the four sums."
-digits = [-1, -1, -1, -1]
+digits = array('i', [-1, -1, -1, -1])
 digits[0] = vector_hash_6(vecsum_total_100) % 10
 digits[1] = vector_hash_6(vecsum_total_200) % 10
 digits[2] = vector_hash_6(vecsum_total_300) % 10
@@ -1467,10 +1468,10 @@ if (not errorFlag) and (mode == "r"):
         output_mode = input("Camouflage trellis (t) or password shuttle (s)? ")
 
 if (not errorFlag) and (mode == "r") and (output_mode == "t"):
-    camouflage_trellis()
+    camouflage_trellis(digits)
 
 if (not errorFlag) and (mode == "r") and (output_mode == "s"):
-    shuttle_pos = password_shuttle()
+    shuttle_pos = password_shuttle(digits)
 
 if (mode == "c") or (mode == "a"):
     if not errorFlag:
@@ -1571,9 +1572,9 @@ if (mode == "a") and not errorFlag:
         while not (output_mode in ["t",  "s"]):
             output_mode = input("Camouflage trellis (t) or password shuttle (s)? ")
         if (output_mode == "t"):
-            camouflage_trellis()
+            camouflage_trellis(digits)
         if (output_mode == "s"):
-            shuttle_pos = password_shuttle()
+            shuttle_pos = password_shuttle(digits)
         "log: alteration"
         antwoord_CH = ""
         while not (antwoord_CH in ["y", "n"]):
