@@ -1,5 +1,6 @@
 "This file is called FourHundredWords2FourDigits_13.py."
 "It was forked from FourHundredWords2FourDigits_12.py and modified."
+"123456789A123456789B123456789C123456789D123456789E12345689F123456789G123456789H123456789I123456789J123456789K123456789L"
 """Objectives of version 13: Ignore the codeword hash."""
 import random
 import time
@@ -520,7 +521,7 @@ def help_page_9(opt):
     "help paragraph 9"
     print_pause("\nWhen a book is used for constructing a password, one should not", opt)
     print_pause("make any markings on it, either with pencil or otherwise, that", opt)
-    print_pause("would facilitate constructing the password. (Example: underlining", opt)
+    print_pause("would facilitate reconstructing the password. (Example: underlining", opt)
     print_pause("keywords.) That would be considered cheating. It can be helpful", opt)
     print_pause("to choose a book that is hardcover and lays flatly open easily.", opt)
     print_pause("The data file that is used to (re)construct a password should not", opt)
@@ -579,10 +580,10 @@ def help_page_12(opt):
     print_pause("it can be to write a note about it on a piece of paper", opt)
     print_pause("including three data: (1) the current, flawed location", opt)
     print_pause("string, (2) the “fingerprint” (a tripartite hash consisting of a", opt)
-    print_pause("character, a floating-point number, and a natural number), and (3)", opt)
+    print_pause("character, a decimal number, and a natural number), and (3)", opt)
     print_pause("the corrected location string. When done confirming the password,", opt)
     print_pause("open the password-constructing database file with some plain-text editor;", opt)
-    print_pause("use the editor’s search function to search for the each flawed", opt)
+    print_pause("use the editor’s search function to search for each flawed", opt)
     print_pause("location string; check that the fingerprint on that line matches", opt)
     print_pause("the fingerprint that has been noted for that location string (and note that double", opt)
     print_pause("semicolons are used as separators on each record of the database (as stored", opt)
@@ -617,10 +618,9 @@ def help_page_14(opt):
     print_pause("heeded or overriden)). [That has been implemented now in the latest version.]", opt)
     print_pause("Another possible error in a location string is missing the prefix for", opt)
     print_pause("page number and paragraph number when the associated index word is in", opt)
-    print_pause("a different paragraph from the previous index word. There is now a", opt)
+    print_pause("a different paragraph than the previous index word. There is now a", opt)
     print_pause("“??” command in creation mode that causes the last-declared page and", opt)
     print_pause("paragraph numbers to be displayed.", opt)
-    print("\n")
 
 def help_page_15(opt):
     "help paragraph 15"
@@ -631,12 +631,13 @@ def help_page_15(opt):
     print_pause("the location string is missing a necessary page–paragraph prefix", opt)
     print_pause("(because the keyword with the given index words cannot be found", opt)
     print_pause("in the paragraph of the previous entry). In such a case,", opt)
-    print_pause("when the correct keyword is found in the correct paragraph,", opt)
+    print_pause("when the correct keyword is found in the different paragraph,", opt)
     print_pause("enter the keyword. But then, when prompted for the keyword of the", opt)
     print_pause("next entry, type “:CORRECTION:” and <ENTER>. Then the user will", opt)
     print_pause("be prompted for a page number and a paragraph number; then", opt)
     print_pause("the page–paragraph prefix will be prepended to the location string", opt)
     print_pause("of that previous entry; and focus will return to the present entry.", opt)
+    print("\n")
 
 def is_string(param):
     "Boolean-valued function which checks whether parameter param is a string or not."
@@ -888,11 +889,10 @@ def swift_alter():
             with open(f_ST, "w") as f:
                 for item in data:
                     f.write(stringify_tuple(item) + "\n")
-            print("The altered file has been written.")  #Reconstruct the password in order to confirm it.")
-            #print("Do not assign the password until it has been confirmed.\n")
-            print("When assigning the password, it has to be entered twice. The first time from,")
-            print("e.g., a handwritten copy; the second time from, e.g., a photographic copy")
-            print("(taken by smartphone) or else a second handwritten copy (independent of the first).\n")
+            print("The altered file has been written.")
+            print("When assigning the password, it has to be entered twice: the first")
+            print("time from one camouflage trellis, the second time from another")
+            print("(different) camouflage trellis.")
             print("METADATA")
             print(f"Filename: {f_ST}")
             print("Executor: FourHundredWords2FourDigits_13.py")
@@ -1507,8 +1507,9 @@ if (mode == "c"):
         if not errorFlag:
             print("The new file has been written. Reconstruct the password in order to confirm it.")
             print("Do not assign the password until it has been confirmed.\n")
-            print("When assigning the password, it has to be entered twice. The first time from")
-            print("one camouflage trellis; the second time from another camouflage trellis.\n")
+            print("When assigning the password, it has to be entered twice: the first")
+            print("time from one camouflage trellis, the second time from another")
+            print("(different) camouflage trellis.\n")
         elif errorFlag:
             print("The new file has been written. Do not reconstruct it but instead alter it.\n")
         print("METADATA")
@@ -1555,11 +1556,10 @@ if (mode == "a") and not errorFlag:
         with open(f_ST, "w") as f:
             for item in data:
                 f.write(stringify_tuple(item) + "\n")
-        print("The altered file has been saved.") #Reconstruct the password in order to confirm it.")
-        #print("Do not assign the password until it has been confirmed.\n")
-        print("When assigning the password, it has to be entered twice. The first time from,")
-        print("e.g., a handwritten copy; the second time from, e.g., a photographic copy")
-        print("(taken by smartphone) or else a second handwritten copy (independent of the first).\n")
+        print("The altered file has been saved.")
+        print("When assigning the password, it has to be entered twice: the first time")
+        print("from one camouflage trellis, the second time from another (different)")
+        print("camouflage trellis.")
         print("METADATA")
         print(f"Filename: {f_ST}")
         print("Executor: FourHundredWords2FourDigits_13.py")
@@ -1582,7 +1582,7 @@ if (mode == "a") and not errorFlag:
         if (antwoord_CH == "y"):
             "append entry in password_construction_log.txt"
             with open("password_construction_log.txt", "a") as fil_chron:
-                fil_chron.write("- - - - - - - -\n")
+                fil_chron.write("- - - - - - - - - - - - - - - -\n")
                 todays_date = date.today()
                 fil_chron.write(f"Today's date: {todays_date}\n")
                 fil_chron.write(f"Created through alteration: {f_ST}\n")
@@ -1629,11 +1629,11 @@ if (mode == "r") and not errorFlag:
     "log: reconstruction"
     antwoord_CH = ""
     while not (antwoord_CH in ["y", "n"]):
-        antwoord_CH = input("\nWould you like this reconstruction episode to be logged (y/n)? ")
+        antwoord_CH = input("\nWould you like this reconstruction session to be logged (y/n)? ")
     if (antwoord_CH == "y"):
         "append entry in password_construction_log.txt"
         with open("password_construction_log.txt", "a") as fil_chron:
-            fil_chron.write("- - - - - - - -\n")
+            fil_chron.write("- - - - - - - - - - - - - - - -\n")
             todays_date = date.today()
             fil_chron.write(f"Today's date: {todays_date}\n")
             fil_chron.write(f"Reconstructed: {f_ST}\n")
