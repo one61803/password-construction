@@ -22,7 +22,7 @@
   </TR>
   <TR>
     <TD>.2H4D</TD>
-    <TD>TwoHundredWords2FourDigits_4.py </TD>
+    <TD>TwoHundredWords2FourDigits_6.py </TD>
   </TR>
   <TR>
     <TD>.2H16U</TD>
@@ -75,8 +75,8 @@ Links to files:
   </TR>
   <TR>
     <TD>.2H4D</TD>
-    <TD>TwoHundredWords2FourDigits_4.py</TD>
-    <TD>https://github.com/one61803/password-construction/blob/main/TwoHundredWords2FourDigits_4.py</TD>
+    <TD>TwoHundredWords2FourDigits_6.py</TD>
+    <TD>https://github.com/one61803/password-construction/blob/main/TwoHundredWords2FourDigits_6.py</TD>
   </TR>
   <TR>
     <TD>.2H16U</TD>
