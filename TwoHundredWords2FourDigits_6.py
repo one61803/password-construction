@@ -928,7 +928,7 @@ logged (y/n)? ")
             if (antwoord_CH == "y"):
                 "append entry in password_construction_log.txt"
                 with open("password_construction_log.txt", "a") as fil_chron:
-                    fil_chron.write("- - - - - - - -\n")
+                    fil_chron.write("- - - - - - - - - - - - - - - -\n")
                     todays_date = date.today()
                     fil_chron.write(f"Today's date: {todays_date}\n")
                     fil_chron.write(f"Created through swift alteration: {f_ST}\n")
@@ -1422,60 +1422,7 @@ entered yet")
                 word_ST = ""
                 while not is_proper_keyword(word_ST):
                     word_ST = input(f"Keyword #{i}: ")
-                    #BEGIN
-                    #if not is_proper_keyword(word_ST):
-                    #    if (i > 1) and (word_ST == ":CORRECTION:"):
-                    #        print(f"Current previous (#{i - 1}) location string: \
-#{data[i - 1][0]}")
-                    #        if (data[i - 1][0].count(".") == 0):
-                    #            page_num = input("Enter the page number: ")
-                    #            par_num = input("Enter the paragraph number: ")
-                    #            new_prefix = f"P. {page_num} PAR. {par_num} "
-                    #            if not (new_prefix == prefix):
-                    #                data[i - 1] = (new_prefix + data[i - 1][0], \
-                    #                               data[i - 1][1], data[i - 1][2], \
-                    #                               data[i - 1][3])
-                    #                print(f"New previous (#{i - 1}) location string: \
-#{data[i - 1][0]}")
-                    #                reconstruct_changed = True
-                    #                prefix = new_prefix
-                    #                DEBUG(f"prefix = {prefix}")
-                    #            else:
-                    #                print("Error: The same location prefix should")
-                    #                print("not be repeated.")
-                    #            print("\nNow back to the present entry.")
-                    #            print(f"\nLocation #{i}: {data[i][0]}")
-                    #        elif (data[i - 1][0].count(".") == 2):
-                    #            page_num = input("Enter the new page number: ")
-                    #            par_num = input("Enter the new paragraph number: ")
-                    #            new_prefix = f"P. {page_num} PAR. {par_num} "
-                    #            new_datum = \
-                    #                      data[i - 1][0].replace(\
-                    #                          what_prefix(data[i - 1][0]), new_prefix)
-                    #            data[i - 1] = (new_datum, data[i - 1][1], \
-                    #                           data[i - 1][2], data[i - 1][3])
-                    #            prefix = new_prefix
-                    #            print(\
-                    #            f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
-                    #            reconstruct_changed = True
-                    #        else:
-                    #            print("Error: Cannot prepend a page-number prefix to")
-                    #            print("a string that already has periods in it.")
-                    #    elif (i == 1) and (word_ST == ":CORRECTION:"):
-                    #        print("Error: It is not possible to correct a non-existent")
-                    #        print("zeroth entry.")
-                    #    elif (word_ST == "??"):
-                    #        if (len(prefix) > 0):
-                    #            print(prefix)
-                    #        else:
-                    #            print("No page number — paragraph number prefix has")
-                    #            print("been entered yet.")
-                    #    else:                        
-                    #        print("Error: Please enter an eight-letter word in all caps.")
-                    #END
-                    #BEGIN
                     if_not_is_proper_keyword(word_ST)
-                    #END
                 vec_LS = transnumeration(word_ST)
                 lett0 = phi_lett(vec_LS)
                 variance0 = phi_variance(vec_LS)
@@ -1493,13 +1440,7 @@ entered yet")
             while not is_proper_keyword(word_ST):
                 word_ST = \
                         input(f"\nEnter some all-caps eight-letter word for location {i}: ")
-                #BEGIN
-                #if not is_proper_keyword(word_ST):
-                #    print("Error: Please enter an eight-letter word in all caps.")
-                #END
-                #BEGIN
                 if_not_is_proper_keyword(word_ST)
-                #END
             keywords_LS.append(word_ST)
             vec_LS = transnumeration(word_ST)
             lett0 = phi_lett(vec_LS)
