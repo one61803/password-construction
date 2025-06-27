@@ -928,7 +928,7 @@ logged (y/n)? ")
             if (antwoord_CH == "y"):
                 "append entry in password_construction_log.txt"
                 with open("password_construction_log.txt", "a") as fil_chron:
-                    fil_chron.write("- - - - - - - - - - - - - - - -\n")
+                    fil_chron.write("- - - - - - - -\n")
                     todays_date = date.today()
                     fil_chron.write(f"Today's date: {todays_date}\n")
                     fil_chron.write(f"Created through swift alteration: {f_ST}\n")
@@ -1138,7 +1138,7 @@ for i in range(1, upper_bound + 1):
                 elif (data[i - 1][0].count(".") == 2):
                     page_num = input("Enter the new page number: ")
                     par_num = input("Enter the new paragraph number: ")
-                    new_prefix = f"P. {page_num} PAR. {par_num}"
+                    new_prefix = f"P. {page_num} PAR. {par_num} "
                     new_datum = data[i - 1][0].replace(what_prefix(data[i - 1][0]), \
                                                        new_prefix)
                     data[i - 1] = (new_datum, data[i - 1][1], data[i - 1][2], data[i - 1][3])
@@ -1346,7 +1346,7 @@ not is_UALPHAnumeric(if_paragraph_then_swallow(if_page_then_swallow(loc)).replac
                         if (data[i - 1][0].count(".") == 0):
                             page_num = input("Enter the page number: ")
                             par_num = input("Enter the paragraph number: ")
-                            new_prefix = f"P. {page_num} PAR. {par_num}"
+                            new_prefix = f"P. {page_num} PAR. {par_num} "
                             if not (new_prefix == prefix):
                                 data[i - 1] = (new_prefix + data[i - 1][0], \
                                                data[i - 1][1], data[i - 1][2], \
