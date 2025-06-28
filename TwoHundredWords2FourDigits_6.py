@@ -928,7 +928,7 @@ logged (y/n)? ")
             if (antwoord_CH == "y"):
                 "append entry in password_construction_log.txt"
                 with open("password_construction_log.txt", "a") as fil_chron:
-                    fil_chron.write("- - - - - - - -\n")
+                    fil_chron.write("- - - - - - - - - - - - - - - -\n")
                     todays_date = date.today()
                     fil_chron.write(f"Today's date: {todays_date}\n")
                     fil_chron.write(f"Created through swift alteration: {f_ST}\n")
@@ -937,7 +937,13 @@ logged (y/n)? ")
                         fil_chron.write("Output mode: trellis\n")
                     elif (output_mode == "s"):
                         fil_chron.write(f"Output mode: shuttle, #{shuttle_pos}\n")
-                print("A brief mention has been written in password_construction_log.txt.")                   
+                print("A brief mention has been written in password_construction_log.txt.\n")
+                "reminders: swift alteration"
+                print("If the password has just been assigned then record its metadata in")
+                print("the log for the post which the password has been assigned to guard.\n")    
+                print("Also play some mind-clearing game or puzzle and make a backup or two of")
+                print("the file, including one in a flashdrive.\n")
+                print("Close this window down when ending the session.\n")                   
             return 1
 
 def DEBUG(flag_BL, msg_ST):
@@ -1608,7 +1614,7 @@ if (mode == "a") and not errorFlag:
         print("The altered file has been saved.")
         print("When assigning the password, it has to be entered twice: the first")
         print("time from one camouflage trellis, the second time from another")
-        print("(different) camouflage trellis.")
+        print("(different) camouflage trellis.")        
         print("METADATA")
         print("Filename: " + f_ST)
         print("Executor: TwoHundredWords2FourDigits_6.py")
@@ -1641,7 +1647,14 @@ if (mode == "a") and not errorFlag:
                     fil_chron.write("Output mode: trellis\n")
                 elif (output_mode == "s"):
                     fil_chron.write(f"Output mode: shuttle, #{shuttle_pos}\n")
-            print("A brief mention has been written in password_construction_log.txt.")
+            "reminders: alteration"
+            print("\nA brief mention has been written in password_construction_log.txt.")
+            print("If the password has just been assigned then record its metadata in")
+            print("the log for the post which the password has been assigned to guard.\n")    
+            print("Also play some mind-clearing game or puzzle and make a backup or two of")
+            print("the file, including one in a flashdrive.\n")
+            print("Close this window down when ending the session.")
+
 
 DEBUG(debug_0, f"mode = {mode}")
 DEBUG(debug_0, f"errorFlag = {errorFlag}")
@@ -1665,11 +1678,7 @@ if (mode == "r") and not errorFlag:
             with open(f_ST, "w") as f:
                 for item in data:
                     f.write(stringify_tuple(item) + "\n")
-            print("The corrections to the file have been written.")
-    print("Close this window down when ending the session.")
-    print("If the password has just been assigned then record its metadata in")
-    print("the log for the post which the password has been assigned to guard.\n")    
-    print("Also play some mind-clearing game or puzzle.\n")
+            print("The corrections to the file have been written.")  
     print("METADATA")
     print(f"Filename: {f_ST}")
     print("Executor: TwoHundredWords2FourDigits_6.py")
@@ -1694,7 +1703,13 @@ if (mode == "r") and not errorFlag:
             elif (output_mode == "s"):
                 fil_chron.write(f"Output mode: shuttle, #{shuttle_pos}\n")
         print("A brief mention has been written in password_construction_log.txt.")
-    "swift alter mode"
+        "reminders: reconstruction"
+        print("\nIf the password has just been assigned then record its metadata in")
+        print("the log for the post which the password has been assigned to guard.\n")    
+        print("Also play some mind-clearing game or puzzle and make a backup or two of")
+        print("the file, including one in a flashdrive.\n")
+        print("Close this window down when ending the session.\n")          
+    "swift alter mode?"
     answer_CH = ""
     while not (answer_CH in ["y", "n"]):
         answer_CH = input("Would you like to enter \"swift alter\" mode (\"y\", \"n\")? ")
