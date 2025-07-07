@@ -44,6 +44,10 @@
     <TD>.4H16U</TD>
     <TD>FourHundredWords2SixteenUALPHAnumbers_2.py</TD>
   </TR>
+  <TR>
+    <TD>.6H4D</TD>
+    <TD>SixHundredWords2FourDigits_3.py</TD>
+  </TR>
 </TABLE>
 
 Links to files:
@@ -102,5 +106,9 @@ Links to files:
     <TD>.4H16U</TD>
     <TD>FourHundredWords2SixteenUALPHAnumbers_2.py</TD>
     <TD>https://github.com/one61803/password-construction/blob/main/FourHundredWords2SixteenUALPHAnumbers_2.py</TD>
+  </TR>
+  <TR>
+    <TD>SixHundredWords2FourDigits_3.py</TD>
+    <TD>https://github.com/one61803/password-construction/blob/main/SixHundredWords2FourDigits_3.py</TD>
   </TR>
 </TABLE>
