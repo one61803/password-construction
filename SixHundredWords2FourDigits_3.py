@@ -1057,9 +1057,9 @@ request, then deal with it; otherwise give an error message."
 def is_proper_addition(words_ST):
     if words_ST.count("  ") > 0:
         return False
-    words_ST = words_ST.replace(" ", "")
     if (words_ST[0:1] == " ") or (words_ST[-1:] == " "):
-        return False
+        return False        
+    words_ST = words_ST.replace(" ", "")
     return is_UALPHAnumeric(words_ST)
         
 
