@@ -1,6 +1,8 @@
 "This file is called FourLines2FourDigits_7.py."
 "It was forked from FourLines2FourDigits_6.py."
 "Objective of this version: changing how passwords are stored in the password shuttle."
+"123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J123456789K123456789L"
+"Right margin set at I3."
 import random
 from datetime import date
 
@@ -72,7 +74,8 @@ def is_string(param):
 
 "Functions for writing in the password shuttle."
 def four_digit_shuffle(a, b, c, d):
-    "Shuffles a quadruplet of four digits (or any four values passed as parameters, actually)."
+    "Shuffles a quadruplet of four digits (or any four values passed as parameters, \
+actually)."
     for i in range(6):
         if (random.randint(0, 1) == 1):
             b = a + b
@@ -101,9 +104,10 @@ def four_digit_shuffle(a, b, c, d):
     return (a, b, c, d)
 
 def one_digit_mask(dgt):
-    """Given digit dgt, this function returns a quadruplet of four digits that somewhat covertly imply that digit.
-    Here is how it works: There are five even digits and five odd digits. To mask an even digit, present the remaining
-    four even digits in shuffled order. To mask an odd digit, present the remaining four odd digits in shuffled order."""
+    """Given digit dgt, this function returns a quadruplet of four digits that somewhat
+    covertly imply that digit. Here is how it works: There are five even digits and five
+    odd digits. To mask an even digit, present the remaining four even digits in shuffled
+    order. To mask an odd digit, present the remaining four odd digits in shuffled order."""
     a = (dgt + 2) % 10
     b = (dgt + 4) % 10
     c = (dgt + 6) % 10
@@ -111,14 +115,17 @@ def one_digit_mask(dgt):
     return four_digit_shuffle(a, b, c, d)
 
 def four_digit_mask(a, b, c, d):
-    """Given a quadruplet of digits, returns a 16-tuple of digits that imply those four digits; but in a way that might not be immediately obvious:
-    that is, in a way that might prevent their instantaneous, all-at-once apperception. How it works: The one_digit_mask of each digit is interleaved with the
-    one_digit_mask's of the other three digits."""
+    """Given a quadruplet of digits, returns a 16-tuple of digits that imply those four
+    digits; but in a way that might not be immediately obvious: that is, in a way that
+    might prevent their instantaneous, all-at-once apperception. How it works: The
+    one_digit_mask of each digit is interleaved with the one_digit_mask's of the other
+    three digits."""
     a_m = one_digit_mask(a)
     b_m = one_digit_mask(b)
     c_m = one_digit_mask(c)
     d_m = one_digit_mask(d)
-    return (a_m[0], b_m[0], c_m[0], d_m[0], a_m[1], b_m[1], c_m[1], d_m[1], a_m[2], b_m[2], c_m[2], d_m[2], a_m[3], b_m[3], c_m[3], d_m[3])
+    return (a_m[0], b_m[0], c_m[0], d_m[0], a_m[1], b_m[1], c_m[1], d_m[1], a_m[2], b_m[2], \
+            c_m[2], d_m[2], a_m[3], b_m[3], c_m[3], d_m[3])
 
 def four_digit_mask_ST(a, b, c, d):
     "Wraps four_digit_mask in a string."
@@ -284,7 +291,8 @@ if (not errorFlag) and (answer == "y") and (output_mode == "s"):
         shuttle_position = input("What position: 1 or 2? ")
     if (shuttle_position == "1"):
         file_1 = open("shuttle_2.txt", "w")
-        file_1.write(four_digit_mask_Mro_ST(digits[0], digits[1], digits[2], digits[3]) + "\n")
+        file_1.write(four_digit_mask_Mro_ST(digits[0], digits[1], digits[2], digits[3]) \
+                     + "\n")
         file_1.close()
         print("The password has been written into the shuttle's first position.")
     elif (shuttle_position == "2"):
@@ -340,14 +348,15 @@ if (not errorFlag) and (answer == "y"):
     "log"
     antwoord_CH = ""
     while not (antwoord_CH in ["y", "n"]):
-        antwoord_CH = input("\nWould you like this reconstruction episode to be logged (y/n)? ")
+        antwoord_CH = input("\nWould you like this reconstruction episode to be logged \
+(y/n)? ")
     if (antwoord_CH == "y"):
         "append entry in password_construction_log.txt"
         with open("password_construction_log.txt", "a") as fil_chron:
             fil_chron.write("- - - - - - - - - - - - - - - -\n")
             todays_date = date.today()
             fil_chron.write(f"Today's date: {todays_date}\n")
-            fil_chron.write(f"Reconstructed: {newfilename}\n")
+            fil_chron.write(f"Reconstructed: {filename}\n")
             if (output_mode == "t"):
                 fil_chron.write("Output mode: trellis\n")
             elif (output_mode == "s"):
@@ -357,7 +366,8 @@ elif (not errorFlag) and (answer == "n") and (saveanswer == "y"):
     "log"
     antwoord_CH = ""
     while not (antwoord_CH in ["y", "n"]):
-        antwoord_CH = input("\nWould you like this 'creating new' session to be logged (y/n)? ")
+        antwoord_CH = input("\nWould you like this 'creating new' session to be logged \
+(y/n)? ")
     if (antwoord_CH == "y"):
         "append entry in password_construction_log.txt"
         with open("password_construction_log.txt", "a") as fil_chron:
