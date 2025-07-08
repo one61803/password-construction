@@ -2,6 +2,7 @@
 "It was forked from FourLines2FourDigits_6.py."
 "Objective of this version: changing how passwords are stored in the password shuttle."
 import random
+from datetime import date
 
 "The output of shuttle output mode of this program can be read with ShuttleReader_2.py."
 
@@ -144,11 +145,18 @@ def four_digit_mask_Mro_ST(a, b, c, d):
     a_string = Western_Arabic_to_Mro(a_string)
     return a_string
 
+def DEBUG(flag_BL, msg_ST):
+    "Prints msg_ST only if flag_BL is True."
+    if flag_BL:
+        print(msg_ST)
+
     
 "BEGIN"
 numbers = [0, 0, 0, 0]
 answer = ""
 errorFlag = False
+errorType = 0
+debug_0 = False
 while not (answer in ['y', 'n']):
     answer = input("Load (y/n)? ")
 if (answer == "y"):
@@ -194,6 +202,7 @@ for i in range(4):
         else:
             print("Line " + str(j) + " has the wrong hash.")
             errorFlag = True
+            errorType = 1
             break
     digits[i] = string_hash_6(lines[i]) % 10
 
@@ -201,32 +210,48 @@ for i in range(4):
 if (digits[0] == digits[1]):
     print("ERROR: Digits 0 and 1 are the same.")
     errorFlag = True
+    errorType = 2
+    DEBUG(debug_0, f"L211. digits[0] = {digits[0]}; digits[1] = {digits[1]}")
 
 if (digits[0] == digits[2]):
     print("ERROR: Digits 0 and 2 are the same.")
     errorFlag = True
+    errorType = 2
+    DEBUG(debug_0, f"L216. digits[0] = {digits[0]}; digits[2] = {digits[2]}")
 
 if (digits[0] == digits[3]):
     print("ERROR: Digits 0 and 3 are the same.")
     errorFlag = True
+    errorType = 2
+    DEBUG(debug_0, f"L221. digits[0] = {digits[0]}; digits[3] = {digits[3]}")
 
 if (digits[1] == digits[2]):
     print("ERROR: Digits 1 and 2 are the same.")
     errorFlag = True
+    errorType = 2
+    DEBUG(debug_0, f"L226. digits[1] = {digits[1]}; digits[2] = {digits[2]}")
 
 if (digits[1] == digits[3]):
     print("ERROR: Digits 1 and 3 are the same.")
     errorFlag = True
+    errorType = 2
+    DEBUG(debug_0, f"L231. digits[1] = {digits[1]}; digits[3] = {digits[3]}")
 
 if (digits[2] == digits[3]):
     print("ERROR: Digits 2 and 3 are the same.")
     errorFlag = True
+    errorType = 2
+    DEBUG(debug_0, f"L236. digits[2] = {digits[2]}; digits[3] = {digits[3]}")
 
 if not errorFlag:
     print("The digits are OK (i.e., all different from each other).")
-else:
+elif (errorType == 2):
     print("Error: The digits are not OK. (At least two digits are equal to each other.)")
     quit()
+elif (errorType == 1):
+    print("Error: Some line was not entered correctly.")
+    quit()
+
 
 if (not errorFlag) and (answer == "y"):
     output_mode = ""
@@ -307,6 +332,38 @@ if (answer == "n") and (not errorFlag):
         print("Books' publisher: " + publisher)
         print("Book's location: " + library)
         print("Password's page number: " + pagenumber + "\n")
-elif (output_mode == "t"):
+elif (not errorFlag) and (answer == "y") and (output_mode == "t"):
     print("Close this window down when ending the session.\n")
     print("Also play some mind-clearing game.")
+
+if (not errorFlag) and (answer == "y"):
+    "log"
+    antwoord_CH = ""
+    while not (antwoord_CH in ["y", "n"]):
+        antwoord_CH = input("\nWould you like this reconstruction episode to be logged (y/n)? ")
+    if (antwoord_CH == "y"):
+        "append entry in password_construction_log.txt"
+        with open("password_construction_log.txt", "a") as fil_chron:
+            fil_chron.write("- - - - - - - - - - - - - - - -\n")
+            todays_date = date.today()
+            fil_chron.write(f"Today's date: {todays_date}\n")
+            fil_chron.write(f"Reconstructed: {filename}\n")
+            if (output_mode == "t"):
+                fil_chron.write("Output mode: trellis\n")
+            elif (output_mode == "s"):
+                fil_chron.write(f"Output mode: shuttle, #{shuttle_position}\n")
+        print("A brief mention has been written in password_construction_log.txt.")      
+elif (not errorFlag) and (answer == "n") and (saveanswer == "y"):
+    "log"
+    antwoord_CH = ""
+    while not (antwoord_CH in ["y", "n"]):
+        antwoord_CH = input("\nWould you like this 'creating new' session to be logged (y/n)? ")
+    if (antwoord_CH == "y"):
+        "append entry in password_construction_log.txt"
+        with open("password_construction_log.txt", "a") as fil_chron:
+            fil_chron.write("- - - - - - - - - - - - - - - -\n")
+            todays_date = date.today()
+            fil_chron.write(f"Today's date: {todays_date}\n")
+            fil_chron.write(f"Created new: {newfilename}\n")             
+        print("A brief mention has been written in password_construction_log.txt.")
+"FINIS PROGRAMMAE"
