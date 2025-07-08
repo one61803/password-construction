@@ -347,7 +347,7 @@ if (not errorFlag) and (answer == "y"):
             fil_chron.write("- - - - - - - - - - - - - - - -\n")
             todays_date = date.today()
             fil_chron.write(f"Today's date: {todays_date}\n")
-            fil_chron.write(f"Reconstructed: {filename}\n")
+            fil_chron.write(f"Reconstructed: {newfilename}\n")
             if (output_mode == "t"):
                 fil_chron.write("Output mode: trellis\n")
             elif (output_mode == "s"):
