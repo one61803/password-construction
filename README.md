@@ -48,6 +48,10 @@
     <TD>.6H4D</TD>
     <TD>SixHundredWords2FourDigits_3.py</TD>
   </TR>
+  <TR>
+    <TD>ShuttleReader</TD>
+    <TD>ShuttleReader_3.py</TD>
+  </TR>
 </TABLE>
 
 Links to files:
@@ -111,5 +115,10 @@ Links to files:
     <TD>.6H4D</TD>
     <TD>SixHundredWords2FourDigits_3.py</TD>
     <TD>https://github.com/one61803/password-construction/blob/main/SixHundredWords2FourDigits_3.py</TD>
+  </TR>
+  <TR>
+    <TD>ShuttleReader</TD>
+    <TD>ShuttleReader_3.py</TD>
+    <TD>https://github.com/one61803/password-construction/blob/main/ShuttleReader_3.py</TD>
   </TR>
 </TABLE>
