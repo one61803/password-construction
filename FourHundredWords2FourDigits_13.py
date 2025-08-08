@@ -80,8 +80,10 @@ def vector_sum(word1_LS, word2_LS):
     return new_word_LS
 
 def to_char(num):
-    "Converts a number from 0 to 61 amphi-inclusive into a character of three types: (1) a digit,\
-    (2) an uppercase letter, (3) a lowercase letter. (The letters belonging to the English alphabet.)"
+    "Converts a number from 0 to 61 amphi-inclusive into a character of three types: \
+(1) a digit,\
+    (2) an uppercase letter, (3) a lowercase letter. (The letters belonging to the \
+    English alphabet.)"
     if ((num >= 0) and (num <= 9)):
         return chr(48 + num)
     elif ((num >= 10) and (num <= 35)):
@@ -92,7 +94,8 @@ def to_char(num):
         print("L96. ERROR")
 
 def transcharacterization(vector_LS):
-    "Convert an 8-list of natural numbers into an 8-string of alphanumerics. This is the inverse of transnumeration."
+    "Convert an 8-list of natural numbers into an 8-string of alphanumerics. This is \
+the inverse of transnumeration."
     word_ST = ""
     for i in range(len(vector_LS)):
         ch = to_char(vector_LS[i])
@@ -128,14 +131,16 @@ def is_proper_keywordoid(word_ST):
     return proper      
 
 def phi_lett(vec_LS):
-    "Returns a letter which is the modulo Z sum of the natural numbers in the 8-list vec_LS. First part of fingerprint/hash."
+    "Returns a letter which is the modulo Z sum of the natural numbers in the 8-list \
+vec_LS. First part of fingerprint/hash."
     sm = 0
     for i in range(len(vec_LS)):
         sm = sm + vec_LS[i]
     return to_char(neo_mod(sm))
 
 def phi_variance(vec_LS):
-    "Returns the variance of an 8-list of natural numbers. Second part of fingerprint/hash of such an 8-list."
+    "Returns the variance of an 8-list of natural numbers. Second part of \
+fingerprint/hash of such an 8-list."
     sm = 0
     mean = vector_average(vec_LS)
     for i in range(len(vec_LS)):
@@ -143,7 +148,8 @@ def phi_variance(vec_LS):
     return int(summand / 8.0 * 100000) / 100000
 
 def phi_ordnum(word_ST):
-    "Returns the 'order number' of an 8-list of natural numbers. Third part of a fingerprint/hash of such an 8-list."
+    "Returns the 'order number' of an 8-list of natural numbers. Third part of a \
+fingerprint/hash of such an 8-list."
     if is_proper_keywordoid(word_ST):
         x1 = word_ST[1] > word_ST[0]
         x2 = word_ST[2] > word_ST[1]
@@ -156,14 +162,16 @@ def phi_ordnum(word_ST):
         x9 = word_ST[4:6] > word_ST[2:4]
         x10 = word_ST[6:8] > word_ST[4:6]
         x11 = word_ST[4:8] > word_ST[0:4]
-        num = x1 + x2*2 + x3*4 + x4*8 + x5*16 + x6*32 + x7*64 + x8*128 + x9*256 * x10*512 + x11*1024
+        num = x1 + x2*2 + x3*4 + x4*8 + x5*16 + x6*32 + x7*64 + x8*128 + x9*256 \
+              * x10*512 + x11*1024
         return num
     else:
         print("L166. ERROR in phi_ordnum: argument word_ST is not a proper keywordoid.")
 
 "functions that are subsidiary to VAL"
 def is_string_a_decimal(st):
-    "Returns True if string st contains a decimal number: two natural numbers separated by a period."
+    "Returns True if string st contains a decimal number: two natural numbers separated \
+by a period."
     if (st[0] == "-"):
         st = st[1:]
     pair = st.split('.')
@@ -185,7 +193,8 @@ def string_to_fract(st):
     return I / 10 ** L
 
 def string_decimal_to_number(st):
-    "Converts a string containing a decimal number into that number. (Assume that there is no exponential notation.)"
+    "Converts a string containing a decimal number into that number. (Assume that \
+there is no exponential notation.)"
     pair = st.split('.')
     if (pair[0] == ""):
         pair[0] = "0"
@@ -202,7 +211,8 @@ def string_decimal_to_number(st):
         return -I-F
         
 def VAL(st):
-    "Converts a string containing a number into the number contained by that string. (The name 'VAL'\
+    "Converts a string containing a number into the number contained by that string. \
+(The name 'VAL'\
     is borrowed from BASIC.)"
     if is_string_a_number(st):
         if is_string_a_decimal(st):
@@ -224,7 +234,8 @@ def string_hash_6(st):
     return accumulator
 
 def vector_hash_6(vector_LS):
-    "Calculates a polynomial in x whose coefficients are components of vector_LS, using Horner's method, \
+    "Calculates a polynomial in x whose coefficients are components of vector_LS, using \
+Horner's method, \
     for the purpose of providing a hash for a string which is encoded in vector_LS."
     x = 31
     Z = 999983
@@ -236,7 +247,8 @@ def vector_hash_6(vector_LS):
     return accumulator
 
 def buffer_digit():
-    """Prompts the user with a string of 16 random digits and a question mark, asking for the sum modulo 10 of those digits,
+    """Prompts the user with a string of 16 random digits and a question mark, asking \
+for the sum modulo 10 of those digits,
     and re-prompting if the answer is wrong."""
     OK = False
     while not OK:
@@ -255,7 +267,8 @@ def buffer_digit():
             OK = True
 
 def digit_mask(digit):
-    """Writes a line of 16 digits whose sum modulo 10 equals parameter digit. (The first 15 are random and the last one
+    """Writes a line of 16 digits whose sum modulo 10 equals parameter digit. (The \
+first 15 are random and the last one
     is compensating in order for the sum to equal the target digit.)"""
     digit_string = ""
     digit_sum = 0
@@ -274,7 +287,8 @@ def digit_mask(digit):
     print(digit_string)
 
 def stringify_tuple(a_tuple):
-    "Packages the data in a_tuple into a string that can be written into a file, with double-semicolon separators and parenthetical boundaries."
+    "Packages the data in a_tuple into a string that can be written into a file, with \
+double-semicolon separators and parenthetical boundaries."
     a_string = "("
     for item in a_tuple:
         a_string += str(item)
@@ -290,7 +304,8 @@ def swallow_number(a_string):
     return a_string
 
 def if_page_then_swallow(a_string):
-    "Checks a_string to see if it starts with a page prefix and if it does, then removes it."
+    "Checks a_string to see if it starts with a page prefix and if it does, then \
+removes it."
     digits_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     if (a_string[0:3] == "P. ") and (a_string[3] in digits_LS):
         a_string = a_string[3:]
@@ -298,12 +313,14 @@ def if_page_then_swallow(a_string):
         if (len(a_string) > 0) and (a_string[0] == " "):
             a_string = a_string[1:]
         else:
-            print("L286. ERROR in if_page_then_swallow: No space after the page number.")
+            print("L286. ERROR in if_page_then_swallow: No space after the page \
+number.")
             a_string = ""
     return a_string
 
 def if_paragraph_then_swallow(a_string):
-    "Checks a_string to see if it starts with a paragraph prefix and if it does, then removes it."
+    "Checks a_string to see if it starts with a paragraph prefix and if it does, then \
+removes it."
     digits_LS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     if (a_string[0:5] == "PAR. ") and (a_string[5] in digits_LS):
         a_string = a_string[5:]
@@ -311,12 +328,14 @@ def if_paragraph_then_swallow(a_string):
         if (len(a_string) > 0) and (a_string[0] == " "):
             a_string = a_string[1:]
         else:
-            print("L299. ERROR in if_paragraph_then_swallow: No space after the paragraph number.")
+            print("L299. ERROR in if_paragraph_then_swallow: No space after the \
+paragraph number.")
             a_string = ""
     return a_string
 
 def letter_count(a_string):
-    "Counts the quantity of alphanumbers in the latter (non-prefix, index-word) part of a location string."
+    "Counts the quantity of alphanumbers in the latter (non-prefix, index-word) part \
+of a location string."
     a_string = if_page_then_swallow(a_string)
     a_string = if_paragraph_then_swallow(a_string)
     if is_eight_free(a_string):
@@ -343,7 +362,8 @@ def is_UALPHAnumeric(a_string):
     return a_string.isalnum() and (a_string == a_string.upper())
 
 def is_eight_free(a_string):
-    "Checks to see if any word in a string of words has eight-letters. If it does then return False\
+    "Checks to see if any word in a string of words has eight-letters. If it does \
+then return False\
     else return True."
     a_list = a_string.split(" ")
     OK = True
@@ -354,8 +374,10 @@ def is_eight_free(a_string):
             OK = False
     return OK
 
-def print_pause(a_string, opt):
-    "Prints string a_string, then pauses for five seconds if the Boolean parameter opt is set to True.\
+def pr_pa(a_string, opt):
+    "'print pause': Prints string a_string, then pauses for five seconds if the \
+Boolean parameter \
+opt is set to True.\
     (The pause is skipped if opt is False.)"
     print(a_string)
     if opt:
@@ -398,7 +420,8 @@ def help_intro():
             case 15:
                 help_page_15(not (15 in been_there_already))
         been_there_already.append(page)
-        cont = input("\nPress <ENTER> to continue or < and <ENTER> to go back one page or X and <ENTER> to\nexit the help scroll.")
+        cont = input("\nPress <ENTER> to continue or < and <ENTER> to go back one \
+page or X and <ENTER> to\nexit the help scroll.")
         if (cont == "X"):
             page = 0
         elif (cont == "<"):
@@ -410,233 +433,236 @@ def help_intro():
 
 def help_page_1(opt):
     "help paragraph 1"
-    print_pause("\n(When entering a location string in “create new” mode:) periods should only be", opt)
-    print_pause("used to specify the page number (through \"P. {#} \") and the", opt)
-    print_pause("paragraph number (through \"PAR. {#} \"). If the page number is specified", opt)
-    print_pause("then it must be followed immediately by a specification of the paragraph", opt)
-    print_pause("number; and if the paragraph number is specified then it must be preceded", opt)
-    print_pause("immediately by a specification of the page number. The \"P. {#} PAR. {#} \" prefix", opt)
-    print_pause("is optional and what is being prefixed is the string of index words; if there", opt)
-    print_pause("is no such prefix then the index words appear by themselves. The index words", opt)
-    print_pause("as they appear in the book have to be converted to all caps and any", opt)
-    print_pause("punctuation among them other than spaces have to be stripped out. (Numbers", opt)
-    print_pause("may be included among the index words.) The index words are words that", opt)
-    print_pause("immediately precede the keyword; they \"point\" at the keyword, as it were.", opt)
+    pr_pa("\n(When entering a location string in “create new” mode:) periods should", opt)
+    pr_pa("only be used to specify the page number (through \"P. {#} \") and the", opt)
+    pr_pa("paragraph number (through \"PAR. {#} \"). If the page number is specified", opt)
+    pr_pa("then it must be followed immediately by a specification of the paragraph", opt)
+    pr_pa("number; and if the paragraph number is specified then it must be preceded", opt)
+    pr_pa("immediately by a specification of the page number. The \"P. {#} PAR. {#} \"", opt)
+    pr_pa("prefix is optional and what is being prefixed is the string of index words;", opt)
+    pr_pa("if there is no such prefix then the index words appear by themselves. The", opt)
+    pr_pa("index words as they appear in the book have to be converted to all caps and", opt)
+    pr_pa("any punctuation among them other than spaces have to be stripped out.", opt)
+    pr_pa("(Numbers may be included among the index words.) The index words are words", opt)
+    pr_pa("that immediately precede the keyword; they \"point\" at the keyword, as it", opt)
+    pr_pa("were.", opt)
 
 def help_page_2(opt):
     "help paragraph 2"
-    print_pause("\nBy keyword is meant the fill-in-the-blank word, as it were. It must be", opt)
-    print_pause("exactly eight letters and converted to all caps regardless of its capitalization", opt)
-    print_pause("in the book. No word among the index words may be of exactly eight letters.", opt)
-    print_pause("The index words must include at least six letters among them. (There has to", opt)
-    print_pause("be at least one index word.) The index words have to have the same sequence", opt)
-    print_pause("that they have in the book, which is to say that no words among them", opt)
-    print_pause("may be skipped when being inputted into a location string. So if there", opt)
-    print_pause("is an eight-letter word among them that is required to be included in order", opt)
-    print_pause("to reach at least six letters then that index–keyword pair is invalidated", opt)
-    print_pause("and the user should skip past it and onto the next index–keyword pair in the", opt)
-    print_pause("book.", opt)
+    pr_pa("\nBy keyword is meant the fill-in-the-blank word, as it were. It must be", opt)
+    pr_pa("exactly eight letters and converted to all caps regardless of its", opt)
+    pr_pa("capitalization in the book. No word among the index words may be of exactly", opt)
+    pr_pa("eight letters. The index words must include at least six letters among", opt)
+    pr_pa("them. (There has to be at least one index word.) The index words have to", opt)
+    pr_pa("have the same sequence that they have in the book, which is to say that no", opt)
+    pr_pa("words among them may be skipped when being inputted into a location string.", opt)
+    pr_pa("So if there is an eight-letter word among them that is required to be", opt)
+    pr_pa("included in order to reach at least six letters then that index–keyword", opt)
+    pr_pa("pair is invalidated and the user should skip past it and onto the next", opt)
+    pr_pa("index–keyword pair in the book.", opt)
         
 def help_page_3(opt):
     "help paragraph 3"
-    print_pause("\nWhen \"mining\" a given paragraph in the book for index–keyword pairs, such", opt)
-    print_pause("pairs should be input sequentially in the same order that they would appear from", opt)
-    print_pause("reading that paragraph normally (i.e., left-to-right in a given line and", opt)
-    print_pause("top-to-bottom among the lines of a paragraph). If a location string does not", opt)
-    print_pause("include page–paragraph specification then it is assumed that the same paragraph", opt)
-    print_pause("is being referred to as by the previous location string.", opt)
+    pr_pa("\nWhen \"mining\" a given paragraph in the book for index–keyword pairs,", opt)
+    pr_pa("such pairs should be input sequentially in the same order that they would", opt)
+    pr_pa("appear fromreading that paragraph normally (i.e., left-to-right in a given", opt)
+    pr_pa("line and top-to-bottom among the lines of a paragraph). If a location", opt)
+    pr_pa("string does not include page–paragraph specification then it is assumed", opt)
+    pr_pa("that the same paragraph is being referred to as by the previous location", opt)
+    pr_pa("string.", opt)
 
 def help_page_4(opt):
     "help paragraph 4"
-    print_pause("\nWhen moving on to a new paragraph (because the current paragraph being mined", opt)
-    print_pause("has run out of keywords) then the new location string should include", opt)
-    print_pause("page number and paragraph number attributes of that new paragraph.", opt)
-    print_pause("When starting to mine a new paragraph, no words from the previous", opt)
-    print_pause("paragraph may be used as index words for any eight-letter word in", opt)
-    print_pause("that new paragraph. So if the new paragraph starts with an eight-letter", opt)
-    print_pause("word, then that eight-letter word must be skipped (and thereby", opt)
-    print_pause("not be chosen as a keyword) because it has no index words preceding it.", opt)
-    print_pause("Likewise, if the first eight-letter word of the new paragraph has", opt)
-    print_pause("index words (at the beginning of the new paragraph) whose quantity of", opt)
-    print_pause("letters do not reach six, then that eight-letter word must be skipped.", opt)
-    print_pause("When starting to mine a new page, no words from the previous page", opt)
-    print_pause("may be used as index words for eight-letter words in the new page.", opt)
+    pr_pa("\nWhen moving on to a new paragraph (because the current paragraph being", opt)
+    pr_pa("mined has run out of keywords) then the new location string should include", opt)
+    pr_pa("page number and paragraph number attributes of that new paragraph.", opt)
+    pr_pa("When starting to mine a new paragraph, no words from the previous", opt)
+    pr_pa("paragraph may be used as index words for any eight-letter word in", opt)
+    pr_pa("that new paragraph. So if the new paragraph starts with an eight-letter", opt)
+    pr_pa("word, then that eight-letter word must be skipped (and thereby", opt)
+    pr_pa("not be chosen as a keyword) because it has no index words preceding it.", opt)
+    pr_pa("Likewise, if the first eight-letter word of the new paragraph has", opt)
+    pr_pa("index words (at the beginning of the new paragraph) whose quantity of", opt)
+    pr_pa("letters do not reach six, then that eight-letter word must be skipped.", opt)
+    pr_pa("When starting to mine a new page, no words from the previous page", opt)
+    pr_pa("may be used as index words for eight-letter words in the new page.", opt)
     
 def help_page_5(opt):
     "help paragraph 5"
-    print_pause("\nThe quantity of index words to include in the location string may", opt)
-    print_pause("be chosen at will, as long as the quantity of letters included among", opt)
-    print_pause("them reaches at least six. When stripping an apostrophe from among", opt)
-    print_pause("a sequence of index words, it may either be replaced with a space", opt)
-    print_pause("or with nothing at all (i.e., the empty string); so that either", opt)
-    print_pause("the two sides of the apostrophe split up into two separate words", opt)
-    print_pause("or they conjoin into a single word. A hyphen between a pair of", opt)
-    print_pause("words can be replaced with a space; but a hyphen breaking a single", opt)
-    print_pause("word up at the end of a line can be removed, thereby joining", opt)
-    print_pause("the word back together.", opt)
+    pr_pa("\nThe quantity of index words to include in the location string may", opt)
+    pr_pa("be chosen at will, as long as the quantity of letters included among", opt)
+    pr_pa("them reaches at least six. When stripping an apostrophe from among", opt)
+    pr_pa("a sequence of index words, it may either be replaced with a space", opt)
+    pr_pa("or with nothing at all (i.e., the empty string); so that either", opt)
+    pr_pa("the two sides of the apostrophe split up into two separate words", opt)
+    pr_pa("or they conjoin into a single word. A hyphen between a pair of", opt)
+    pr_pa("words can be replaced with a space; but a hyphen breaking a single", opt)
+    pr_pa("word up at the end of a line can be removed, thereby joining", opt)
+    pr_pa("the word back together.", opt)
     
 def help_page_6(opt):
     "help paragraph 6"
-    print_pause("\nIt might be simpler to not use as a keyword any word that includes", opt)
-    print_pause("(or is abutted by) an apostrophe (or an apostrophe and letter(s) to the", opt)
-    print_pause("right of the apostrophe) (or, for that matter, any diacritic, or", opt)
-    print_pause("superscripted number). Just skip it; there are plenty of other words", opt)
-    print_pause("to choose from elsewhere in the text. If a word that ends in apostrophe “s”", opt)
-    print_pause("has eight letters (not counting the apostrophe “s”), then to use that word", opt)
-    print_pause("as an index word, replace the apostrophe with the empty string (so that the", opt)
-    print_pause("“s” gets appended to the word when being inputted into the location string).", opt)
-    print_pause("If a word that ends in apostrophe “s” has seven letters (not counting the", opt)
-    print_pause("apostrophe “s”), then to use that word as an index word, replace the", opt)
-    print_pause("apostrophe with a space (so that the “s” gets separated from the word and gets", opt)
-    print_pause("treated like a separate particle); that way the word is treated as a licit", opt)
-    print_pause("seven-letter word instead of as an illicit eight-letter word.", opt)
+    pr_pa("\nIt might be simpler to not use as a keyword any word that includes", opt)
+    pr_pa("(or is abutted by) an apostrophe (or an apostrophe and letter(s) to the", opt)
+    pr_pa("right of the apostrophe) (or, for that matter, any diacritic, or", opt)
+    pr_pa("superscripted number). Just skip it; there are plenty of other words", opt)
+    pr_pa("to choose from elsewhere in the text. If a word that ends in apostrophe “s”", opt)
+    pr_pa("has eight letters (not counting the apostrophe “s”), then to use that word", opt)
+    pr_pa("as an index word, replace the apostrophe with the empty string (so that the", opt)
+    pr_pa("“s” gets appended to the word when being inputted into the location", opt)
+    pr_pa("string). If a word that ends in apostrophe “s” has seven letters (not", opt)
+    pr_pa("counting the apostrophe “s”), then to use that word as an index word,", opt)
+    pr_pa("replace the apostrophe with a space (so that the “s” gets separated from", opt)
+    pr_pa("the word and gets treated like a separate particle); that way the word is", opt)
+    pr_pa("treated as a licit seven-letter word instead of as an illicit eight-letter", opt)
+    pr_pa("word.", opt)
 
 def help_page_7(opt):
     "help paragraph 7"
-    print_pause("\nIf a paragraph on a given page started on the previous page then", opt)
-    print_pause("the starting paragraph number for that page is 0; otherwise the", opt)
-    print_pause("starting paragraph number for that page is 1. It is possible for", opt)
-    print_pause("a given paragraph to have no words that may be turned into keywords.", opt)
-    print_pause("It is also possible to skip a paragraph at will, for example if it", opt)
-    print_pause("contains a table or a quotation or equations or a dialogue or", opt)
-    print_pause("something else that makes it seem harder to deal with. An eight-letter", opt)
-    print_pause("word can only be used once as a keyword for the same password.", opt)
-    print_pause("If, say, some tables or dialogues in a given page make numbering paragraphs", opt)
-    print_pause("harder for that given page, then it may be convenient to simply skip that", opt)
-    print_pause("page (and not mine for eight-letter words in it).", opt)
+    pr_pa("\nIf a paragraph on a given page started on the previous page then", opt)
+    pr_pa("the starting paragraph number for that page is 0; otherwise the", opt)
+    pr_pa("starting paragraph number for that page is 1. It is possible for", opt)
+    pr_pa("a given paragraph to have no words that may be turned into keywords.", opt)
+    pr_pa("It is also possible to skip a paragraph at will, for example if it", opt)
+    pr_pa("contains a table or a quotation or equations or a dialogue or", opt)
+    pr_pa("something else that makes it seem harder to deal with. An eight-letter", opt)
+    pr_pa("word can only be used once as a keyword for the same password.", opt)
+    pr_pa("If, say, some tables or dialogues in a given page make numbering paragraphs", opt)
+    pr_pa("harder for that given page, then it may be convenient to simply skip that", opt)
+    pr_pa("page (and not mine for eight-letter words in it).", opt)
 
 def help_page_8(opt):
     "help paragraph 8"
-    print_pause("\nWhat happens if one enters an erroneous location string and is", opt)
-    print_pause("being prompted for the keyword belonging to that erroneous location?", opt)
-    print_pause("The most expedient manner of dealing with this situation is to", opt)
-    print_pause("enter \"XXXXXXXX\" as the keyword; this will immediately cancel the", opt)
-    print_pause("location–keyword pair and cause a prompting for a replacement pair.", opt)
-    print_pause("Otherwise there is one second (at least) to think about the", opt)
-    print_pause("correctness of the pair before answering the follow-up", opt)
-    print_pause("Y-or-N question. (Answering \"Y\" accepts the pair; answering", opt)
-    print_pause("\"N\" rejects it.)", opt)
+    pr_pa("\nWhat happens if one enters an erroneous location string and is", opt)
+    pr_pa("being prompted for the keyword belonging to that erroneous location?", opt)
+    pr_pa("The most expedient manner of dealing with this situation is to", opt)
+    pr_pa("enter \"XXXXXXXX\" as the keyword; this will immediately cancel the", opt)
+    pr_pa("location–keyword pair and cause a prompting for a replacement pair.", opt)
+    pr_pa("Otherwise there is one second (at least) to think about the", opt)
+    pr_pa("correctness of the pair before answering the follow-up", opt)
+    pr_pa("Y-or-N question. (Answering \"Y\" accepts the pair; answering", opt)
+    pr_pa("\"N\" rejects it.)", opt)
 
 def help_page_9(opt):
     "help paragraph 9"
-    print_pause("\nWhen a book is used for constructing a password, one should not", opt)
-    print_pause("make any markings on it, either with pencil or otherwise, that", opt)
-    print_pause("would facilitate reconstructing the password. (Example: underlining", opt)
-    print_pause("keywords.) That would be considered cheating. It can be helpful", opt)
-    print_pause("to choose a book that is hardcover and lays flatly open easily.", opt)
-    print_pause("The data file that is used to (re)construct a password should not", opt)
-    print_pause("be named after the book that its data refers to. The book should", opt)
-    print_pause("be specified within the data file anyway. Instead it is better to name", opt)
-    print_pause("the data file after the use that will be made of the password,", opt)
-    print_pause("possibly also qualified by the date when the data file was", opt)
-    print_pause("created. If the book has 366 main-text pages or more, then", opt)
-    print_pause("it is possible (when constructing a new password with it) to pick a", opt)
-    print_pause("page of that book based on the current day of the year. For example,", opt)
-    print_pause("if a password is created on May 12 of a common year, then start", opt)
-    print_pause("on page 132 of such a book, because May 12 is day 132 of a common year.", opt)
+    pr_pa("\nWhen a book is used for constructing a password, one should not", opt)
+    pr_pa("make any markings on it, either with pencil or otherwise, that", opt)
+    pr_pa("would facilitate reconstructing the password. (Example: underlining", opt)
+    pr_pa("keywords.) That would be considered cheating. It can be helpful", opt)
+    pr_pa("to choose a book that is hardcover and lays flatly open easily.", opt)
+    pr_pa("The data file that is used to (re)construct a password should not", opt)
+    pr_pa("be named after the book that its data refers to. The book should", opt)
+    pr_pa("be specified within the data file anyway. Instead it is better to name", opt)
+    pr_pa("the data file after the use that will be made of the password,", opt)
+    pr_pa("possibly also qualified by the date when the data file was", opt)
+    pr_pa("created. If the book has 366 main-text pages or more, then", opt)
+    pr_pa("it is possible (when constructing a new password with it) to pick a", opt)
+    pr_pa("page of that book based on the current day of the year. For example,", opt)
+    pr_pa("if a password is created on May 12 of a common year, then start", opt)
+    pr_pa("on page 132 of such a book, because May 12 is day 132 of a common year.", opt)
 
 def help_page_10(opt):
     "help paragraph 10"
-    print_pause("\nWhen requested to input a location string, it is possible to", opt)
-    print_pause("make a query about a specific eight-letter word, to see if it", opt)
-    print_pause("is already in use as a keyword or if it is acceptable to be", opt)
-    print_pause("inducted into the database of keywords. In order to do this,", opt)
-    print_pause("enter the question mark character (\"?\") followed by the", opt)
-    print_pause("eight-letter word that is being queried about. The response", opt)
-    print_pause("will be immediate (and briefly evading the entry of a", opt)
-    print_pause("location string); then there will be a return to requesting", opt)
-    print_pause("for an entry of a location string. If page and paragraph number", opt)
-    print_pause("prefixes have already been written into the location string", opt)
-    print_pause("(but without yet hitting <ENTER>) then it is possible to then type", opt)
-    print_pause("\"?\" and the eight-letter word that one might have doubts about", opt)
-    print_pause("in order to query about it; then all the characters preceding", opt)
-    print_pause("the question mark will be ignored, as if everything before it", opt)
-    print_pause("were a comment. However, this comment can be helpful to the user", opt)
-    print_pause("for not losing track of what paragraph one is currently focusing", opt)
-    print_pause("one's attention on. If one had entered page and paragraph", opt)
-    print_pause("prefixes right before asking a question; then, after receiving", opt)
-    print_pause("an answer, one can copy those same page and paragraph prefixes", opt)
-    print_pause("from the line above and keep on mining for potential keywords", opt)
-    print_pause("in that paragraph. So the conveniences of the mid-sentence", opt)
-    print_pause("query are two: (1) not having to press backspace to", opt)
-    print_pause("delete what is already in the current entry, and (2) keeping", opt)
-    print_pause("what is before the question mark as a comment or prompt that can", opt)
-    print_pause("then be copied at the beginning of the next entry.", opt)
+    pr_pa("\nWhen requested to input a location string, it is possible to", opt)
+    pr_pa("make a query about a specific eight-letter word, to see if it", opt)
+    pr_pa("is already in use as a keyword or if it is acceptable to be", opt)
+    pr_pa("inducted into the database of keywords. In order to do this,", opt)
+    pr_pa("enter the question mark character (\"?\") followed by the", opt)
+    pr_pa("eight-letter word that is being queried about. The response", opt)
+    pr_pa("will be immediate (and briefly evading the entry of a", opt)
+    pr_pa("location string); then there will be a return to requesting", opt)
+    pr_pa("for an entry of a location string. If page and paragraph number", opt)
+    pr_pa("prefixes have already been written into the location string", opt)
+    pr_pa("(but without yet hitting <ENTER>) then it is possible to then type", opt)
+    pr_pa("\"?\" and the eight-letter word that one might have doubts about", opt)
+    pr_pa("in order to query about it; then all the characters preceding", opt)
+    pr_pa("the question mark will be ignored, as if everything before it", opt)
+    pr_pa("were a comment. However, this comment can be helpful to the user", opt)
+    pr_pa("for not losing track of what paragraph one is currently focusing", opt)
+    pr_pa("one's attention on. If one had entered page and paragraph", opt)
+    pr_pa("prefixes right before asking a question; then, after receiving", opt)
+    pr_pa("an answer, one can copy those same page and paragraph prefixes", opt)
+    pr_pa("from the line above and keep on mining for potential keywords", opt)
+    pr_pa("in that paragraph. So the conveniences of the mid-sentence", opt)
+    pr_pa("query are two: (1) not having to press backspace to", opt)
+    pr_pa("delete what is already in the current entry, and (2) keeping", opt)
+    pr_pa("what is before the question mark as a comment or prompt that can", opt)
+    pr_pa("then be copied at the beginning of the next entry.", opt)
 
 def help_page_11(opt):
     "help paragraph 11"
-    print_pause("\nIf an eight-letter word in the book is misspelled then ignore it,", opt)
-    print_pause("just skip past it; do not employ it for constructing the password.", opt)
-    print_pause("Also ignore any headlines. If a word is split between two pages and", opt)
-    print_pause("immediately precedes an eight-letter word, then the latter part of it", opt)
-    print_pause("(that lies at the beginning of the latter page) can be used as an index", opt)
-    print_pause("if it contains at least six letters (but not exactly eight); do not prepend", opt)
-    print_pause("the former part of it that lies at the end of the former page.", opt)
+    pr_pa("\nIf an eight-letter word in the book is misspelled then ignore it,", opt)
+    pr_pa("just skip past it; do not employ it for constructing the password.", opt)
+    pr_pa("Also ignore any headlines. If a word is split between two pages and", opt)
+    pr_pa("immediately precedes an eight-letter word, then the latter part of it", opt)
+    pr_pa("(that lies at the beginning of the latter page) can be used as an index", opt)
+    pr_pa("if it contains at least six letters (but not exactly eight); do not prepend", opt)
+    pr_pa("the former part of it that lies at the end of the former page.", opt)
 
 def help_page_12(opt):
     "help paragraph 12"
-    print_pause("\nIf, while reconstructing a password for the first time (i.e., “confirming”", opt)
-    print_pause("it), a flaw is noticed in a location string, then a way to deal with", opt)
-    print_pause("it can be to write a note about it on a piece of paper", opt)
-    print_pause("including three data: (1) the current, flawed location", opt)
-    print_pause("string, (2) the “fingerprint” (a tripartite hash consisting of a", opt)
-    print_pause("character, a decimal number, and a natural number), and (3)", opt)
-    print_pause("the corrected location string. When done confirming the password,", opt)
-    print_pause("open the password-constructing database file with some plain-text editor;", opt)
-    print_pause("use the editor’s search function to search for each flawed", opt)
-    print_pause("location string; check that the fingerprint on that line matches", opt)
-    print_pause("the fingerprint that has been noted for that location string (and note that double", opt)
-    print_pause("semicolons are used as separators on each record of the database (as stored", opt)
-    print_pause("in the text file)); then replace the flawed location string in the", opt)
-    print_pause("targeted record with the corrected location string.", opt)
-    print_pause("An alternative is to open the database file with a text editor while", opt)
-    print_pause("the reconstruction is still running/going on; and, whenever a flaw", opt)
-    print_pause("in a location string is detected, going over to the database text file", opt)
-    print_pause("and making the correction directly, without going through the", opt)
-    print_pause("intermediate step of writing all the errors down on a piece of paper.", opt)
+    pr_pa("\nIf, while reconstructing a password for the first time (i.e.,", opt)
+    pr_pa("“confirming” it), a flaw is noticed in a location string, then a way to", opt)
+    pr_pa("deal with it can be to write a note about it on a piece of paper", opt)
+    pr_pa("including three data: (1) the current, flawed location", opt)
+    pr_pa("string, (2) the “fingerprint” (a tripartite hash consisting of a", opt)
+    pr_pa("character, a decimal number, and a natural number), and (3)", opt)
+    pr_pa("the corrected location string. When done confirming the password,", opt)
+    pr_pa("open the password-constructing database file with some plain-text editor;", opt)
+    pr_pa("use the editor’s search function to search for each flawed", opt)
+    pr_pa("location string; check that the fingerprint on that line matches", opt)
+    pr_pa("the fingerprint that has been noted for that location string (and note that", opt)
+    pr_pa("double semicolons are used as separators on each record of the database", opt)
+    pr_pa("(as stored in the text file)); then replace the flawed location string in", opt)
+    pr_pa("the targeted record with the corrected location string.", opt)
+    pr_pa("An alternative is to open the database file with a text editor while", opt)
+    pr_pa("the reconstruction is still running/going on; and, whenever a flaw", opt)
+    pr_pa("in a location string is detected, going over to the database text file", opt)
+    pr_pa("and making the correction directly, without going through the", opt)
+    pr_pa("intermediate step of writing all the errors down on a piece of paper.", opt)
 
 def help_page_13(opt):
     "help paragraph 13"
-    print_pause("\nExample of a typical correction of a location string: prepending extra", opt)
-    print_pause("index words to the substring of index words in a location string.", opt)
-    print_pause("Why might one be compelled to do this? Suppose that some string of index", opt)
-    print_pause("words points to more than one word in a given paragraph. Suppose that the", opt)
-    print_pause("first such word (at least) that it points to is not a keyword. Then,", opt)
-    print_pause("the index string should be expanded (in the only direction possible:", opt)
-    print_pause("namely, backwards, i.e., leftwards) so as to disambiguate between those", opt)
-    print_pause("multiple words that are being pointed to in order to pinpoint only the", opt)
-    print_pause("meant keyword.", opt)
+    pr_pa("\nExample of a typical correction of a location string: prepending extra", opt)
+    pr_pa("index words to the substring of index words in a location string.", opt)
+    pr_pa("Why might one be compelled to do this? Suppose that some string of index", opt)
+    pr_pa("words points to more than one word in a given paragraph. Suppose that the", opt)
+    pr_pa("first such word (at least) that it points to is not a keyword. Then,", opt)
+    pr_pa("the index string should be expanded (in the only direction possible:", opt)
+    pr_pa("namely, backwards, i.e., leftwards) so as to disambiguate between those", opt)
+    pr_pa("multiple words that are being pointed to in order to pinpoint only the", opt)
+    pr_pa("meant keyword.", opt)
 
 def help_page_14(opt):
     "help paragraph 14"
-    print_pause("\nA possible rule of thumb for preventing such ambiguities is to include,", opt)
-    print_pause("whenever possible, three words in the index string. This heuristic rule", opt)
-    print_pause("should be excepted only when there are only one or two words between", opt)
-    print_pause("the latest keyword and the previous eight-letter word. Because of such", opt)
-    print_pause("exceptability, this rule of thumb should not be rigidly enforced by this", opt)
-    print_pause("software (but it could be made to give a warning (which can be either", opt)
-    print_pause("heeded or overriden)). [That has been implemented now in the latest version.]", opt)
-    print_pause("Another possible error in a location string is missing the prefix for", opt)
-    print_pause("page number and paragraph number when the associated index word is in", opt)
-    print_pause("a different paragraph than the previous index word. There is now a", opt)
-    print_pause("“??” command in creation mode that causes the last-declared page and", opt)
-    print_pause("paragraph numbers to be displayed.", opt)
+    pr_pa("\nA possible rule of thumb for preventing such ambiguities is to include,", opt)
+    pr_pa("whenever possible, three words in the index string. This heuristic rule", opt)
+    pr_pa("should be excepted only when there are only one or two words between", opt)
+    pr_pa("the latest keyword and the previous eight-letter word. Because of such", opt)
+    pr_pa("exceptability, this rule of thumb should not be rigidly enforced by this", opt)
+    pr_pa("software (but it could be made to give a warning (which can be either", opt)
+    pr_pa("heeded or overriden)). [That has been implemented now in the latest", opt)
+    pr_pa("version.] Another possible error in a location string is missing the prefix", opt)
+    pr_pa("for page number and paragraph number when the associated index word is in", opt)
+    pr_pa("a different paragraph than the previous index word. There is now a", opt)
+    pr_pa("“??” command in creation mode that causes the last-declared page and", opt)
+    pr_pa("paragraph numbers to be displayed.", opt)
 
 def help_page_15(opt):
     "help paragraph 15"
-    print_pause("Now there is also a “:CORRECTION:” command for both “create new” and", opt)
-    print_pause("“reconstruct” modes: it allows prepending a missing page–paragraph", opt)
-    print_pause("prefix to the previous entry. This is how it words for “reconstruct”", opt)
-    print_pause("mode: suppose that for the current entry the user notices that", opt)
-    print_pause("the location string is missing a necessary page–paragraph prefix", opt)
-    print_pause("(because the keyword with the given index words cannot be found", opt)
-    print_pause("in the paragraph of the previous entry). In such a case,", opt)
-    print_pause("when the correct keyword is found in the different paragraph,", opt)
-    print_pause("enter the keyword. But then, when prompted for the keyword of the", opt)
-    print_pause("next entry, type “:CORRECTION:” and <ENTER>. Then the user will", opt)
-    print_pause("be prompted for a page number and a paragraph number; then", opt)
-    print_pause("the page–paragraph prefix will be prepended to the location string", opt)
-    print_pause("of that previous entry; and focus will return to the present entry.", opt)
+    pr_pa("Now there is also a “:CORRECTION:” command for both “create new” and", opt)
+    pr_pa("“reconstruct” modes: it allows prepending a missing page–paragraph", opt)
+    pr_pa("prefix to the previous entry. This is how it words for “reconstruct”", opt)
+    pr_pa("mode: suppose that for the current entry the user notices that", opt)
+    pr_pa("the location string is missing a necessary page–paragraph prefix", opt)
+    pr_pa("(because the keyword with the given index words cannot be found", opt)
+    pr_pa("in the paragraph of the previous entry). In such a case,", opt)
+    pr_pa("when the correct keyword is found in the different paragraph,", opt)
+    pr_pa("enter the keyword. But then, when prompted for the keyword of the", opt)
+    pr_pa("next entry, type “:CORRECTION:” and <ENTER>. Then the user will", opt)
+    pr_pa("be prompted for a page number and a paragraph number; then", opt)
+    pr_pa("the page–paragraph prefix will be prepended to the location string", opt)
+    pr_pa("of that previous entry; and focus will return to the present entry.", opt)
     print("\n")
 
 def is_string(param):
@@ -645,7 +671,8 @@ def is_string(param):
 
 "Functions for writing in the password shuttle."
 def four_digit_shuffle(a, b, c, d):
-    "Shuffles a quadruplet of four digits (or any four values passed as parameters, actually)."
+    "Shuffles a quadruplet of four digits (or any four values passed as parameters, \
+actually)."
     for i in range(6):
         if (random.randint(0, 1) == 1):
             b = a + b
@@ -674,9 +701,12 @@ def four_digit_shuffle(a, b, c, d):
     return (a, b, c, d)
 
 def one_digit_mask(dgt):
-    """Given digit dgt, this function returns a quadruplet of four digits that somewhat covertly imply that digit.
-    Here is how it works: There are five even digits and five odd digits. To mask an even digit, present the remaining
-    four even digits in shuffled order. To mask an odd digit, present the remaining four odd digits in shuffled order."""
+    """Given digit dgt, this function returns a quadruplet of four digits that somewhat
+    covertly imply that digit.
+    Here is how it works: There are five even digits and five odd digits. To mask an even
+    digit, present the remaining
+    four even digits in shuffled order. To mask an odd digit, present the remaining four
+    odd digits in shuffled order."""
     a = (dgt + 2) % 10
     b = (dgt + 4) % 10
     c = (dgt + 6) % 10
@@ -684,14 +714,17 @@ def one_digit_mask(dgt):
     return four_digit_shuffle(a, b, c, d)
 
 def four_digit_mask(a, b, c, d):
-    """Given a quadruplet of digits, returns a 16-tuple of digits that imply those four digits; but in a way that might not be immediately obvious:
-    that is, in a way that might prevent their instantaneous, all-at-once apperception. How it works: The one_digit_mask of each digit is interleaved with the
+    """Given a quadruplet of digits, returns a 16-tuple of digits that imply those four
+    digits; but in a way that might not be immediately obvious:
+    that is, in a way that might prevent their instantaneous, all-at-once apperception.
+    How it works: The one_digit_mask of each digit is interleaved with the
     one_digit_mask's of the other three digits."""
     a_m = one_digit_mask(a)
     b_m = one_digit_mask(b)
     c_m = one_digit_mask(c)
     d_m = one_digit_mask(d)
-    return (a_m[0], b_m[0], c_m[0], d_m[0], a_m[1], b_m[1], c_m[1], d_m[1], a_m[2], b_m[2], c_m[2], d_m[2], a_m[3], b_m[3], c_m[3], d_m[3])
+    return (a_m[0], b_m[0], c_m[0], d_m[0], a_m[1], b_m[1], c_m[1], d_m[1], a_m[2], \
+            b_m[2], c_m[2], d_m[2], a_m[3], b_m[3], c_m[3], d_m[3])
 
 def four_digit_mask_ST(a, b, c, d):
     "Wraps four_digit_mask in a string."
@@ -713,13 +746,15 @@ def Western_Arabic_to_Mro(a_string):
     return a_string
 
 def four_digit_mask_Mro_ST(a, b, c, d):
-    "Encodes four (Western Arabic) digits into a string containing a 16-tuple of Mro digits."
+    "Encodes four (Western Arabic) digits into a string containing a 16-tuple of \
+Mro digits."
     a_string = four_digit_mask_ST(a, b, c, d)
     a_string = Western_Arabic_to_Mro(a_string)
     return a_string
 
 def camouflage_trellis(digits_AR):
-    "Outputs the four digits in a masked way, so that the user cannot (or should not) perceive them all at once."
+    "Outputs the four digits in a masked way, so that the user cannot (or should not) \
+perceive them all at once."
     print("\nCAMOUFLAGE TRELLIS")
     print("Add each row of digits module 10 mentally in order to obtain each digit.")
     print("Rows that end in question mark are buffers, but their sum must be input before")
@@ -745,18 +780,21 @@ def password_shuttle(digits_AR):
         shuttle_position = input("What position: 1 or 2? ")
     if (shuttle_position == "1"):
         file_1 = open("shuttle_2.txt", "w")
-        file_1.write(four_digit_mask_Mro_ST(digits_AR[0], digits_AR[1], digits_AR[2], digits_AR[3]) + "\n")
+        file_1.write(four_digit_mask_Mro_ST(digits_AR[0], digits_AR[1], digits_AR[2], \
+                                            digits_AR[3]) + "\n")
         file_1.close()
         print("The password has been written into the shuttle's first position.")
     elif (shuttle_position == "2"):
         file_1 = open("shuttle_2.txt", "a")
-        file_1.write(four_digit_mask_Mro_ST(digits_AR[0], digits_AR[1], digits_AR[2], digits_AR[3]))
+        file_1.write(four_digit_mask_Mro_ST(digits_AR[0], digits_AR[1], digits_AR[2], \
+                                            digits_AR[3]))
         file_1.close()
         print("The password has been written into the shuttle's second position.")
     return int(shuttle_position)
 
 def swift_alter():
-    "Swift alteration mode. Global variables used: data, the_book, the_author, the_publisher, the_codeword_hash, old_f_ST, keywords_LS, upper_bound."
+    "Swift alteration mode. Global variables used: data, the_book, the_author, \
+the_publisher, the_codeword_hash, old_f_ST, keywords_LS, upper_bound."
     "(MAIN)"
     errorFlag = False
     old_vector_left_LS = [0, 0, 0, 0, 0, 0, 0, 0]
@@ -774,7 +812,8 @@ def swift_alter():
             lett0 = phi_lett(vec_LS)
             variance0 = phi_variance(vec_LS)
             ordnum0 = phi_ordnum(word_ST)
-            if (data[i][1] == lett0) and (data[i][2] == variance0) and (data[i][3] == ordnum0):
+            if (data[i][1] == lett0) and (data[i][2] == variance0) \
+               and (data[i][3] == ordnum0):
                 print("Fingerprint OK.")
             else:
                 print("Error: Fingerprint not OK.")
@@ -782,7 +821,8 @@ def swift_alter():
         elif (i in [100, 200, 300]) or (is_toy_version and (i in [10, 20, 30])):
             word_ST = ""
             while not is_proper_keyword(word_ST):
-                word_ST = input(f"\nEnter some all-caps eight-letter word for location {i}: ")
+                word_ST = input(f"\nEnter some all-caps eight-letter word for \
+location {i}: ")
                 if not is_proper_keyword(word_ST):
                     print("Error: Please enter an eight-letter word in all caps.")
             vec_LS = transnumeration(word_ST)
@@ -850,14 +890,16 @@ def swift_alter():
         print("Error: The digits are not OK.")
         answer_CH = ""
         while not (answer_CH in ["y", "n"]):
-            answer_CH = input("Would you like to try \"swift alter\" mode again (\"y\", \"n\")? ")
+            answer_CH = input("Would you like to try \"swift alter\" mode again \
+(\"y\", \"n\")? ")
             if not (answer_CH in ["y", "n"]):
                 print("Error: please enter either \"y\" or \"n\".")
         if (answer_CH == "y"):
             return swift_alter()                  # recursive
         else:
             return 0
-    #codeword_hash = string_hash_6(str(digits[0]) + str(digits[1]) + str(digits[2]) + str(digits[3]))
+    #codeword_hash = string_hash_6(str(digits[0]) + str(digits[1]) + str(digits[2]) \
+        #+ str(digits[3]))
     codeword_hash = 12
     if not errorFlag:
         data[0] = ("Codeword hash:", codeword_hash)
@@ -882,7 +924,8 @@ def swift_alter():
                 if (len(f_ST) < 6) or not (f_ST[-5:] == ".4H4D"):
                     print("Error: The filename should have extension .4H4D.")
                 elif (f_ST == old_f_ST):
-                    print("Error: The altered file should have a different filename from the original file.")
+                    print("Error: The altered file should have a different filename \
+from the original file.")
                 else:
                     filename_OK = True
             "save data in file"
@@ -911,7 +954,8 @@ def swift_alter():
             "log: swift alteration"
             antwoord_CH = ""
             while not (antwoord_CH in ["y", "n"]):
-                antwoord_CH = input("\nWould you like this alteration episode to be logged (y/n)? ")
+                antwoord_CH = input("\nWould you like this alteration episode to be \
+logged (y/n)? ")
             if (antwoord_CH == "y"):
                 "append entry in password_construction_log.txt"
                 with open("password_construction_log.txt", "a") as fil_chron:
@@ -968,9 +1012,12 @@ if (mode == "r") or (mode == "a"):
                     line_LS[2] = VAL(line_LS[2])
                     data.append((line_LS[0], line_LS[1], line_LS[2], line_LS[3]))
                 elif (len(line_LS) == 2):
-                    if not (line_LS[0] in ["Executor:", "Book:", "Author:", "Publisher:", "Location:", "Codeword hash:"]):
-                        print(f"L885. ERROR: Not an approved first element for an ordered pair: '{line_LS[0]}'")
-                    if (line_LS[0] == "Executor:") and not (line_LS[1] == "FourHundredWords2FourDigits_13.py"): 
+                    if not (line_LS[0] in ["Executor:", "Book:", "Author:", "Publisher:", \
+                                           "Location:", "Codeword hash:"]):
+                        print(f"L885. ERROR: Not an approved first element for an ordered \
+pair: '{line_LS[0]}'")
+                    if (line_LS[0] == "Executor:") \
+                       and not (line_LS[1] == "FourHundredWords2FourDigits_13.py"): 
                         print("Error: I am not the executor of this file.")
                         exit()
                     if (line_LS[0] == "Book:"):
@@ -989,7 +1036,8 @@ if (mode == "r") or (mode == "a"):
                         the_codeword_hash = int(line_LS[1])
                         #print(f"Codeword hash: {the_codeword_hash}\n")
                         if (the_codeword_hash == -13) and (mode == "r"):
-                            print("There is an error with the password so it should not be reconstructed.")
+                            print("There is an error with the password so it should \
+not be reconstructed.")
                             print("Instead, consider altering it.")
                             quit()
                     data.append((line_LS[0], line_LS[1]))                        
@@ -1007,7 +1055,8 @@ if (mode == "r") or (mode == "a"):
         old_f_ST = f_ST              # might be used in swift_alter
 
 "MAIN"
-is_toy_version = False          # This line is user-modifiable; the RHS should be either True or False.
+is_toy_version = False          # This line is user-modifiable; the RHS should be either
+#True or False.
 errorFlag = False
 if (mode == "c"):
     data = [0]
@@ -1044,7 +1093,8 @@ for i in range(1, upper_bound + 1):
                     par_num = input("Enter the paragraph number: ")
                     new_prefix = f"P. {page_num} PAR. {par_num} "
                     if not (new_prefix == prefix):
-                        data[i - 1] = (new_prefix + data[i - 1][0], data[i - 1][1], data[i - 1][2], data[i - 1][3])
+                        data[i - 1] = (new_prefix + data[i - 1][0], data[i - 1][1], \
+                                       data[i - 1][2], data[i - 1][3])
                         print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
                         prefix = new_prefix
                         older_prefix = prefix
@@ -1057,8 +1107,10 @@ for i in range(1, upper_bound + 1):
                     page_num = input("Enter the new page number: ")
                     par_num = input("Enter the new paragraph number: ")
                     new_prefix = f"P. {page_num} PAR. {par_num} "
-                    new_datum = data[i - 1][0].replace(what_prefix(data[i - 1][0]), new_prefix)
-                    data[i - 1] = (new_datum, data[i - 1][1], data[i - 1][2], data[i - 1][3])
+                    new_datum = data[i - 1][0].replace(what_prefix(data[i - 1][0]), \
+                                                       new_prefix)
+                    data[i - 1] = (new_datum, data[i - 1][1], data[i - 1][2], \
+                                   data[i - 1][3])
                     prefix = new_prefix
                     older_prefix = prefix
                     print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
@@ -1066,7 +1118,8 @@ for i in range(1, upper_bound + 1):
                     OK = True
                     respuesta = "N"                         
                 else:
-                    print(f"L906. ERROR: Wrong number of periods ({data[i - 1][0].count('.')}) in the location string.")
+                    print(f"L906. ERROR: Wrong number of periods \
+({data[i - 1][0].count('.')}) in the location string.")
             elif (i == 1) and (loc == ":CORRECTION:"):
                 print("Error: it is not possible to correct a non-existent zeroth entry.")
                 word_ST = "ZZZZZZZZ"
@@ -1115,32 +1168,40 @@ for i in range(1, upper_bound + 1):
                 else:
                     print("Error: There cannot be just one period.")
                     if (loc[0:5] == "PAR. ") and (loc[5:6].isdigit()):
-                        print("Specification of paragraph number should be immediately preceded")
-                        print("by a specification of page number. I.e., a \"PAR. {#} \" prefix")
+                        print("Specification of paragraph number should be immediately \
+preceded")
+                        print("by a specification of page number. I.e., a \"PAR. {#} \" \
+prefix")
                         print("should be immediately preceded by a \"P. {#} \" prefix.")
                     elif (loc[0:3] == "P. ") and (loc[3:4].isdigit()):
                         print("Specification of page number should be immediately followed")
-                        print("by a specification of paragraph number. I.e., a \"P. {#} \" prefix")
+                        print("by a specification of paragraph number. I.e., \
+a \"P. {#} \" prefix")
                         print("should be immediately followed by a \"PAR. {#}  \" prefix.")
                     else:
                         print("Type :HELP: and <ENTER> for explanatory help.")
                 OK = True
                 respuesta = "N"
                 word_ST = "ZZZZZZZZ"
-            elif not is_UALPHAnumeric(if_paragraph_then_swallow(if_page_then_swallow(loc)).replace(" ", "")):
-                print("Error: After (optionally) specifying the page number (through \"P. {#} \")")
+            elif not is_UALPHAnumeric(if_paragraph_then_swallow(\
+                if_page_then_swallow(loc)).replace(" ", "")):
+                print("Error: After (optionally) specifying the page number \
+(through \"P. {#} \")")
                 print("and (included as part of the option) specifying the paragraph number")
                 print("(through \"PAR. {#} \"), the remainder of the location string should")
-                print("consist only of spaces, digits, and uppercase letters (containing at least")
+                print("consist only of spaces, digits, and uppercase letters (containing \
+at least")
                 print("six non-spaces). Please try again.")
                 OK = True
                 respuesta = "N"
                 word_ST = "ZZZZZZZZ"
             elif (letter_count(loc) < 6):
                 if (letter_count(loc) == -9):
-                    print("Error: No word in the index should have exactly eight letters. Please try again.")
+                    print("Error: No word in the index should have exactly eight letters. \
+Please try again.")
                 else:
-                    print("Error: Index word(s) should have at least six letters among them. Please try again.")
+                    print("Error: Index word(s) should have at least six letters among \
+them. Please try again.")
                 OK = True
                 respuesta = "N"
                 word_ST = "ZZZZZZZZ"
@@ -1150,7 +1211,8 @@ for i in range(1, upper_bound + 1):
                 while not (response in ["CONTINUE", "RETRY"]):
                     response = input("Continue anyway (\"CONTINUE\") or retry (\"RETRY\")? ")
                     if not (response in ["CONTINUE", "RETRY"]):
-                        print("Error: type either \"CONTINUE\" or \"RETRY\" and then press <ENTER>.")
+                        print("Error: type either \"CONTINUE\" or \"RETRY\" and then \
+press <ENTER>.")
                 if (response == "RETRY"):
                     OK = True
                     respuesta = "N"
@@ -1160,7 +1222,8 @@ for i in range(1, upper_bound + 1):
                     "update of prefix: 'create new' mode > 'CONTINUE' case"
                     if (len(what_prefix(loc)) > 0):    
                         if (what_prefix(loc) == prefix):
-                            print("Error: The prefix has been repeated, but the location string is now\nbeing automatically corrected.")
+                            print("Error: The prefix has been repeated, but the \
+location string is now\nbeing automatically corrected.")
                             loc = loc[len(prefix):]
                         else:
                             older_prefix = prefix
@@ -1174,7 +1237,8 @@ for i in range(1, upper_bound + 1):
                 "update of prefix: 'create new' mode"
                 if (len(what_prefix(loc)) > 0):    
                     if (what_prefix(loc) == prefix):   
-                        print("Error: The prefix has been repeated; but the location string is now\nbeing automatically corrected.")
+                        print("Error: The prefix has been repeated; but the location \
+string is now\nbeing automatically corrected.")
                         loc = loc[len(prefix):]
                     else:
                         older_prefix = prefix
@@ -1191,7 +1255,8 @@ for i in range(1, upper_bound + 1):
                         if (word_ST == ":HELP:"):
                             help_intro()
                         else:
-                            print("Error: Please enter an eight-letter word in all caps (or \"XXXXXXXX\" to cancel).")
+                            print("Error: Please enter an eight-letter word in all caps \
+(or \"XXXXXXXX\" to cancel).")
                 OK = True
             if (word_ST == "XXXXXXXX"):
                 OK = True
@@ -1234,7 +1299,8 @@ for i in range(1, upper_bound + 1):
         datum = data[i][0]
         if (len(what_prefix(datum)) > 0):
             if (what_prefix(datum) == prefix):
-                print("Error: The prefix has been repeated; but the location string is now\nbeing automatically corrected.")
+                print("Error: The prefix has been repeated; but the location string \
+is now\nbeing automatically corrected.")
                 new_datum = datum[len(prefix):]
                 data[i] = (new_datum, data[i][1], data[i][2], data[i][3])
             else:            
@@ -1246,48 +1312,60 @@ for i in range(1, upper_bound + 1):
                 word_ST = input(f"Keyword #{i}: ")
                 if not is_proper_keyword(word_ST):
                     if (i > 1) and (word_ST == ":CORRECTION:"):
-                        print(f"Current previous (#{i - 1}) location string: {data[i - 1][0]}")
+                        print(f"Current previous (#{i - 1}) location string: \
+{data[i - 1][0]}")
                         if (data[i - 1][0].count(".") == 0):
                             page_num = input("Enter the page number: ")
                             par_num = input("Enter the paragraph number: ")
                             new_prefix = f"P. {page_num} PAR. {par_num} "
                             if not (new_prefix == prefix):
-                                data[i - 1] = (new_prefix + data[i - 1][0], data[i - 1][1], data[i - 1][2], data[i - 1][3])
-                                print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
+                                data[i - 1] = (new_prefix + data[i - 1][0], \
+                                               data[i - 1][1], data[i - 1][2], \
+                                               data[i - 1][3])
+                                print(f"New previous (#{i - 1}) location string: \
+{data[i - 1][0]}")
                                 reconstruct_changed = True
                                 prefix = new_prefix
                                 DEBUG(debug_1, f"prefix = {prefix}")
                             else:
-                                print("Error: The same location prefix should not be repeated.")
+                                print("Error: The same location prefix should not be \
+repeated.")
                             print("\nNow back to the present entry.")
                             print(f"\nLocation #{i}: {data[i][0]}")
                         elif (data[i - 1][0].count(".") == 2):
                             page_num = input("Enter the new page number: ")
                             par_num = input("Enter the new paragraph number: ")
                             new_prefix = f"P. {page_num} PAR. {par_num} "
-                            new_datum = data[i - 1][0].replace(what_prefix(data[i - 1][0]), new_prefix)
-                            data[i - 1] = (new_datum, data[i - 1][1], data[i - 1][2], data[i - 1][3])
+                            new_datum = data[i - 1][0].replace(what_prefix(data[i - 1][0]), \
+                                                               new_prefix)
+                            data[i - 1] = (new_datum, data[i - 1][1], data[i - 1][2], \
+                                           data[i - 1][3])
                             prefix = new_prefix
-                            print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
+                            print(f"New previous (#{i - 1}) location string: \
+{data[i - 1][0]}")
                             reconstruct_changed = True
                             print("\nNow back to the present entry.")
                             print(f"\nLocation #{i}: {data[i][0]}")                            
                         else:
-                            print("Error: Cannot prepend a page–number prefix to a string that already has periods in it.")
+                            print("Error: Cannot prepend a page–number prefix to a \
+string that already has periods in it.")
                     elif (i == 1) and (word_ST == ":CORRECTION:"):
-                        print("Error: It is not possible to correct a non-existent zeroth entry.")
+                        print("Error: It is not possible to correct a non-existent \
+zeroth entry.")
                     elif (word_ST == "??"):
                         if (len(prefix) > 0):
                             print(prefix)
                         else:
-                            print("No page number – paragraph number prefix has been entered yet.")                 
+                            print("No page number – paragraph number prefix has been \
+entered yet.")                 
                     else:
                         print("Error: Please enter an eight-letter word in all caps.")
             vec_LS = transnumeration(word_ST)
             lett0 = phi_lett(vec_LS)
             variance0 = phi_variance(vec_LS)
             ordnum0 = phi_ordnum(word_ST)
-            if (data[i][1] == lett0) and (data[i][2] == variance0) and (data[i][3] == ordnum0):
+            if (data[i][1] == lett0) and (data[i][2] == variance0) \
+               and (data[i][3] == ordnum0):
                 print("Fingerprint OK.")
                 OK = True
                 keywords_LS.append(word_ST)
@@ -1302,7 +1380,8 @@ for i in range(1, upper_bound + 1):
             datum = data[i][0]
             if (len(what_prefix(datum)) > 0):
                 if (what_prefix(datum) == prefix):
-                    print("Error: The prefix has been repeated, but the location string is now\nbeing automatically corrected.")
+                    print("Error: The prefix has been repeated, but the location string \
+is now\nbeing automatically corrected.")
                     new_datum = datum[len(prefix):]
                     data[i] = (new_datum, data[i][1], data[i][2], data[i][3])
                 else:                
@@ -1314,46 +1393,59 @@ for i in range(1, upper_bound + 1):
                     word_ST = input(f"Keyword #{i}: ")
                     if not is_proper_keyword(word_ST):
                         if (i > 1) and (word_ST == ":CORRECTION:"):
-                            print(f"Current previous (#{i - 1}) location string: {data[i - 1][0]}")
+                            print(f"Current previous (#{i - 1}) location string: \
+{data[i - 1][0]}")
                             if (data[i - 1][0].count(".") == 0):
                                 page_num = input("Enter the page number: ")
                                 par_num = input("Enter the paragraph number: ")
                                 new_prefix = f"P. {page_num} PAR. {par_num} "
                                 if not (new_prefix == prefix):
-                                    data[i - 1] = (new_prefix + data[i - 1][0], data[i - 1][1], data[i - 1][2], data[i - 1][3])
-                                    print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
+                                    data[i - 1] = (new_prefix + data[i - 1][0], \
+                                                   data[i - 1][1], data[i - 1][2], \
+                                                   data[i - 1][3])
+                                    print(f"New previous (#{i - 1}) location string: \
+{data[i - 1][0]}")
                                     reconstruct_changed = True
                                     prefix = new_prefix
                                     DEBUG(f"prefix = {prefix}")
                                 else:
-                                    print("Error: The same location prefix should not be repeated.")
+                                    print("Error: The same location prefix should \
+not be repeated.")
                                 print("\nNow back to the present entry.")
                                 print(f"\nLocation #{i}: {data[i][0]}")
                             elif (data[i - 1][0].count(".") == 2):
                                 page_num = input("Enter the new page number: ")
                                 par_num = input("Enter the new paragraph number: ")
                                 new_prefix = f"P. {page_num} PAR. {par_num} "
-                                new_datum = data[i - 1][0].replace(what_prefix(data[i - 1][0]), new_prefix)
-                                data[i - 1] = (new_datum, data[i - 1][1], data[i - 1][2], data[i - 1][3])
+                                new_datum = data[i - 1][0].replace(what_prefix(\
+                                    data[i - 1][0]), new_prefix)
+                                data[i - 1] = (new_datum, data[i - 1][1], data[i - 1][2], \
+                                               data[i - 1][3])
                                 prefix = new_prefix
-                                print(f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
+                                print(f"New previous (#{i - 1}) location string: \
+{data[i - 1][0]}")
                                 reconstruct_changed = True                               
                             else:
-                                print("Error: Cannot prepend a page–number prefix to a string that already has periods in it.")
+                                print("Error: Cannot prepend a page–number prefix \
+to a string that already has periods in it.")
                         elif (i == 1) and (word_ST == ":CORRECTION:"):
-                            print("Error: It is not possible to correct a non-existent zeroth entry.")
+                            print("Error: It is not possible to correct a non-existent \
+zeroth entry.")
                         elif (word_ST == "??"):
                             if (len(prefix) > 0):
                                 print(prefix)
                             else:
-                                print("No page number – paragraph number prefix has been entered yet.")                 
+                                print("No page number – paragraph number prefix \
+has been entered yet.")                 
                         else:                        
-                            print("Error: Please enter an eight-letter word in all caps.")
+                            print("Error: Please enter an eight-letter word \
+in all caps.")
                 vec_LS = transnumeration(word_ST)
                 lett0 = phi_lett(vec_LS)
                 variance0 = phi_variance(vec_LS)
                 ordnum0 = phi_ordnum(word_ST)
-                if (data[i][1] == lett0) and (data[i][2] == variance0) and (data[i][3] == ordnum0):
+                if (data[i][1] == lett0) and (data[i][2] == variance0) \
+                   and (data[i][3] == ordnum0):
                     print("Fingerprint OK.")
                     OK = True
                     keywords_LS.append(word_ST)
@@ -1362,7 +1454,8 @@ for i in range(1, upper_bound + 1):
         elif (i in [100, 200, 300]) or (is_toy_version and (i in [10, 20, 30])):
             word_ST = ""
             while not is_proper_keyword(word_ST):
-                word_ST = input(f"\nEnter some all-caps eight-letter word for location {i}: " )
+                word_ST = input(f"\nEnter some all-caps eight-letter word \
+for location {i}: " )
                 if not is_proper_keyword(word_ST):
                     print("Error: Please enter an eight-letter word in all caps.")
             keywords_LS.append(word_ST)
@@ -1449,7 +1542,8 @@ elif (mode == "c"):
     print("reopen it in 'alter' mode, perform an alteration that fixes the digit")
     print("crash problem, and then save that. (Note that an attempt to go through")
     print("the unaltered word-labyrinth in 'reconstruct' mode will yield error.)")
-#codeword_hash = string_hash_6(str(digits[0]) + str(digits[1]) + str(digits[2]) + str(digits[3]))
+#codeword_hash = string_hash_6(str(digits[0]) + str(digits[1]) + str(digits[2]) \
+    #+ str(digits[3]))
 codeword_hash = 12
 
 if (mode == "r"):
@@ -1505,13 +1599,15 @@ if (mode == "c"):
             for item in data:
                 f.write(stringify_tuple(item) + "\n")
         if not errorFlag:
-            print("The new file has been written. Reconstruct the password in order to confirm it.")
+            print("The new file has been written. Reconstruct the password in order \
+to confirm it.")
             print("Do not assign the password until it has been confirmed.\n")
             print("When assigning the password, it has to be entered twice: the first")
             print("time from one camouflage trellis, the second time from another")
             print("(different) camouflage trellis.\n")
         elif errorFlag:
-            print("The new file has been written. Do not reconstruct it but instead alter it.\n")
+            print("The new file has been written. Do not reconstruct it \
+but instead alter it.\n")
         print("METADATA")
         print(f"Filename: {f_ST}")
         print("Executor: FourHundredWords2FourDigits_13.py")
@@ -1522,7 +1618,8 @@ if (mode == "c"):
         "log: creation"
         antwoord_CH = ""
         while not (antwoord_CH in ["y", "n"]):
-            antwoord_CH = input("\nWould you like this creation session to be logged (y/n)? ")
+            antwoord_CH = input("\nWould you like this creation session \
+to be logged (y/n)? ")
         if (antwoord_CH == "y"):
             "append entry in password_construction_log.txt"
             with open("password_construction_log.txt", "a") as fil_chron:
@@ -1549,7 +1646,8 @@ if (mode == "a") and not errorFlag:
             if (len(f_ST) < 6) or not (f_ST[-5:] == ".4H4D"):
                 print("Error: The filename should have extension .4H4D.")
             elif (f_ST == old_f_ST):
-                print("Error: The altered file should have a different filename from the original file.")
+                print("Error: The altered file should have a different filename \
+from the original file.")
             else:
                 filename_OK = True
         "save data in file"
@@ -1578,7 +1676,8 @@ if (mode == "a") and not errorFlag:
         "log: alteration"
         antwoord_CH = ""
         while not (antwoord_CH in ["y", "n"]):
-            antwoord_CH = input("\nWould you like this alteration session to be logged (y/n)? ")
+            antwoord_CH = input("\nWould you like this alteration session \
+to be logged (y/n)? ")
         if (antwoord_CH == "y"):
             "append entry in password_construction_log.txt"
             with open("password_construction_log.txt", "a") as fil_chron:
@@ -1629,7 +1728,8 @@ if (mode == "r") and not errorFlag:
     "log: reconstruction"
     antwoord_CH = ""
     while not (antwoord_CH in ["y", "n"]):
-        antwoord_CH = input("\nWould you like this reconstruction session to be logged (y/n)? ")
+        antwoord_CH = input("\nWould you like this reconstruction session \
+to be logged (y/n)? ")
     if (antwoord_CH == "y"):
         "append entry in password_construction_log.txt"
         with open("password_construction_log.txt", "a") as fil_chron:
