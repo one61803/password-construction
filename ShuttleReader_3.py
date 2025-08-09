@@ -60,7 +60,7 @@ def camouflage_trellis(title_ST, digits_AR):
         buffer_digit()
 
 def camouflage_trellis_modulator(title_ST, how_many_NT, digits_AR):
-    "Asks about submode before calling camouflage trellis."
+    "Modulates camouflage trellis based on the value of the how_many_NT argument."
     out_ST = "Is this reconstruction session for newly assigning (ss) the given"
     out_ST += "\npassword (to some domain) or for accessing (cc) a password's"
     out_ST += "\n(already assigned) domain (ss/cc)? "
