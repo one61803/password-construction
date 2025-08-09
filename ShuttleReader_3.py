@@ -197,4 +197,4 @@ file.write("ZZZZZZZZ")      # Should this line end in '\n'? Ans.: Not needed, ap
 file.close()
 
 print("DONE")
-"FINIS PROGRAMMAE"
+"FINIS PROGRAMMATIS ✚ FINIS PROGRAMMATIS ✚ FINIS PROGRAMMATIS ✚ FINIS PROGRAMMATIS ✚ FINIS PR"
