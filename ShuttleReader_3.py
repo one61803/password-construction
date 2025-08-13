@@ -76,7 +76,7 @@ def camouflage_trellis_modulator(title_ST, how_many_NT, digits_AR):
         cont = True
         while cont:
             print("Just ahead: a single camouflage trellis.\n")
-            camouflage_trellis(digits_AR)
+            camouflage_trellis(title_ST, digits_AR)
             cont = whether_to_continue()
 
 def whether_to_continue():
