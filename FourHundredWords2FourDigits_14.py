@@ -1127,7 +1127,7 @@ def if_not_is_proper_keyword(word_ST):
                 par_num = str(abs(input_integer("Enter the paragraph number: ")))
                 new_prefix = f"P. {page_num} PAR. {par_num} "
                 if not (new_prefix == prefix):
-                    if not (page_num == "0"):
+                    if not ((page_num == "0") and (par_num == "0")):
 
                         data[i - 1] = (new_prefix + data[i - 1][0], \
                                        data[i - 1][1], data[i - 1][2], \
@@ -1150,14 +1150,14 @@ def if_not_is_proper_keyword(word_ST):
                 page_num = str(abs(input_integer("Enter the page number: ")))
                 par_num = str(abs(input_integer("Enter the paragraph number: ")))
                 new_prefix = f"P. {page_num} PAR. {par_num} "
-                if (page_num == "0"):
+                if ((page_num == "0") and (par_num == "0")):
                     new_prefix = ""
                 new_datum = \
                           data[i - 1][0].replace(\
                               what_prefix(data[i - 1][0]), new_prefix)
                 data[i - 1] = (new_datum, data[i - 1][1], \
                                data[i - 1][2], data[i - 1][3])
-                if not (page_num == "0"):
+                if not ((page_num == "0") and (par_num == "0")):
                     prefix = new_prefix
                 print(\
                 f"New previous (#{i - 1}) location string: {data[i - 1][0]}")
@@ -1474,7 +1474,7 @@ for i in range(1, upper_bound + 1):
                     par_num = str(abs(input_integer("Enter the paragraph number: ")))
                     new_prefix = f"P. {page_num} PAR. {par_num} "
                     if not (new_prefix == prefix):
-                        if not (page_num == "0"):
+                        if not ((page_num == "0") and (par_num == "0")):
                             data[i - 1] = (new_prefix + data[i - 1][0], data[i - 1][1], \
                                        data[i - 1][2], data[i - 1][3])
                             print(\
@@ -1492,13 +1492,13 @@ for i in range(1, upper_bound + 1):
                     page_num = str(abs(input_integer("Enter the new page number: ")))
                     par_num = str(abs(input_integer("Enter the new paragraph number: ")))
                     new_prefix = f"P. {page_num} PAR. {par_num} "
-                    if (page_num == "0"):
+                    if ((page_num == "0") and (par_num == "0")):
                         new_prefix = ""
                     new_datum = data[i - 1][0].replace(what_prefix(data[i - 1][0]), \
                                                        new_prefix)
                     data[i - 1] = (new_datum, data[i - 1][1], data[i - 1][2], \
                                    data[i - 1][3])
-                    if not (page_num == "0"):
+                    if not ((page_num == "0") and (par_num == "0")):
                         prefix = new_prefix
                         older_prefix = new_prefix
                     else:
