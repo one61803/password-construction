@@ -2136,4 +2136,4 @@ if (mode == "r") and not errorFlag:
                     "Would you like to enter \"swift alter\" mode (\"y\", \"n\")? ")
             if (answer_CH == "y"):
                 print("Net result = " + str(swift_alter(old_digits, is_for_exchange_NT)))
-"FINIS PROGRAMMATIS ✚ FINIS PROGRAMMATIS ✚ FINIS PROGRAMMATIS ✚ FINIS PROGRAMMATIS ✚ FINIS PRO"
+"FINIS PROGRAMMATIS · FINIS PROGRAMMATIS · FINIS PROGRAMMATIS · FINIS PROGRAMMATIS · FINIS PRO"
