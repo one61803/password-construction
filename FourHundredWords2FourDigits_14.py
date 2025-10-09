@@ -1657,12 +1657,17 @@ for i in range(1, upper_bound + 1):
                 OK = True
                 respuesta = "N"
                 word_ST = "ZZZZZZZZ"
-            elif not is_UALPHAnumeric(what_index_words(loc).replace(" ", "")): 
-                print("Error: After (optionally) specifying the page number (through")
-                print("\"P. {#} \") and (included as part of the option) specifying the")
-                print("paragraph number (through \"PAR. {#} \"), the remainder of the")
-                print("location string should consist only of spaces, digits, and uppercase")
-                print("letters (and contain at least six letters). Please try again.")
+            elif not is_proper_addition(what_index_words(loc)):
+                if ("  " in what_index_words(loc)):
+                    print("Error: spaces should be isolated (i.e., there should not be")
+                    print("any pair of isolated spaces. Please try again.")
+                else:
+                    print("Error: After (optionally) specifying the page number (through")
+                    print("\"P. {#} \") and (included as part of the option) specifying the")
+                    print("paragraph number (through \"PAR. {#} \"), the remainder of the")
+                    print("location string should consist only of spaces, digits, and")
+                    print("uppercase letters (and contain at least six letters). Please")
+                    print("try again.")
                 OK = True
                 respuesta = "N"
                 word_ST = "ZZZZZZZZ"

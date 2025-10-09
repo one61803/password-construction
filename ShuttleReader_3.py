@@ -3,7 +3,7 @@
 "123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J123456789K123456789L"
 "Right margin set at I3."
 import random
-
+from datetime import date
 
 def buffer_digit():
     """Prompts the user with a string of 16 random digits and a question mark, asking for
@@ -19,12 +19,30 @@ def buffer_digit():
             digit_sum %= 10
             digit_string += "  "
         digit_string += "? "
-        input_digit = input(digit_string)
-        input_digit = int(input_digit)
+        input_digit = input_integer(digit_string)
         if (input_digit == digit_sum):
             OK = True
         else:
             print("Error: incorrect buffer digit; try again.")
+
+def input_integer(message_ST):
+    """Inputs an integer. The return value is an actual integer, not a string containing
+    an integer."""
+    integer_ST = "ABC"
+    while not is_string_an_integer(integer_ST):
+        integer_ST = input(message_ST)
+        if not is_string_an_integer(integer_ST):
+            print("The input should be an integer. Please try again.\n")
+    return int(integer_ST)
+
+def is_string_an_integer(ST):
+    "Checks whether string ST contains an integer."
+    if (len(ST) == 0):
+        return False
+    else:
+        if (ST[0] == "-"):
+            ST = ST[1:]
+    return ST.isdigit()
 
 def digit_mask(digit):
     """Writes a line of 16 digits whose sum modulo 10 equals argument digit. (The first
@@ -81,14 +99,21 @@ def camouflage_trellis_modulator(title_ST, how_many_NT, digits_AR):
 
 def whether_to_continue():
     "Asks user whether to continue and returns a boolean based on that."
-    continue_answer = ""
-    while not (continue_answer in ["y", "n"]):
-        continue_answer = input("Another (y/n)? ")
+    continue_answer = input_y_or_n("Another (y/n)? ")
     if (continue_answer == "n"):
         return False
     elif (continue_answer == "y"):
         print("\n\n\n\n")
         return True
+
+def input_y_or_n(message_ST):
+    "Asks for a 'y' or 'n' input and loops until it gets a proper answer."
+    ans_CH = ""
+    while not (ans_CH in ["y", "n"]):
+        ans_CH = input(message_ST)
+        if not (ans_CH in ["y", "n"]):
+            print("Error. Please answer with either 'y' or 'n'.\n")
+    return ans_CH
 
 def is_string(param):
     "Returns a Boolean of whether argument param is a string or not."
@@ -174,6 +199,19 @@ def DEBUG(flag, msg):
         
 "BEGIN"
 debug_0 = False
+is_toy_version = False
+is_trial_version = True
+if is_toy_version and is_trial_version:
+    print("L205. ERROR: is_toy_version and is_trial_version should not")
+    print("both be set to True.")
+    quit()
+if is_toy_version:
+    what_log = "toy_password_construction_log.txt"
+elif is_trial_version:
+    what_log = "trial_password_construction_log.txt"
+else:
+    what_log = "password_construction_log.txt"
+    
 file = open("shuttle_3.txt", "r")
 four_tuple_1 = four_digit_unmask_Mro(file.readline()[0:-1])
 four_tuple_2 = four_digit_unmask_Mro(file.readline())
@@ -195,6 +233,17 @@ file = open("shuttle_3.txt", "w")
 file.write("XXXXXXXX\n")
 file.write("ZZZZZZZZ")      # Should this line end in '\n'? Ans.: Not needed, apparently.
 file.close()
+
+"log?"
+antwoord_CH = input_y_or_n("\nWould you like this shuttle session to be logged? (y/n)? ")
+if (antwoord_CH == "y"):
+    "append entry in log"
+    with open(what_log, "a") as fil_chron:
+        fil_chron.write("- - - - - - - - - - - - - - - -\n")
+        todays_date = date.today()
+        fil_chron.write(f"Today's date: {todays_date}\n")
+        fil_chron.write(f"Shuttle session.\n")
+    print(f"A record has been written in {what_log}.\n")
 
 print("DONE")
 "FINIS PROGRAMMATIS · FINIS PROGRAMMATIS · FINIS PROGRAMMATIS · FINIS PROGRAMMATIS · FINIS PRO"
