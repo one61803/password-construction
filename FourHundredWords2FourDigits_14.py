@@ -1337,6 +1337,7 @@ data = []
 debug_0 = False
 debug_1 = False
 debug_2 = False
+d_3 = False
 is_toy_version = False          # This line is user-modifiable; the RHS should be
                                 # either True or False.
 is_trial_version = False         # The RHS here can likewise be set to True or False.
@@ -1385,6 +1386,7 @@ if (mode == "r") or (mode == "a"):
                         exit()
                     if line_LS[0] == "Mode:":
                         the_mode = line_LS[1]
+                        DEBUG(d_3, f"L1389. the_mode = {the_mode}")
                         print(f"Mode: {the_mode}\n")
                         if (the_mode == "toy") != is_toy_version:
                             print("Error: the executor's mode does not match the file's")
@@ -1933,12 +1935,18 @@ if (mode == "c"):
         if is_toy_version:
             data.append(("Mode:", "toy"))
             a_mode = "toy"
+            DEBUG(d_3, f"L1938. data[-1][0] = {data[-1][0]}")
+            DEBUG(d_3, f"L1939. data[-1][1] = {data[-1][1]}")
         elif is_trial_version:
             data.append(("Mode:", "trial"))
             a_mode = "trial"
+            DEBUG(d_3, f"L1943. data[-1][0] = {data[-1][0]}")
+            DEBUG(d_3, f"L1944. data[-1][1] = {data[-1][1]}")            
         else:
             data.append(("Mode:", "regular"))
             a_mode = "regular"
+            DEBUG(d_3, f"L1948. data[-1][0] = {data[-1][0]}")
+            DEBUG(d_3, f"L1949. data[-1][1] = {data[-1][1]}")            
         a_book = input("What is the book's name? ")
         an_author = input("Who is the book's author? ")
         a_publisher = input("Who is the book's publisher? ")
@@ -2018,6 +2026,7 @@ if (mode == "a") and not errorFlag:
         print("METADATA")
         print(f"Filename: {f_ST}")
         print(f"Executor: {my_filename}")
+        print(f"Mode: {the_mode}")
         print(f"Book's name: {the_book}")
         print(f"Book's author: {the_author}")
         print(f"Book's publisher: {the_publisher}")
@@ -2082,6 +2091,7 @@ if (mode == "r") and not errorFlag:
     print("METADATA")
     print(f"Filename: {f_ST}")
     print(f"Executor: {my_filename}")
+    print(f"Mode: {the_mode}")
     print(f"Book's name: {the_book}")
     print(f"Book's author: {the_author}")
     print(f"Books' publisher: {the_publisher}")
